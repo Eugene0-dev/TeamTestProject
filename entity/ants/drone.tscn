@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bn2fbjhbjvhxe"]
 
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_ol35h"]
-[ext_resource type="SpriteFrames" uid="uid://b4udw8cc2lkt4" path="res://assets/Ants/drone_SpriteFrames.tres" id="2_438f2"]
+[ext_resource type="SpriteFrames" path="res://assets/Ants/drone_SpriteFrames.tres" id="2_438f2"]
 
 [node name="Entity" unique_id=1305847055 node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("1_ol35h")]
 sprite = NodePath("Sprite")
@@ -12,5 +12,3 @@ position = Vector2(0.12500057, -0.37500027)
 scale = Vector2(0.3115385, 0.38076922)
 sprite_frames = ExtResource("2_438f2")
 animation = &"Idle"
-frame = 4
-frame_progress = 0.04460413

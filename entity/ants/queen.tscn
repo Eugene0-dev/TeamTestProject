@@ -10,6 +10,5 @@ hitbox = NodePath("Hitbox")
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 position = Vector2(1, 0)
 sprite_frames = ExtResource("2_j5nx7")
-animation = &"Idle"
-frame = 4
-frame_progress = 0.55805326
+animation = &"Walk Down"
+autoplay = "Idle Down"

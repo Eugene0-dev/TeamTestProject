@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://51gj6n1g2snl"]
+
+[ext_resource type="Texture2D" uid="uid://br6wpb6dbrbbw" path="res://assets/Ants/Ant-Warrior-Idle-Down1.png" id="1_pg37t"]
+[ext_resource type="Texture2D" uid="uid://8o0eu4shrb7" path="res://assets/Ants/Ant-Warrior-Idle-Down2.png" id="2_gfmwe"]
+[ext_resource type="Texture2D" uid="uid://011s6n7ilfhh" path="res://assets/Ants/Ant-Warrior-Idle-Down3.png" id="3_usvvv"]
+[ext_resource type="Texture2D" uid="uid://bnj20jysh1nnk" path="res://assets/Ants/Ant-Warrior-Idle-Down4.png" id="4_1aayq"]
+[ext_resource type="Texture2D" uid="uid://dojb31meq8368" path="res://assets/Ants/Ant-Warrior-Idle-Down5.png" id="5_o3v74"]
+[ext_resource type="Texture2D" uid="uid://bh2r8r1nmqyea" path="res://assets/Ants/Ant-Warrior-Walk-Down2.png" id="6_o3v74"]
+[ext_resource type="Texture2D" uid="uid://dpel68r2nurkx" path="res://assets/Ants/Ant-Warrior-Walk-Down3.png" id="7_jxpeg"]
+[ext_resource type="Texture2D" uid="uid://7ken6a3yihqb" path="res://assets/Ants/Ant-Warrior-Walk-Down4.png" id="8_gwu3k"]
+[ext_resource type="Texture2D" uid="uid://bg0hqi712rq8f" path="res://assets/Ants/Ant-Warrior-Walk-Down5.png" id="9_ficud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yt8ni"]
+radius = 21.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxpeg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pg37t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gfmwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_usvvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1aayq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o3v74")
+}],
+"loop": true,
+"name": &"Idle Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_o3v74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jxpeg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gwu3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ficud")
+}],
+"loop": true,
+"name": &"Walk Down",
+"speed": 5.0
+}]
+
+[node name="ant-warrior" type="CharacterBody2D" unique_id=1864296051]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=513578527]
+shape = SubResource("CircleShape2D_yt8ni")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=965668919]
+position = Vector2(1, 0)
+scale = Vector2(0.7307692, 0.7307692)
+sprite_frames = SubResource("SpriteFrames_jxpeg")
+animation = &"Walk Down"
+autoplay = "Idle Down"
+frame_progress = 0.9223945
