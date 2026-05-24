@@ -1,7 +1,10 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://da3japcgsatsc"]
 
+[ext_resource type="Texture2D" uid="uid://cco4ffregrytn" path="res://assets/Ants/Down/Ant-Drone-Attack-Down1.png" id="1_lki41"]
 [ext_resource type="Texture2D" uid="uid://cnu2r65xhb52c" path="res://assets/Ants/Down/Ant-Drone-Idle-Down1.png" id="1_mwf72"]
+[ext_resource type="Texture2D" uid="uid://cbw086iclc1wd" path="res://assets/Ants/Down/Ant-Drone-Attack-Down2.png" id="2_celdu"]
 [ext_resource type="Texture2D" uid="uid://baobwcwh5gxcw" path="res://assets/Ants/Down/Ant-Drone-Idle-Down2.png" id="2_t7xg6"]
+[ext_resource type="Texture2D" uid="uid://bfqm6q8tmrwty" path="res://assets/Ants/Down/Ant-Drone-Attack-Down3.png" id="3_8k43h"]
 [ext_resource type="Texture2D" uid="uid://licglt8oqfv8" path="res://assets/Ants/Down/Ant-Drone-Idle-Down3.png" id="3_k72eh"]
 [ext_resource type="Texture2D" uid="uid://di5yxbbpyb2s" path="res://assets/Ants/Down/Ant-Drone-Idle-Down4.png" id="4_lki41"]
 [ext_resource type="Texture2D" uid="uid://s0nrs738yqo1" path="res://assets/Ants/Down/Ant-Drone-Idle-Down5.png" id="5_celdu"]
@@ -12,6 +15,20 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lki41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_celdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8k43h")
+}],
+"loop": true,
+"name": &"Attack Down",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_mwf72")

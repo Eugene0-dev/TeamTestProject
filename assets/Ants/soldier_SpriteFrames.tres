@@ -1,13 +1,50 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://7y8phs4am5q"]
 
+[ext_resource type="Texture2D" uid="uid://ba3ho3b7vk8jh" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down1.png" id="1_hprvd"]
+[ext_resource type="Texture2D" uid="uid://cpe7wd68ktjve" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down2.png" id="2_030sm"]
+[ext_resource type="Texture2D" uid="uid://d352tiwh6iua8" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down3.png" id="3_mx3up"]
+[ext_resource type="Texture2D" uid="uid://cfkc5jjrtjoc3" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down4.png" id="4_cth0i"]
+[ext_resource type="Texture2D" uid="uid://cj508pyjtvl2e" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down5.png" id="5_a65bn"]
+[ext_resource type="Texture2D" uid="uid://bu0s758ueoiut" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down2.png" id="6_t5gs7"]
+[ext_resource type="Texture2D" uid="uid://dwruqa53v0g2c" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down3.png" id="7_vrqas"]
+[ext_resource type="Texture2D" uid="uid://tnecyrm7dn3" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down4.png" id="8_cmx2c"]
+[ext_resource type="Texture2D" uid="uid://bifb2hvsv06hh" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down5.png" id="9_ldmkm"]
+
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hprvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_030sm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mx3up")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cth0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a65bn")
+}],
 "loop": true,
 "name": &"Idle Down",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_t5gs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vrqas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cmx2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ldmkm")
+}],
 "loop": true,
 "name": &"Walk Down",
 "speed": 6.0
