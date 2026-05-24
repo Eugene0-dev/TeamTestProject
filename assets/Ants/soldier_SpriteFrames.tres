@@ -1,20 +1,32 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://7y8phs4am5q"]
 
+[ext_resource type="Texture2D" uid="uid://dgp7l81g316ed" path="res://assets/Ants/Down/Ant-Soldier-Attack-Down1.png" id="1_h76em"]
 [ext_resource type="Texture2D" uid="uid://ba3ho3b7vk8jh" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down1.png" id="1_hprvd"]
 [ext_resource type="Texture2D" uid="uid://cpe7wd68ktjve" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down2.png" id="2_030sm"]
+[ext_resource type="Texture2D" uid="uid://cw2k5wqioi0ym" path="res://assets/Ants/Down/Ant-Soldier-Attack-Down2.png" id="2_borlp"]
+[ext_resource type="Texture2D" uid="uid://kqs20s7wkxgw" path="res://assets/Ants/Down/Ant-Soldier-Attack-Down3.png" id="3_lqp54"]
 [ext_resource type="Texture2D" uid="uid://d352tiwh6iua8" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down3.png" id="3_mx3up"]
 [ext_resource type="Texture2D" uid="uid://cfkc5jjrtjoc3" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down4.png" id="4_cth0i"]
+[ext_resource type="Texture2D" uid="uid://duhvoqafmf2gd" path="res://assets/Ants/Left/Ant-Soldier-Attack-Left1.png" id="4_pyx8f"]
 [ext_resource type="Texture2D" uid="uid://cj508pyjtvl2e" path="res://assets/Ants/Down/Ant-Soldier-Idle-Down5.png" id="5_a65bn"]
+[ext_resource type="Texture2D" uid="uid://v7t1as5shrtf" path="res://assets/Ants/Left/Ant-Soldier-Attack-Left2.png" id="5_yis13"]
+[ext_resource type="Texture2D" uid="uid://ct3820rtkb0nb" path="res://assets/Ants/Left/Ant-Soldier-Attack-Left3.png" id="6_lvari"]
 [ext_resource type="Texture2D" uid="uid://dmnbql02sj4w" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down2.png" id="6_t5gs7"]
 [ext_resource type="Texture2D" uid="uid://s6jke7gq58fg" path="res://assets/Ants/Left/Ant-Soldier-Idle-Left1.png" id="6_taxsw"]
 [ext_resource type="Texture2D" uid="uid://du8s1nvx6xsqo" path="res://assets/Ants/Left/Ant-Soldier-Idle-Left2.png" id="7_a3kkk"]
+[ext_resource type="Texture2D" uid="uid://dw8cktw5580df" path="res://assets/Ants/Right/Ant-Soldier-Attack-Right1.png" id="7_k4sa2"]
 [ext_resource type="Texture2D" uid="uid://k4yfq4s2c2e7" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down3.png" id="7_vrqas"]
 [ext_resource type="Texture2D" uid="uid://ccorvyme0nt72" path="res://assets/Ants/Left/Ant-Soldier-Idle-Left3.png" id="8_4i76c"]
+[ext_resource type="Texture2D" uid="uid://dxhqx4ida3nik" path="res://assets/Ants/Right/Ant-Soldier-Attack-Right2.png" id="8_a2qno"]
 [ext_resource type="Texture2D" uid="uid://dmfwqvpottype" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down4.png" id="8_cmx2c"]
+[ext_resource type="Texture2D" uid="uid://v7er1ltwntqy" path="res://assets/Ants/Right/Ant-Soldier-Attack-Right3.png" id="9_spibd"]
 [ext_resource type="Texture2D" uid="uid://bu75083xjbvf2" path="res://assets/Ants/Left/Ant-Soldier-Idle-Left4.png" id="9_w82e6"]
 [ext_resource type="Texture2D" uid="uid://dsrdrqxyb86cc" path="res://assets/Ants/Left/Ant-Soldier-Idle-Left5.png" id="10_aereg"]
+[ext_resource type="Texture2D" uid="uid://didjjxbu0bxpy" path="res://assets/Ants/Up/Ant-Soldier-Attack-Up1.png" id="10_yi7is"]
 [ext_resource type="Texture2D" uid="uid://cj432rbyll6jr" path="res://assets/Ants/Down/Ant-Soldier-Walk-Down1.png" id="11_0gy06"]
 [ext_resource type="Texture2D" uid="uid://uhakora54emi" path="res://assets/Ants/Right/Ant-Soldier-Idle-Right1.png" id="11_oclw8"]
+[ext_resource type="Texture2D" uid="uid://lr5t0xh8tw5o" path="res://assets/Ants/Up/Ant-Soldier-Attack-Up2.png" id="11_y20vc"]
+[ext_resource type="Texture2D" uid="uid://cv8wfnmu3bpyd" path="res://assets/Ants/Up/Ant-Soldier-Attack-Up3.png" id="12_4xp4p"]
 [ext_resource type="Texture2D" uid="uid://h03i2vl4mxlp" path="res://assets/Ants/Right/Ant-Soldier-Idle-Right2.png" id="12_6ebc8"]
 [ext_resource type="Texture2D" uid="uid://bpg05yi3ofvsg" path="res://assets/Ants/Right/Ant-Soldier-Idle-Right3.png" id="13_1lert"]
 [ext_resource type="Texture2D" uid="uid://hj36f6k4fibm" path="res://assets/Ants/Right/Ant-Soldier-Idle-Right4.png" id="14_psral"]
@@ -39,6 +51,62 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h76em")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_borlp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lqp54")
+}],
+"loop": false,
+"name": &"Attack Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pyx8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yis13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lvari")
+}],
+"loop": false,
+"name": &"Attack Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_k4sa2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a2qno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_spibd")
+}],
+"loop": false,
+"name": &"Attack Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_yi7is")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_y20vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_4xp4p")
+}],
+"loop": false,
+"name": &"Attack Up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_hprvd")
