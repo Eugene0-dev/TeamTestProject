@@ -3,9 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_ol35h"]
 [ext_resource type="SpriteFrames" path="res://assets/Ants/drone_SpriteFrames.tres" id="2_438f2"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_438f2"]
+resource_local_to_scene = true
+radius = 11.045361
+
 [node name="Entity" unique_id=1305847055 node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("1_ol35h")]
 sprite = NodePath("Sprite")
 hitbox = NodePath("Hitbox")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
+shape = SubResource("CircleShape2D_438f2")
 
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 position = Vector2(0.12500057, -0.37500027)

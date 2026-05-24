@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://om3yqii4ompb" path="res://scripts/entity.gd" id="1_iiwub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iiwub"]
+resource_local_to_scene = true
 radius = 17.029387
 
 [node name="Entity" type="CharacterBody2D" unique_id=1305847055]
