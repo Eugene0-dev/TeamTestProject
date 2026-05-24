@@ -16,6 +16,7 @@ var hunger: int = 0
 
 @export var faction: String = "none"
 
+@export var speed: int = 10
 
 func _ready() -> void:
 	if not sprite:
@@ -44,6 +45,11 @@ func _process(delta: float) -> void:
 		income_damage -= heal_rate
 	
 	AI()
+
+func walk(dir: Vector2) -> void:
+	velocity = dir*speed
+	sprite.play("Walk Down")
+	move_and_slide()
 
 func move_to(target: Node2D) -> void:
 	pass

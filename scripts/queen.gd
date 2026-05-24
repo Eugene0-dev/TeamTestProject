@@ -3,4 +3,4 @@ class_name Queen
 extends Entity
 
 func AI() -> void:
-	pass
+	walk(Vector2(0, -1))
