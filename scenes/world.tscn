@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="7_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://by5gnra34hqk8" path="res://scenes/menu.tscn" id="7_i7141"]
 [ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="8_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="9_7r4gi"]
 
@@ -29,3 +30,9 @@ position = Vector2(197, 157)
 
 [node name="drone" parent="." unique_id=903257364 instance=ExtResource("8_7r4gi")]
 position = Vector2(227, 157)
+
+[node name="Menu" parent="." unique_id=1081462586 instance=ExtResource("7_i7141")]
+offset_left = -1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 2.0

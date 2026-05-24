@@ -22,7 +22,7 @@ func _ready() -> void:
 	if not sprite:
 		push_warning("Забыл назначить спрайт в ", name)
 	else:
-		sprite.play("Idle")
+		sprite.play("Idle Down")
 		
 
 var timer: float = 0.0
