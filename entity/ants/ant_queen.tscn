@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c7axiwa67pebr"]
+
+[node name="ant-queen" type="CharacterBody2D" unique_id=1858491180]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=36942428]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1978914807]
