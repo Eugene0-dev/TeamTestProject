@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://c7axiwa67pebr"]
 
+[ext_resource type="Script" uid="uid://ccp8f4s5qybws" path="res://scripts/queen.gd" id="1_32eaq"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ear0m"]
 radius = 27.0
 
 [node name="ant-queen" type="CharacterBody2D" unique_id=1858491180]
+script = ExtResource("1_32eaq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=36942428]
 shape = SubResource("CircleShape2D_ear0m")
