@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://ddqi5j3uhv1fv"]
+
+[ext_resource type="Texture2D" uid="uid://br6wpb6dbrbbw" path="res://assets/Ants/Ant-Warrior-Idle-Down1.png" id="1_3drmr"]
+[ext_resource type="Texture2D" uid="uid://8o0eu4shrb7" path="res://assets/Ants/Ant-Warrior-Idle-Down2.png" id="2_7n3uu"]
+[ext_resource type="Texture2D" uid="uid://011s6n7ilfhh" path="res://assets/Ants/Ant-Warrior-Idle-Down3.png" id="3_v0dmx"]
+[ext_resource type="Texture2D" uid="uid://bnj20jysh1nnk" path="res://assets/Ants/Ant-Warrior-Idle-Down4.png" id="4_8xjr0"]
+[ext_resource type="Texture2D" uid="uid://dojb31meq8368" path="res://assets/Ants/Ant-Warrior-Idle-Down5.png" id="5_0g852"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3drmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7n3uu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v0dmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8xjr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0g852")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]

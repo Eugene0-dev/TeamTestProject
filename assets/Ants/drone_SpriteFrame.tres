@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b4udw8cc2lkt4"]
+
+[ext_resource type="Texture2D" uid="uid://csyojsi7mcccb" path="res://assets/Ants/Ant-Worker-Idle-Down1.png" id="1_lpmak"]
+[ext_resource type="Texture2D" uid="uid://cdvn7h20ql8jd" path="res://assets/Ants/Ant-Worker-Idle-Down2.png" id="2_cw3gv"]
+[ext_resource type="Texture2D" uid="uid://d4k6f7nmqv2rt" path="res://assets/Ants/Ant-Worker-Idle-Down3.png" id="3_cucut"]
+[ext_resource type="Texture2D" uid="uid://d4jg8ar06wt1q" path="res://assets/Ants/Ant-Worker-Idle-Down4.png" id="4_bnmck"]
+[ext_resource type="Texture2D" uid="uid://c6ptpt571p1bh" path="res://assets/Ants/Ant-Worker-Idle-Down5.png" id="5_g217r"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lpmak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cw3gv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cucut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bnmck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g217r")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]

@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://om3yqii4ompb" path="res://scripts/entity.gd" id="1_iiwub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iiwub"]
+radius = 17.029387
 
 [node name="Entity" type="CharacterBody2D" unique_id=1305847055]
 script = ExtResource("1_iiwub")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=283948992]
+shape = SubResource("CircleShape2D_iiwub")
+
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1169619754]
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1804529443]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=283948992]
-shape = SubResource("CircleShape2D_iiwub")

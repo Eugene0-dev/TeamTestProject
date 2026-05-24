@@ -20,6 +20,9 @@ var hunger: int = 0
 func _ready() -> void:
 	if not sprite:
 		push_warning("Забыл назначить спрайт в ", name)
+	else:
+		sprite.play("Idle")
+		
 
 var timer: float = 0.0
 func is_tick(delta: float) -> bool:

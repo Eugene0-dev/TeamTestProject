@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dqrstebktkail"]
+
+[ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_fpqs8"]
+[ext_resource type="SpriteFrames" uid="uid://jb1estu854ax" path="res://assets/Ants/queen_SpriteFrames.tres" id="2_j5nx7"]
+
+[node name="Entity" unique_id=1305847055 node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("1_fpqs8")]
+sprite = NodePath("Sprite")
+hitbox = NodePath("Hitbox")
+
+[node name="Sprite" parent="." index="1" unique_id=1169619754]
+position = Vector2(1, 0)
+sprite_frames = ExtResource("2_j5nx7")
+animation = &"Idle"
+frame = 4
+frame_progress = 0.55805326
