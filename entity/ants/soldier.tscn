@@ -22,5 +22,9 @@ shape = SubResource("CircleShape2D_o05g0")
 position = Vector2(0.59374857, -1)
 scale = Vector2(0.54134613, 0.71153843)
 sprite_frames = ExtResource("2_cshbo")
+<<<<<<< HEAD
 animation = &"Attack Down"
+=======
+animation = &"Idle Down"
+>>>>>>> b90786e957eff3b8d427da818e85dc1a48502d84
 autoplay = "Idle Down"
