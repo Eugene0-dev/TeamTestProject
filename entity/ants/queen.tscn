@@ -23,4 +23,5 @@ position = Vector2(1, 0)
 sprite_frames = ExtResource("2_j5nx7")
 animation = &"Attack Down"
 autoplay = "Idle Down"
-frame_progress = 0.28409693
+frame = 2
+frame_progress = 0.12498664
