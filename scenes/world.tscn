@@ -2,8 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://cl42wn5ichodw" path="res://assets/ground_tileset.tres" id="1_rwgxs"]
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
-[ext_resource type="TileSet" uid="uid://ddqwjflmf6vhy" path="res://assets/terrains_tileset.tres" id="4_i7141"]
-[ext_resource type="Script" uid="uid://duh0yr4a2fcs4" path="res://scripts/terrains_gen.gd" id="5_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="8_7r4gi"]
@@ -20,12 +18,8 @@ position = Vector2(574, 325)
 tile_set = ExtResource("1_rwgxs")
 script = ExtResource("2_4wyf3")
 noise = SubResource("FastNoiseLite_k0juu")
-map_width = 256
-map_height = 256
-
-[node name="Terrains" type="TileMapLayer" parent="." unique_id=1637563683]
-tile_set = ExtResource("4_i7141")
-script = ExtResource("5_4mrxx")
+map_width = 512
+map_height = 512
 
 [node name="queen" parent="." unique_id=348370745 instance=ExtResource("6_qfnet")]
 position = Vector2(147, 154)
@@ -34,4 +28,4 @@ position = Vector2(147, 154)
 position = Vector2(197, 157)
 
 [node name="drone" parent="." unique_id=903257364 instance=ExtResource("8_7r4gi")]
-position = Vector2(237, 157)
+position = Vector2(227, 157)
