@@ -19,7 +19,7 @@ func init_noise() -> void:
 	noise = FastNoiseLite.new()
 	noise.seed = 42
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
-	noise.frequency = 0.05
+	noise.frequency = 0.02
 
 func map_gen() -> void:
 	for x in range(map_width):
@@ -31,7 +31,7 @@ func map_gen() -> void:
 
 func get_tile_type(val: float) -> Vector2i:
 	var idx = randi_range(0, 3)
-	if -0.5 < val and val < 0: return Vector2i(idx, t_sand)
-	if val > 0 and val < 0.5: return Vector2i(idx, t_mug)
+	if -0.5 < val and val < 0: return Vector2i(idx, t_grass)
+	if val > 0 and val < 0.5: return Vector2i(idx, t_sand)
 	if val > 0.5: return Vector2i(idx, t_grass)
 	return Vector2i(idx, t_mug)
