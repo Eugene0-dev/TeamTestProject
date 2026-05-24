@@ -1,50 +1,13 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://jb1estu854ax"]
 
-[ext_resource type="Texture2D" uid="uid://c4khqgs1enf8j" path="res://assets/Ants/Ant-Queen-Idle-Down1.png" id="1_6ijim"]
-[ext_resource type="Texture2D" uid="uid://dveg154je70es" path="res://assets/Ants/Ant-Queen-Idle-Down2.png" id="2_ux46b"]
-[ext_resource type="Texture2D" uid="uid://8auh2ij7lith" path="res://assets/Ants/Ant-Queen-Idle-Down3.png" id="3_2n2es"]
-[ext_resource type="Texture2D" uid="uid://dlmxd41x4dmxq" path="res://assets/Ants/Ant-Queen-Idle-Down4.png" id="4_4uedl"]
-[ext_resource type="Texture2D" uid="uid://bv0umwou78esj" path="res://assets/Ants/Ant-Queen-Idle-Down5.png" id="5_hw2mf"]
-[ext_resource type="Texture2D" uid="uid://b41txut6p4jnd" path="res://assets/Ants/Ant-Queen-Walk-Down2.png" id="6_hw2mf"]
-[ext_resource type="Texture2D" uid="uid://ce28sjrkwyru0" path="res://assets/Ants/Ant-Queen-Walk-Down3.png" id="7_rc8in"]
-[ext_resource type="Texture2D" uid="uid://hqduibcsirji" path="res://assets/Ants/Ant-Queen-Walk-Down4.png" id="8_r4xxw"]
-[ext_resource type="Texture2D" uid="uid://b11hqe78sn0fp" path="res://assets/Ants/Ant-Queen-Walk-Down5.png" id="9_62vo7"]
-
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_6ijim")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_ux46b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_2n2es")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_4uedl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_hw2mf")
-}],
+"frames": [],
 "loop": true,
 "name": &"Idle Down",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_hw2mf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_rc8in")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_r4xxw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_62vo7")
-}],
+"frames": [],
 "loop": true,
 "name": &"Walk Down",
 "speed": 5.0

@@ -1,32 +1,32 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://da3japcgsatsc"]
 
-[ext_resource type="Texture2D" uid="uid://csyojsi7mcccb" path="res://assets/Ants/Ant-Worker-Idle-Down1.png" id="1_lpmak"]
-[ext_resource type="Texture2D" uid="uid://cdvn7h20ql8jd" path="res://assets/Ants/Ant-Worker-Idle-Down2.png" id="2_cw3gv"]
-[ext_resource type="Texture2D" uid="uid://d4k6f7nmqv2rt" path="res://assets/Ants/Ant-Worker-Idle-Down3.png" id="3_cucut"]
-[ext_resource type="Texture2D" uid="uid://d4jg8ar06wt1q" path="res://assets/Ants/Ant-Worker-Idle-Down4.png" id="4_bnmck"]
-[ext_resource type="Texture2D" uid="uid://c6ptpt571p1bh" path="res://assets/Ants/Ant-Worker-Idle-Down5.png" id="5_g217r"]
-[ext_resource type="Texture2D" uid="uid://wjqf75hilfte" path="res://assets/Ants/Ant-Worker-Walk-Down1.png" id="6_mwf72"]
-[ext_resource type="Texture2D" uid="uid://bbh63xojoi6yw" path="res://assets/Ants/Ant-Worker-Walk-Down2.png" id="7_t7xg6"]
-[ext_resource type="Texture2D" uid="uid://b5qrbj2uwob1q" path="res://assets/Ants/Ant-Worker-Walk-Down3.png" id="8_k72eh"]
-[ext_resource type="Texture2D" uid="uid://duw17o3117ar" path="res://assets/Ants/Ant-Worker-Walk-Down4.png" id="9_lki41"]
+[ext_resource type="Texture2D" uid="uid://cnu2r65xhb52c" path="res://assets/Ants/Down/Ant-Drone-Idle-Down1.png" id="1_mwf72"]
+[ext_resource type="Texture2D" uid="uid://baobwcwh5gxcw" path="res://assets/Ants/Down/Ant-Drone-Idle-Down2.png" id="2_t7xg6"]
+[ext_resource type="Texture2D" uid="uid://licglt8oqfv8" path="res://assets/Ants/Down/Ant-Drone-Idle-Down3.png" id="3_k72eh"]
+[ext_resource type="Texture2D" uid="uid://di5yxbbpyb2s" path="res://assets/Ants/Down/Ant-Drone-Idle-Down4.png" id="4_lki41"]
+[ext_resource type="Texture2D" uid="uid://s0nrs738yqo1" path="res://assets/Ants/Down/Ant-Drone-Idle-Down5.png" id="5_celdu"]
+[ext_resource type="Texture2D" uid="uid://bnutar5boc254" path="res://assets/Ants/Down/Ant-Drone-Walk-Down1.png" id="6_8k43h"]
+[ext_resource type="Texture2D" uid="uid://cvrw67xrixgq5" path="res://assets/Ants/Down/Ant-Drone-Walk-Down2.png" id="7_snykh"]
+[ext_resource type="Texture2D" uid="uid://suigpeilc3av" path="res://assets/Ants/Down/Ant-Drone-Walk-Down3.png" id="8_fyi5j"]
+[ext_resource type="Texture2D" uid="uid://bun77f4dayn0b" path="res://assets/Ants/Down/Ant-Drone-Walk-Down4.png" id="9_xm652"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_lpmak")
+"texture": ExtResource("1_mwf72")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_cw3gv")
+"texture": ExtResource("2_t7xg6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_cucut")
+"texture": ExtResource("3_k72eh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_bnmck")
+"texture": ExtResource("4_lki41")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_g217r")
+"texture": ExtResource("5_celdu")
 }],
 "loop": true,
 "name": &"Idle Down",
@@ -34,16 +34,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_mwf72")
+"texture": ExtResource("6_8k43h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_t7xg6")
+"texture": ExtResource("7_snykh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_k72eh")
+"texture": ExtResource("8_fyi5j")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_lki41")
+"texture": ExtResource("9_xm652")
 }],
 "loop": true,
 "name": &"Walk Down",
