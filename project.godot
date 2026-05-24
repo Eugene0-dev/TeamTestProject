@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Insects"
-run/main_scene="uid://mgb88oecud1x"
+run/main_scene="uid://csy0c8ign0ygn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
