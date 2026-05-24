@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cg8754u1n4e3v"]
+
+[ext_resource type="Script" uid="uid://ccp8f4s5qybws" path="res://scripts/queen.gd" id="1_h447w"]
+
+[node name="Queen" type="CharacterBody2D" unique_id=336568365]
+script = ExtResource("1_h447w")
