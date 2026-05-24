@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c015680pvxel6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ytxu"]
+radius = 9.0
+
+[node name="ant-worker" type="CharacterBody2D" unique_id=979482673]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1403602615]
+shape = SubResource("CircleShape2D_3ytxu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=881589976]
