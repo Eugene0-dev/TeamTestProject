@@ -1,11 +1,6 @@
 [gd_scene format=3 uid="uid://mgb88oecud1x"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yt8ni"]
-radius = 14.142136
+[node name="world" type="Node2D" unique_id=1668984529]
 
-[node name="ant-warrior" type="CharacterBody2D" unique_id=1864296051]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=513578527]
-shape = SubResource("CircleShape2D_yt8ni")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=965668919]
+[node name="TileMap" type="TileMap" parent="." unique_id=1503244201]
+format = 2
