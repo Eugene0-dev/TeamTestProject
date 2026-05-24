@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brcc3qwr6eyv4"
-path="res://.godot/imported/Ant-Worker-Idle-Down1.png-c38f382bb6b823dd89a12fc91716cfcf.ctex"
+uid="uid://8o0eu4shrb7"
+path="res://.godot/imported/Ant-Warrior-Idle-Down2.png-2d76a75c4c396e698eb441334736d9f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PNG/Ant-Worker-Idle-Down1.png"
-dest_files=["res://.godot/imported/Ant-Worker-Idle-Down1.png-c38f382bb6b823dd89a12fc91716cfcf.ctex"]
+source_file="res://assets/Ants/Ant-Warrior-Idle-Down2.png"
+dest_files=["res://.godot/imported/Ant-Warrior-Idle-Down2.png-2d76a75c4c396e698eb441334736d9f3.ctex"]
 
 [params]
 

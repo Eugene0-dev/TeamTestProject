@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bsqa5d0srvsqq"]
 
-[ext_resource type="Texture2D" uid="uid://brcc3qwr6eyv4" path="res://PNG/Ant-Worker-Idle-Down1.png" id="1_s3ek0"]
-[ext_resource type="Texture2D" uid="uid://dk0qohw4bv7oa" path="res://PNG/Ant-Worker-Idle-Down2.png" id="2_qsgbx"]
-[ext_resource type="Texture2D" uid="uid://dplf1gwfcd43w" path="res://PNG/Ant-Worker-Idle-Down3.png" id="3_4364t"]
-[ext_resource type="Texture2D" uid="uid://dyvqttn4b8lv1" path="res://PNG/Ant-Worker-Idle-Down4.png" id="4_v20j1"]
-[ext_resource type="Texture2D" uid="uid://cp5bahfg6bmdf" path="res://PNG/Ant-Worker-Idle-Down5.png" id="5_8d0x3"]
+[ext_resource type="Texture2D" uid="uid://csyojsi7mcccb" path="res://assets/Ants/Ant-Worker-Idle-Down1.png" id="1_s3ek0"]
+[ext_resource type="Texture2D" uid="uid://cdvn7h20ql8jd" path="res://assets/Ants/Ant-Worker-Idle-Down2.png" id="2_qsgbx"]
+[ext_resource type="Texture2D" uid="uid://d4k6f7nmqv2rt" path="res://assets/Ants/Ant-Worker-Idle-Down3.png" id="3_4364t"]
+[ext_resource type="Texture2D" uid="uid://d4jg8ar06wt1q" path="res://assets/Ants/Ant-Worker-Idle-Down4.png" id="4_v20j1"]
+[ext_resource type="Texture2D" uid="uid://c6ptpt571p1bh" path="res://assets/Ants/Ant-Worker-Idle-Down5.png" id="5_8d0x3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ytxu"]
-radius = 9.0
+radius = 14.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5l3kh"]
 animations = [{
@@ -29,7 +29,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [node name="ant-worker" type="CharacterBody2D" unique_id=979482673]
@@ -38,6 +38,8 @@ animations = [{
 shape = SubResource("CircleShape2D_3ytxu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=881589976]
+position = Vector2(1, 0)
+scale = Vector2(0.4730769, 0.45608014)
 sprite_frames = SubResource("SpriteFrames_5l3kh")
-frame = 4
-frame_progress = 0.95168376
+frame = 1
+frame_progress = 0.7070783

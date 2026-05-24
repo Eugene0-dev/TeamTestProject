@@ -2,6 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://cl42wn5ichodw" path="res://assets/ground_tileset.tres" id="1_rwgxs"]
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://c7axiwa67pebr" path="res://entity/ants/ant_queen.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://bsqa5d0srvsqq" path="res://entity/ants/ant_worker.tscn" id="4_k0juu"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_k0juu"]
 
@@ -14,3 +16,9 @@ noise = SubResource("FastNoiseLite_k0juu")
 map_width = 256
 map_height = 256
 tileset = ExtResource("1_rwgxs")
+
+[node name="ant-queen" parent="." unique_id=1858491180 instance=ExtResource("3_4wyf3")]
+position = Vector2(62, 63)
+
+[node name="ant-worker" parent="." unique_id=979482673 instance=ExtResource("4_k0juu")]
+position = Vector2(119, 73)
