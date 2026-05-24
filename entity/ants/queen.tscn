@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ccp8f4s5qybws" path="res://scripts/queen.gd" id="2_5i371"]
 [ext_resource type="SpriteFrames" uid="uid://jb1estu854ax" path="res://assets/Ants/queen_SpriteFrames.tres" id="2_j5nx7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_b016b"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5i371"]
 resource_local_to_scene = true
 radius = 29.068884
 
@@ -14,10 +14,12 @@ sprite = NodePath("Sprite")
 hitbox = NodePath("Hitbox")
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
-shape = SubResource("CircleShape2D_b016b")
+shape = SubResource("CircleShape2D_5i371")
 
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 position = Vector2(1, 0)
 sprite_frames = ExtResource("2_j5nx7")
 animation = &"Walk Down"
 autoplay = "Idle Down"
+frame = 1
+frame_progress = 0.02583954

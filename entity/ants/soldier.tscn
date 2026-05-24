@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfbyk7uopiaws"]
 
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_kjj2o"]
-[ext_resource type="SpriteFrames" path="res://assets/Ants/soldier_SpriteFrames.tres" id="2_cshbo"]
+[ext_resource type="SpriteFrames" uid="uid://7y8phs4am5q" path="res://assets/Ants/soldier_SpriteFrames.tres" id="2_cshbo"]
 
 [node name="Entity" unique_id=1305847055 node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("1_kjj2o")]
 sprite = NodePath("Sprite")
@@ -12,6 +12,4 @@ position = Vector2(0.59374857, -1)
 scale = Vector2(0.54134613, 0.71153843)
 sprite_frames = ExtResource("2_cshbo")
 animation = &"Walk Down"
-autoplay = "Idle"
-frame = 3
-frame_progress = 0.49999538
+autoplay = "Idle Down"
