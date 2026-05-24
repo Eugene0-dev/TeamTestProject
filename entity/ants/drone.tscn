@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bn2fbjhbjvhxe"]
 
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_ol35h"]
-[ext_resource type="SpriteFrames" uid="uid://b4udw8cc2lkt4" path="res://assets/Ants/drone_SpriteFrames.tres" id="2_438f2"]
+[ext_resource type="SpriteFrames" uid="uid://da3japcgsatsc" path="res://assets/Ants/drone_SpriteFrames.tres" id="2_438f2"]
 [ext_resource type="Script" uid="uid://sr2goqa14rih" path="res://scripts/drone.gd" id="2_k5amr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vpqw1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5amr"]
 resource_local_to_scene = true
 radius = 11.045361
 
@@ -15,7 +15,7 @@ hitbox = NodePath("Hitbox")
 speed = 35
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
-shape = SubResource("CircleShape2D_vpqw1")
+shape = SubResource("CircleShape2D_k5amr")
 
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 position = Vector2(0.12500057, -0.37500027)

@@ -29,7 +29,7 @@ animations = [{
 "texture": ExtResource("5_0g852")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"Idle Down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -47,5 +47,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk Down",
-"speed": 5.0
+"speed": 6.0
 }]
