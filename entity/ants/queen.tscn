@@ -23,5 +23,3 @@ position = Vector2(1, 0)
 sprite_frames = ExtResource("2_j5nx7")
 animation = &"Walk Down"
 autoplay = "Idle Down"
-frame = 1
-frame_progress = 0.02583954

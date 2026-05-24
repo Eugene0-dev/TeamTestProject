@@ -2,19 +2,36 @@
 
 [node name="Main" type="Node2D" unique_id=381476108]
 
-[node name="Play" type="Button" parent="." unique_id=1173986608]
-offset_left = 467.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=691050972]
+
+[node name="Main_Menu" type="Control" parent="CanvasLayer" unique_id=1088482334]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Play" type="Button" parent="CanvasLayer/Main_Menu" unique_id=1173986608]
+layout_mode = 0
+offset_left = 364.0
 offset_top = 187.0
-offset_right = 660.0
+offset_right = 779.0
 offset_bottom = 276.0
 theme_override_font_sizes/font_size = 40
 text = "Play"
 
-[node name="Quit" type="Button" parent="." unique_id=1093042630]
-offset_left = 467.0
+[node name="Quit" type="Button" parent="CanvasLayer/Main_Menu" unique_id=1093042630]
+layout_mode = 0
+offset_left = 373.0
 offset_top = 300.0
-offset_right = 660.0
+offset_right = 775.0
 offset_bottom = 389.0
 theme_override_font_sizes/font_size = 40
 text = "Quit
 "
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Main_Menu" unique_id=714326318]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 164.0
+offset_right = 793.0
+offset_bottom = 610.0

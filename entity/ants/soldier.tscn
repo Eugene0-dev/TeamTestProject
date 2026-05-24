@@ -24,5 +24,4 @@ scale = Vector2(0.54134613, 0.71153843)
 sprite_frames = ExtResource("2_cshbo")
 animation = &"Idle Down"
 autoplay = "Idle"
-frame = 4
 frame_progress = 0.8102902
