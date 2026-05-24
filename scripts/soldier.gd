@@ -1,5 +1,5 @@
 
-class_name Queen
+class_name Soldier
 extends Entity
 
 func AI() -> void:
