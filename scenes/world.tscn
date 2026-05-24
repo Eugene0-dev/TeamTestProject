@@ -2,9 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://cl42wn5ichodw" path="res://assets/ground_tileset.tres" id="1_rwgxs"]
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://c8igrmehrff18" path="res://entity/ants/ant_warrior.tscn" id="4_71j4m"]
-[ext_resource type="PackedScene" uid="uid://bsqa5d0srvsqq" path="res://entity/ants/ant_worker.tscn" id="4_k0juu"]
-[ext_resource type="PackedScene" uid="uid://c7axiwa67pebr" path="res://entity/ants/ant_queen.tscn" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="8_7r4gi"]
@@ -14,6 +11,9 @@
 
 [node name="World" type="Node2D" unique_id=1668984529]
 
+[node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("9_7r4gi")]
+position = Vector2(574, 325)
+
 [node name="Ground" type="TileMapLayer" parent="." unique_id=310877944]
 tile_set = ExtResource("1_rwgxs")
 script = ExtResource("2_4wyf3")
@@ -22,23 +22,11 @@ map_width = 256
 map_height = 256
 tileset = ExtResource("1_rwgxs")
 
-[node name="ant-queen" parent="." unique_id=1858491180 instance=ExtResource("5_71j4m")]
-position = Vector2(60, 66)
-
-[node name="ant-warrior" parent="." unique_id=1864296051 instance=ExtResource("4_71j4m")]
-position = Vector2(60, 125)
-
-[node name="ant-worker" parent="." unique_id=979482673 instance=ExtResource("4_k0juu")]
-position = Vector2(60, 168)
-
 [node name="queen" parent="." unique_id=348370745 instance=ExtResource("6_qfnet")]
-position = Vector2(129, 65)
+position = Vector2(147, 154)
 
 [node name="soldier" parent="." unique_id=1305847055 instance=ExtResource("7_4mrxx")]
-position = Vector2(129, 126)
+position = Vector2(197, 157)
 
 [node name="Entity" parent="." unique_id=903257364 instance=ExtResource("8_7r4gi")]
-position = Vector2(129, 168)
-
-[node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("9_7r4gi")]
-position = Vector2(574, 325)
+position = Vector2(237, 157)

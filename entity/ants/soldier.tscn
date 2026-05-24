@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfbyk7uopiaws"]
 
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_kjj2o"]
-[ext_resource type="SpriteFrames" uid="uid://ddqi5j3uhv1fv" path="res://assets/Ants/soldier.tres" id="2_cshbo"]
+[ext_resource type="SpriteFrames" uid="uid://ddqi5j3uhv1fv" path="res://assets/Ants/soldier_SpriteFrames.tres" id="2_cshbo"]
 
 [node name="Entity" unique_id=1305847055 node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("1_kjj2o")]
 sprite = NodePath("Sprite")
