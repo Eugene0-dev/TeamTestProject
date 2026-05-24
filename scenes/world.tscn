@@ -31,7 +31,9 @@ position = Vector2(197, 157)
 [node name="drone" parent="." unique_id=903257364 instance=ExtResource("8_7r4gi")]
 position = Vector2(227, 157)
 
-[node name="Menu" parent="." unique_id=1081462586 instance=ExtResource("7_i7141")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=813062952]
+
+[node name="Menu" parent="CanvasLayer" unique_id=1081462586 instance=ExtResource("7_i7141")]
 offset_left = -1.0
 offset_top = 2.0
 offset_right = -1.0

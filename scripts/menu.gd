@@ -4,12 +4,12 @@ extends Control
 @onready var exit_button: Button
 
 func _init() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	cont_button = $Continue_Button
 	exit_button = $Exit_Button
 
 func _process(delta: float) -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
 	if Input.is_action_just_pressed("esc"): switch_visibility()
 
 func switch_visibility() -> void:
