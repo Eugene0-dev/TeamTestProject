@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3416yxo1xn0i"
-path="res://.godot/imported/water1.png-e37309333e1e115ff8e4581960c9d02f.ctex"
+uid="uid://dk7eqyonly6e5"
+path="res://.godot/imported/wooden_door.png-3deb881e351f7d06c5e13806fb14bd02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/water1.png"
-dest_files=["res://.godot/imported/water1.png-e37309333e1e115ff8e4581960c9d02f.ctex"]
+source_file="res://assets/tilesets/Hueta/walls/wooden_door.png"
+dest_files=["res://.godot/imported/wooden_door.png-3deb881e351f7d06c5e13806fb14bd02.ctex"]
 
 [params]
 

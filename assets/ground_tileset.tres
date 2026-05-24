@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://cl42wn5ichodw"]
 
-[ext_resource type="Texture2D" uid="uid://bggukamsspypd" path="res://assets/tilesets/decor_8x8.png" id="1_qmpr8"]
+[ext_resource type="Texture2D" uid="uid://bggukamsspypd" path="res://assets/tilesets/Hueta/decor_8x8.png" id="1_qmpr8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqaa3"]
 resource_name = "ground"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1w51pd7nev82"
-path="res://.godot/imported/flooring.png-94129d31e8f0694fcc5de52585731559.ctex"
+uid="uid://b3fejaht4pekk"
+path="res://.godot/imported/water4.png-82588102fe6c415b964425e521477b1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/floors/flooring.png"
-dest_files=["res://.godot/imported/flooring.png-94129d31e8f0694fcc5de52585731559.ctex"]
+source_file="res://assets/tilesets/Hueta/water4.png"
+dest_files=["res://.godot/imported/water4.png-82588102fe6c415b964425e521477b1a.ctex"]
 
 [params]
 

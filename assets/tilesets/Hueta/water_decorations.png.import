@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl10j5mvef0p0"
-path="res://.godot/imported/water2.png-7b3cc18d4cae37bf0167a3791e9284e8.ctex"
+uid="uid://da13ilbmtuw0f"
+path="res://.godot/imported/water_decorations.png-d7d194cca5a6f358391085590902a575.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/water2.png"
-dest_files=["res://.godot/imported/water2.png-7b3cc18d4cae37bf0167a3791e9284e8.ctex"]
+source_file="res://assets/tilesets/Hueta/water_decorations.png"
+dest_files=["res://.godot/imported/water_decorations.png-d7d194cca5a6f358391085590902a575.ctex"]
 
 [params]
 
