@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="8_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="9_7r4gi"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_k0juu"]
 
-[node name="world" type="Node2D" unique_id=1668984529]
+[node name="World" type="Node2D" unique_id=1668984529]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=310877944]
 tile_set = ExtResource("1_rwgxs")
@@ -38,3 +39,6 @@ position = Vector2(129, 126)
 
 [node name="Entity" parent="." unique_id=903257364 instance=ExtResource("8_7r4gi")]
 position = Vector2(129, 168)
+
+[node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("9_7r4gi")]
+position = Vector2(574, 325)
