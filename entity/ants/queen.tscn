@@ -21,14 +21,5 @@ shape = SubResource("CircleShape2D_5i371")
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 position = Vector2(1, 0)
 sprite_frames = ExtResource("2_j5nx7")
-<<<<<<< HEAD
-animation = &"Walk Up"
-autoplay = "Idle Down"
-frame = 3
-frame_progress = 0.2547568
-=======
 animation = &"Idle Down"
 autoplay = "Idle Down"
-frame = 2
-frame_progress = 0.5115794
->>>>>>> b90786e957eff3b8d427da818e85dc1a48502d84

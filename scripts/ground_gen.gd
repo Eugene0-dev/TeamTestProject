@@ -27,7 +27,7 @@ func map_gen() -> void:
 			var noise_val = noise.get_noise_2d(x, y)
 			var tile_case = get_tile_type(noise_val)
 			
-			set_cell(Vector2(x, y), 1, tile_case)
+			set_cell(Vector2(x, y), 0, tile_case)
 
 func get_tile_type(val: float) -> Vector2i:
 	if -0.5 < val and val < 0: return t_grass

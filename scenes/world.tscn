@@ -1,42 +1,40 @@
 [gd_scene format=3 uid="uid://mgb88oecud1x"]
 
-[ext_resource type="TileSet" uid="uid://cl42wn5ichodw" path="res://assets/ground_tileset.tres" id="1_rwgxs"]
+[ext_resource type="TileSet" uid="uid://62aow83kma2b" path="res://assets/tilesets/ground_tileset.tres" id="1_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="1_i7141"]
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="6_qfnet"]
-[ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="7_4mrxx"]
-[ext_resource type="PackedScene" uid="uid://by5gnra34hqk8" path="res://scenes/menu.tscn" id="7_i7141"]
-[ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="8_7r4gi"]
-[ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="9_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="3_71j4m"]
+[ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="4_qfnet"]
+[ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="5_i7141"]
+[ext_resource type="PackedScene" uid="uid://by5gnra34hqk8" path="res://scenes/menu.tscn" id="7_4mrxx"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_k0juu"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i7141"]
 
-[node name="World" type="Node2D" unique_id=1668984529]
+[node name="World" type="Node2D" unique_id=1784041464]
 
-[node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("9_7r4gi")]
-position = Vector2(574, 325)
+[node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("1_i7141")]
+position = Vector2(579, 327)
 
-[node name="Ground" type="TileMapLayer" parent="." unique_id=310877944]
-tile_set = ExtResource("1_rwgxs")
+[node name="Ground" type="TileMapLayer" parent="." unique_id=928026634]
+tile_set = ExtResource("1_4wyf3")
 script = ExtResource("2_4wyf3")
-noise = SubResource("FastNoiseLite_k0juu")
+noise = SubResource("FastNoiseLite_i7141")
 map_width = 512
 map_height = 512
-tileset = ExtResource("1_rwgxs")
+tileset = ExtResource("1_4wyf3")
 
-[node name="queen" parent="." unique_id=348370745 instance=ExtResource("6_qfnet")]
-position = Vector2(147, 154)
+[node name="queen" parent="." unique_id=1305847055 instance=ExtResource("3_71j4m")]
+position = Vector2(103, 140)
 
-[node name="soldier" parent="." unique_id=1305847055 instance=ExtResource("7_4mrxx")]
-position = Vector2(197, 157)
+[node name="soldier" parent="." unique_id=590202944 instance=ExtResource("4_qfnet")]
+position = Vector2(159, 144)
 
-[node name="drone" parent="." unique_id=903257364 instance=ExtResource("8_7r4gi")]
-position = Vector2(227, 157)
+[node name="drone" parent="." unique_id=462917483 instance=ExtResource("5_i7141")]
+position = Vector2(193, 144)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=813062952]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1938131592]
 
-[node name="Menu" parent="CanvasLayer" unique_id=1081462586 instance=ExtResource("7_i7141")]
+[node name="Menu" parent="CanvasLayer" unique_id=1081462586 instance=ExtResource("7_4mrxx")]
 visible = false
-offset_left = -1.0
-offset_top = 2.0
-offset_right = -1.0
-offset_bottom = 2.0
+offset_left = -2.0
+offset_right = -2.0
