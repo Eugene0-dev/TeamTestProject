@@ -48,8 +48,18 @@ func _process(delta: float) -> void:
 
 func walk(dir: Vector2) -> void:
 	velocity = dir*speed
-	sprite.play("Walk Down")
+	match dir:
+		Vector2(0, 1): sprite.play("Walk Down")
+		Vector2(0, -1): sprite.play("Walk Up")
+		Vector2(1, 0): sprite.play("Walk Right")
+		Vector2(-1, 0): sprite.play("Walk Left")
 	move_and_slide()
+
+func move_at(pos: Vector2i) -> void:
+	if position.x < pos.x: walk(Vector2(1, 0))
+	if position.x > pos.x: walk(Vector2(-1, 0))
+	if position.y > pos.y: walk(Vector2(0, 1))
+	if position.y < pos.y: walk(Vector2(0, -1))
 
 func move_to(target: Node2D) -> void:
 	pass
