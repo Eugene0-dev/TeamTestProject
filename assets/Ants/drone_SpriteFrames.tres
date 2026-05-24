@@ -6,12 +6,48 @@
 [ext_resource type="Texture2D" uid="uid://baobwcwh5gxcw" path="res://assets/Ants/Down/Ant-Drone-Idle-Down2.png" id="2_t7xg6"]
 [ext_resource type="Texture2D" uid="uid://bfqm6q8tmrwty" path="res://assets/Ants/Down/Ant-Drone-Attack-Down3.png" id="3_8k43h"]
 [ext_resource type="Texture2D" uid="uid://licglt8oqfv8" path="res://assets/Ants/Down/Ant-Drone-Idle-Down3.png" id="3_k72eh"]
+[ext_resource type="Texture2D" uid="uid://ec0a8pdsxmtq" path="res://assets/Ants/Left/Ant-Drone-Attack-Left1.png" id="4_474yj"]
 [ext_resource type="Texture2D" uid="uid://di5yxbbpyb2s" path="res://assets/Ants/Down/Ant-Drone-Idle-Down4.png" id="4_lki41"]
+[ext_resource type="Texture2D" uid="uid://b3m2pa6ex32v" path="res://assets/Ants/Left/Ant-Drone-Attack-Left2.png" id="5_0gnbt"]
 [ext_resource type="Texture2D" uid="uid://s0nrs738yqo1" path="res://assets/Ants/Down/Ant-Drone-Idle-Down5.png" id="5_celdu"]
 [ext_resource type="Texture2D" uid="uid://bnutar5boc254" path="res://assets/Ants/Down/Ant-Drone-Walk-Down1.png" id="6_8k43h"]
+[ext_resource type="Texture2D" uid="uid://jt1n5fwk0poq" path="res://assets/Ants/Left/Ant-Drone-Attack-Left3.png" id="6_o1k2o"]
+[ext_resource type="Texture2D" uid="uid://dx8cogtylcvjh" path="res://assets/Ants/Right/Ant-Drone-Attack-Right1.png" id="7_ngya6"]
 [ext_resource type="Texture2D" uid="uid://cvrw67xrixgq5" path="res://assets/Ants/Down/Ant-Drone-Walk-Down2.png" id="7_snykh"]
 [ext_resource type="Texture2D" uid="uid://suigpeilc3av" path="res://assets/Ants/Down/Ant-Drone-Walk-Down3.png" id="8_fyi5j"]
+[ext_resource type="Texture2D" uid="uid://dnkkty80yihg0" path="res://assets/Ants/Right/Ant-Drone-Attack-Right2.png" id="8_utlan"]
+[ext_resource type="Texture2D" uid="uid://cclr5xnhdwvw7" path="res://assets/Ants/Right/Ant-Drone-Attack-Right3.png" id="9_f23u3"]
 [ext_resource type="Texture2D" uid="uid://bun77f4dayn0b" path="res://assets/Ants/Down/Ant-Drone-Walk-Down4.png" id="9_xm652"]
+[ext_resource type="Texture2D" uid="uid://vufaojud7roo" path="res://assets/Ants/Up/Ant-Drone-Attack-Up1.png" id="10_6fqop"]
+[ext_resource type="Texture2D" uid="uid://fosl3f8stdty" path="res://assets/Ants/Up/Ant-Drone-Attack-Up2.png" id="11_355ne"]
+[ext_resource type="Texture2D" uid="uid://b5o7si8hnx3ip" path="res://assets/Ants/Up/Ant-Drone-Attack-Up3.png" id="12_3pyht"]
+[ext_resource type="Texture2D" uid="uid://law2tldfeovh" path="res://assets/Ants/Left/Ant-Drone-Idle-Left1.png" id="18_fesj6"]
+[ext_resource type="Texture2D" uid="uid://cds8e5xafk26r" path="res://assets/Ants/Left/Ant-Drone-Idle-Left2.png" id="19_fwfsg"]
+[ext_resource type="Texture2D" uid="uid://b07a0i004v350" path="res://assets/Ants/Left/Ant-Drone-Idle-Left3.png" id="20_4k2ox"]
+[ext_resource type="Texture2D" uid="uid://c0clitsm22rfk" path="res://assets/Ants/Left/Ant-Drone-Idle-Left4.png" id="21_xgusv"]
+[ext_resource type="Texture2D" uid="uid://c3mecvccvmjcj" path="res://assets/Ants/Left/Ant-Drone-Idle-Left5.png" id="22_mwfps"]
+[ext_resource type="Texture2D" uid="uid://o0mdy0eas4bj" path="res://assets/Ants/Right/Ant-Drone-Idle-Right1.png" id="23_ev5el"]
+[ext_resource type="Texture2D" uid="uid://ywbyr388m8r8" path="res://assets/Ants/Right/Ant-Drone-Idle-Right2.png" id="24_vkujl"]
+[ext_resource type="Texture2D" uid="uid://4uqexkk45b7s" path="res://assets/Ants/Right/Ant-Drone-Idle-Right3.png" id="25_tkgo6"]
+[ext_resource type="Texture2D" uid="uid://dtduny4jgvusq" path="res://assets/Ants/Right/Ant-Drone-Idle-Right4.png" id="26_bdy7p"]
+[ext_resource type="Texture2D" uid="uid://clrq6ipk1ee62" path="res://assets/Ants/Right/Ant-Drone-Idle-Right5.png" id="27_8f44e"]
+[ext_resource type="Texture2D" uid="uid://bd1qkf2ta7t7p" path="res://assets/Ants/Up/Ant-Drone-Idle-Up1.png" id="28_2ctmu"]
+[ext_resource type="Texture2D" uid="uid://djneoa0rimv8i" path="res://assets/Ants/Up/Ant-Drone-Idle-Up2.png" id="29_n6ir3"]
+[ext_resource type="Texture2D" uid="uid://b3td771cdorlq" path="res://assets/Ants/Up/Ant-Drone-Idle-Up3.png" id="30_ala2i"]
+[ext_resource type="Texture2D" uid="uid://dblitbf5lsekf" path="res://assets/Ants/Up/Ant-Drone-Idle-Up4.png" id="31_tlkl1"]
+[ext_resource type="Texture2D" uid="uid://bywh5tqnhb5ct" path="res://assets/Ants/Up/Ant-Drone-Idle-Up5.png" id="32_dt45d"]
+[ext_resource type="Texture2D" uid="uid://1t70fa50f3al" path="res://assets/Ants/Left/Ant-Drone-Walk-Left1.png" id="37_t821w"]
+[ext_resource type="Texture2D" uid="uid://da0lkvcxpji6x" path="res://assets/Ants/Left/Ant-Drone-Walk-Left2.png" id="38_6ttkm"]
+[ext_resource type="Texture2D" uid="uid://c635iev1mxvq0" path="res://assets/Ants/Left/Ant-Drone-Walk-Left3.png" id="39_rsvaa"]
+[ext_resource type="Texture2D" uid="uid://dmt6r7hulcr6x" path="res://assets/Ants/Left/Ant-Drone-Walk-Left4.png" id="40_g1bov"]
+[ext_resource type="Texture2D" uid="uid://c4d6qu2eakds6" path="res://assets/Ants/Right/Ant-Drone-Walk-Right1.png" id="41_1144m"]
+[ext_resource type="Texture2D" uid="uid://bhkg7e1hk6w7h" path="res://assets/Ants/Right/Ant-Drone-Walk-Right2.png" id="42_7eu01"]
+[ext_resource type="Texture2D" uid="uid://cl888demsqq1q" path="res://assets/Ants/Right/Ant-Drone-Walk-Right3.png" id="43_1cj6y"]
+[ext_resource type="Texture2D" uid="uid://c88k60304obb0" path="res://assets/Ants/Right/Ant-Drone-Walk-Right4.png" id="44_uk1vp"]
+[ext_resource type="Texture2D" uid="uid://pv3jmygcm6l" path="res://assets/Ants/Up/Ant-Drone-Walk-Up1.png" id="45_1gtcg"]
+[ext_resource type="Texture2D" uid="uid://sh188msx4lf2" path="res://assets/Ants/Up/Ant-Drone-Walk-Up2.png" id="46_b0noe"]
+[ext_resource type="Texture2D" uid="uid://chw6p3wkbrleb" path="res://assets/Ants/Up/Ant-Drone-Walk-Up3.png" id="47_r2cbk"]
+[ext_resource type="Texture2D" uid="uid://dog7k7w4d3eb" path="res://assets/Ants/Up/Ant-Drone-Walk-Up4.png" id="48_w1gcn"]
 
 [resource]
 animations = [{
@@ -25,8 +61,50 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_8k43h")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_474yj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0gnbt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o1k2o")
+}],
+"loop": false,
+"name": &"Attack Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ngya6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_utlan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f23u3")
+}],
+"loop": false,
+"name": &"Attack Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_6fqop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_355ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3pyht")
+}],
+"loop": false,
+"name": &"Attack Up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -51,6 +129,66 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("18_fesj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_fwfsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4k2ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_xgusv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_mwfps")
+}],
+"loop": true,
+"name": &"Idle Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_ev5el")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vkujl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_tkgo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bdy7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_8f44e")
+}],
+"loop": true,
+"name": &"Idle Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_2ctmu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_n6ir3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ala2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_tlkl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_dt45d")
+}],
+"loop": true,
+"name": &"Idle Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_8k43h")
 }, {
 "duration": 1.0,
@@ -65,4 +203,55 @@ animations = [{
 "loop": true,
 "name": &"Walk Down",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_t821w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_6ttkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_rsvaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_g1bov")
+}],
+"loop": true,
+"name": &"Walk Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_1144m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_7eu01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_1cj6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_uk1vp")
+}],
+"loop": true,
+"name": &"Walk Right ",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_1gtcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_b0noe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_r2cbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_w1gcn")
+}],
+"loop": true,
+"name": &"Walk Up",
+"speed": 5.0
 }]

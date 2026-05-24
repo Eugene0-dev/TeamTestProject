@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bifb2hvsv06hh"
-path="res://.godot/imported/Ant-Soldier-Walk-Down5.png-cfbbfae33e45d15a19189e9249729b9a.ctex"
+uid="uid://dpvdm6bbb11lo"
+path="res://.godot/imported/Ant-Queen-Walk-Up3.png-a1c9e66f035403a0752be663afc78d6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ants/Down/Ant-Soldier-Walk-Down5.png"
-dest_files=["res://.godot/imported/Ant-Soldier-Walk-Down5.png-cfbbfae33e45d15a19189e9249729b9a.ctex"]
+source_file="res://assets/Ants/Up/Ant-Queen-Walk-Up3.png"
+dest_files=["res://.godot/imported/Ant-Queen-Walk-Up3.png-a1c9e66f035403a0752be663afc78d6d.ctex"]
 
 [params]
 
