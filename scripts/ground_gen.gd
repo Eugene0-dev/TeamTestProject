@@ -5,10 +5,10 @@ extends TileMapLayer
 @export var map_width: int
 @export var map_height: int
 @export var tileset: TileSet
-const t_earth = Vector2i(1, 0)
-const t_grass = Vector2i(0, 0)
-const t_stone = Vector2i(1, 0)
-const t_sand = Vector2i(1, 1)
+const t_earth = 1
+const t_grass =0
+const t_stone = 3
+const t_sand = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,10 +27,10 @@ func map_gen() -> void:
 			var noise_val = noise.get_noise_2d(x, y)
 			var tile_case = get_tile_type(noise_val)
 			
-			set_cell(Vector2(x, y), 0, tile_case)
+			set_cell(Vector2(x, y), 1, tile_case)
 
 func get_tile_type(val: float) -> Vector2i:
-	if -0.5 < val and val < 0: return t_grass
-	if val > 0 and val < 0.5: return  t_sand
-	if val > 0.5: return t_grass
-	return t_stone
+	if -0.5 < val and val < 0: return Vector2i(randi_range(0, 3), t_sand)
+	if val > 0 and val < 0.5: return  Vector2i(randi_range(0, 3), t_grass)
+	if val > 0.5: return Vector2i(randi_range(0, 3), t_earth)
+	return Vector2i(randi_range(0, 3), t_stone)

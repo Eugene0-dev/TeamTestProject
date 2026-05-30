@@ -2,5 +2,5 @@
 class_name Drone
 extends Entity
 
-func AI():
+func AI(delta: float):
 	pass

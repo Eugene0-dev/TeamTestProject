@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://e6t581fwt3w4"]
+
+[ext_resource type="Script" uid="uid://c753nelonmyt2" path="res://scripts/ui.gd" id="1_nt7q6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xlq6p"]
+font_size = 24
+font_color = Color(0.09535935, 0.48062903, 0.99999994, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nt7q6"]
+font_size = 18
+font_color = Color(0.9635648, 0.42947996, 3.85046e-07, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="Control" unique_id=2089034143]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nt7q6")
+
+[node name="HP_ProgressBar" type="ProgressBar" parent="." unique_id=1502423758]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 33.0
+
+[node name="Hunger_ProgressBar" type="ProgressBar" parent="." unique_id=2140116440]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 34.0
+offset_right = 287.0
+offset_bottom = 61.0
+
+[node name="Name_Label" type="Label" parent="." unique_id=593120991]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 63.0
+offset_right = 288.0
+offset_bottom = 100.0
+text = "Name"
+label_settings = SubResource("LabelSettings_xlq6p")
+
+[node name="Faction_Label" type="Label" parent="." unique_id=1740223694]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 95.0
+offset_right = 286.0
+offset_bottom = 121.0
+text = "Faction"
+label_settings = SubResource("LabelSettings_nt7q6")

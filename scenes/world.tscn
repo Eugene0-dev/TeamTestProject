@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="1_i7141"]
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="3_71j4m"]
+[ext_resource type="PackedScene" uid="uid://e6t581fwt3w4" path="res://scenes/ui.tscn" id="4_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="4_qfnet"]
 [ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="5_i7141"]
 [ext_resource type="PackedScene" uid="uid://by5gnra34hqk8" path="res://scenes/menu.tscn" id="7_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://dvok55ylpfdak" path="res://scenes/control.tscn" id="8_4mrxx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7141"]
 
@@ -23,16 +25,21 @@ map_width = 512
 map_height = 512
 tileset = ExtResource("1_4wyf3")
 
-[node name="queen" parent="." unique_id=1305847055 instance=ExtResource("3_71j4m")]
-position = Vector2(103, 140)
+[node name="Queen" parent="." unique_id=316967937 instance=ExtResource("3_71j4m")]
+position = Vector2(106, 140)
 
-[node name="soldier" parent="." unique_id=590202944 instance=ExtResource("4_qfnet")]
-position = Vector2(159, 144)
+[node name="Soldier" parent="." unique_id=1305847055 instance=ExtResource("4_qfnet")]
+position = Vector2(163, 145)
 
-[node name="drone" parent="." unique_id=462917483 instance=ExtResource("5_i7141")]
-position = Vector2(193, 144)
+[node name="Drone" parent="." unique_id=113740067 instance=ExtResource("5_i7141")]
+position = Vector2(198, 147)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1938131592]
+
+[node name="UI" parent="CanvasLayer" unique_id=2089034143 instance=ExtResource("4_7r4gi")]
+
+[node name="Control" parent="CanvasLayer" unique_id=7305411 instance=ExtResource("8_4mrxx")]
+visible = false
 
 [node name="Menu" parent="CanvasLayer" unique_id=1081462586 instance=ExtResource("7_4mrxx")]
 visible = false

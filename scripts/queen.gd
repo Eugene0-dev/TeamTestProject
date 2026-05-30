@@ -2,5 +2,5 @@
 class_name Queen
 extends Entity
 
-func AI() -> void:
+func AI(delta: float) -> void:
 	pass

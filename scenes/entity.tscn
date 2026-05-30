@@ -7,11 +7,11 @@ resource_local_to_scene = true
 radius = 17.029387
 
 [node name="Entity" type="CharacterBody2D" unique_id=1305847055]
+collision_layer = 255
+input_pickable = true
 script = ExtResource("1_iiwub")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=283948992]
 shape = SubResource("CircleShape2D_iiwub")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1169619754]
-
-[node name="Hitbox" type="Area2D" parent="." unique_id=1804529443]

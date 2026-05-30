@@ -2,5 +2,5 @@
 class_name Soldier
 extends Entity
 
-func AI() -> void:
+func AI(delta: float) -> void:
 	pass
