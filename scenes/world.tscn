@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://e6t581fwt3w4" path="res://scenes/ui.tscn" id="4_7r4gi"]
+[ext_resource type="Material" uid="uid://dxf52pji3oaus" path="res://assets/shaders/water_material.tres" id="4_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="4_qfnet"]
+[ext_resource type="TileSet" uid="uid://b4cjx62nwwh2i" path="res://assets/tilesets/water_tileset.tres" id="4_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="5_i7141"]
 [ext_resource type="PackedScene" uid="uid://by5gnra34hqk8" path="res://scenes/menu.tscn" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://dvok55ylpfdak" path="res://scenes/control.tscn" id="8_4mrxx"]
@@ -25,6 +27,10 @@ map_width = 512
 map_height = 512
 tileset = ExtResource("1_4wyf3")
 
+[node name="Water" type="TileMapLayer" parent="Ground" unique_id=1702164048]
+material = ExtResource("4_e3hyu")
+tile_set = ExtResource("4_w7kh3")
+
 [node name="Queen" parent="." unique_id=316967937 instance=ExtResource("3_71j4m")]
 position = Vector2(106, 140)
 
@@ -37,6 +43,7 @@ position = Vector2(198, 147)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1938131592]
 
 [node name="UI" parent="CanvasLayer" unique_id=2089034143 instance=ExtResource("4_7r4gi")]
+visible = false
 
 [node name="Control" parent="CanvasLayer" unique_id=7305411 instance=ExtResource("8_4mrxx")]
 visible = false

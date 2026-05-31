@@ -10,6 +10,8 @@ const t_grass =0
 const t_stone = 3
 const t_sand = 2
 
+@onready var water_layer: TileMapLayer = $Water
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	init_noise()
@@ -28,6 +30,9 @@ func map_gen() -> void:
 			var tile_case = get_tile_type(noise_val)
 			
 			set_cell(Vector2(x, y), 1, tile_case)
+			
+			if noise_val < -0.1:
+				water_layer.set_cell(Vector2(x, y), 0, Vector2i(0, 0))
 
 func get_tile_type(val: float) -> Vector2i:
 	if -0.5 < val and val < 0: return Vector2i(randi_range(0, 3), t_sand)
