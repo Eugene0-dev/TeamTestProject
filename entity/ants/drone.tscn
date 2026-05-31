@@ -21,6 +21,5 @@ shape = SubResource("CircleShape2D_k5amr")
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 scale = Vector2(0.3769231, 0.38076922)
 sprite_frames = ExtResource("2_438f2")
-animation = &"Idle Down"
+animation = &"Attack Down"
 autoplay = "Idle Down"
-frame_progress = 0.16745009
