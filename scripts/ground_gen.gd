@@ -19,9 +19,11 @@ func _ready() -> void:
 
 func init_noise() -> void:
 	noise = FastNoiseLite.new()
-	noise.seed = 42
+	noise.seed = randi_range(1,100)
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
-	noise.frequency = 0.02
+	noise.frequency = 0.001
+	noise.fractal_gain = 0.6
+	noise.fractal_octaves = 5
 
 func map_gen() -> void:
 	for x in range(map_width):

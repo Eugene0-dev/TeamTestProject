@@ -8,19 +8,19 @@
 resource_local_to_scene = true
 radius = 11.045361
 
-[node name="Entity" unique_id=1305847055 node_paths=PackedStringArray("sprite", "hitbox") instance=ExtResource("1_ol35h")]
+[node name="Entity" unique_id=1305847055 node_paths=PackedStringArray("sprite") instance=ExtResource("1_ol35h")]
 script = ExtResource("2_k5amr")
 sprite = NodePath("Sprite")
-hitbox = NodePath("Hitbox")
 max_health = 50
+max_hunger = 300
 speed = 35
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
 shape = SubResource("CircleShape2D_k5amr")
 
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
-position = Vector2(0.12500057, -0.37500027)
-scale = Vector2(0.3115385, 0.38076922)
+scale = Vector2(0.3769231, 0.38076922)
 sprite_frames = ExtResource("2_438f2")
 animation = &"Idle Down"
 autoplay = "Idle Down"
+frame_progress = 0.16745009

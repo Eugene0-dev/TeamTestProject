@@ -22,6 +22,7 @@ var schedule: Array = []
 var current_task: Dictionary = {}
 
 func _ready() -> void:
+	sprite = $Sprite
 	if not sprite:
 		push_warning("Забыл назначить спрайт в ", name)
 	else:
