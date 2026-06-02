@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://62aow83kma2b" path="res://assets/tilesets/ground_tileset.tres" id="1_7fkkx"]
 [ext_resource type="TileSet" uid="uid://b4cjx62nwwh2i" path="res://assets/tilesets/water_tileset.tres" id="2_m4cor"]
 [ext_resource type="Material" uid="uid://dxf52pji3oaus" path="res://assets/shaders/water_material.tres" id="2_tg5fl"]
+[ext_resource type="PackedScene" uid="uid://b0shlixmr3jcm" path="res://scenes/source_0.tscn" id="4_27ey4"]
 
 [node name="TextureTest" type="Node2D" unique_id=2067870927]
 
@@ -14,3 +15,6 @@ tile_set = ExtResource("1_7fkkx")
 material = ExtResource("2_tg5fl")
 tile_map_data = PackedByteArray("AACLABUAAAAAAAAAAAAoAB0AAAAAAAAAAAAoAB4AAAAAAAAAAAAoAB8AAAAAAAAAAAApAB0AAAAAAAAAAAApAB4AAAAAAAAAAAApAB8AAAAAAAAAAAAqAB0AAAAAAAAAAAAqAB4AAAAAAAAAAAAqAB8AAAAAAAAAAAArAB0AAAAAAAAAAAArAB4AAAAAAAAAAAArAB8AAAAAAAAAAAAsAB0AAAAAAAAAAAAsAB4AAAAAAAAAAAAsAB8AAAAAAAAAAAAtAB0AAAAAAAAAAAAtAB4AAAAAAAAAAAAtAB8AAAAAAAAAAAAuAB0AAAAAAAAAAAAuAB4AAAAAAAAAAAAuAB8AAAAAAAAAAAA=")
 tile_set = ExtResource("2_m4cor")
+
+[node name="Source_0" parent="." unique_id=428245751 instance=ExtResource("4_27ey4")]
+position = Vector2(377, 128)

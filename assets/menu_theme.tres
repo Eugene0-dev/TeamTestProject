@@ -1,4 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://cf7qinaxog0mv"]
 
+[ext_resource type="FontFile" uid="uid://5tndu0u21u1t" path="res://assets/OpenLukyanov.otf" id="1_tf8oi"]
+
 [resource]
+default_font = ExtResource("1_tf8oi")
 default_font_size = 35

@@ -38,17 +38,17 @@ offset_bottom = 61.0
 [node name="Name_Label" type="Label" parent="." unique_id=593120991]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 63.0
+offset_top = 73.0
 offset_right = 288.0
-offset_bottom = 100.0
+offset_bottom = 110.0
 text = "Name"
 label_settings = SubResource("LabelSettings_xlq6p")
 
 [node name="Faction_Label" type="Label" parent="." unique_id=1740223694]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 95.0
+offset_top = 104.0
 offset_right = 286.0
-offset_bottom = 121.0
+offset_bottom = 130.0
 text = "Faction"
 label_settings = SubResource("LabelSettings_nt7q6")

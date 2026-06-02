@@ -7,7 +7,7 @@ var move_lock: bool = false
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
-	if Input.is_action_just_pressed("c"): move_lock = !move_lock
+	if Input.is_action_just_pressed("alt"): move_lock = !move_lock
 	if Input.is_action_just_pressed("enter"): move_lock = false
 	
 	if not move_lock:

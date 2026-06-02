@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://e6t581fwt3w4" path="res://scenes/ui.tscn" id="4_7r4gi"]
 [ext_resource type="Material" uid="uid://dxf52pji3oaus" path="res://assets/shaders/water_material.tres" id="4_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://db00w6mjqgo52" path="res://scenes/loading_screen.tscn" id="4_q5onr"]
 [ext_resource type="PackedScene" uid="uid://cfbyk7uopiaws" path="res://entity/ants/soldier.tscn" id="4_qfnet"]
 [ext_resource type="TileSet" uid="uid://b4cjx62nwwh2i" path="res://assets/tilesets/water_tileset.tres" id="4_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://bn2fbjhbjvhxe" path="res://entity/ants/drone.tscn" id="5_i7141"]
-[ext_resource type="PackedScene" path="res://scenes/menu.tscn" id="7_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://by5gnra34hqk8" path="res://scenes/menu.tscn" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://dvok55ylpfdak" path="res://scenes/control.tscn" id="8_4mrxx"]
+[ext_resource type="Theme" uid="uid://cf7qinaxog0mv" path="res://assets/menu_theme.tres" id="10_jhx03"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7141"]
 
@@ -44,11 +46,20 @@ position = Vector2(198, 147)
 
 [node name="UI" parent="CanvasLayer" unique_id=2089034143 instance=ExtResource("4_7r4gi")]
 visible = false
+theme = ExtResource("10_jhx03")
 
-[node name="Control" parent="CanvasLayer" unique_id=7305411 instance=ExtResource("8_4mrxx")]
+[node name="Control" parent="CanvasLayer" unique_id=7305411 node_paths=PackedStringArray("camera", "world") instance=ExtResource("8_4mrxx")]
 visible = false
+camera = NodePath("../../MainCam")
+world = NodePath("../..")
+
+[node name="Loading_Screen" parent="CanvasLayer" unique_id=131432325 node_paths=PackedStringArray("world_map", "camera") instance=ExtResource("4_q5onr")]
+theme = ExtResource("10_jhx03")
+world_map = NodePath("../../Ground")
+camera = NodePath("../../MainCam")
 
 [node name="Menu" parent="CanvasLayer" unique_id=1081462586 instance=ExtResource("7_4mrxx")]
 visible = false
 offset_left = -2.0
 offset_right = -2.0
+theme = ExtResource("10_jhx03")
