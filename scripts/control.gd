@@ -54,9 +54,13 @@ func command(cmd_line: String):
 	var task = {}
 	match cmd[0]:
 		"feed", "pos", "team", "play", "st", "kill", "stop", "stopall", "mv":
-			var output = target.exec_command(cmd[0], cmd.slice(1))
-			if output:
-				info_label.text = output
+			if target:
+				var output = target.exec_command(cmd[0], cmd.slice(1))
+				if output:
+					info_label.text = output
+		"breed":
+			if target is Queen:
+				target.exec_command("breed", [cmd[1]])
 		"cam":
 			if len(cmd)>2:
 				camera.position = Vector2(int(cmd[1]), int(cmd[2]))
@@ -72,9 +76,7 @@ func command(cmd_line: String):
 				Global.emit_signal("entity_selected", target)
 		"spawn":
 			world.create_entity(cmd[1], camera.position)
-		"breed":
-			if target is Queen:
-				target.exec_command("breed", [cmd[1]])
+		
 
 func _on_entity_selected(entity: Entity):
 	target = entity

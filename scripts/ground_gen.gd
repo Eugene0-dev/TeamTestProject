@@ -33,7 +33,8 @@ func map_gen() -> void:
 	for x in range(map_width):
 		for y in range(map_height):
 			progress = float(map_width)+(float(x)-float(map_width))
-			if y % map_height == 0:
+			#if y % map_height == 0:
+			if x % 5 == 0 and y == 0:
 				await get_tree().process_frame
 				
 			var noise_val = noise.get_noise_2d(x, y)

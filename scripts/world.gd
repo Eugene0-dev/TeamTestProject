@@ -10,7 +10,6 @@ func create_entity(link: String, pos: Vector2) -> Entity:
 			subject.environment = self
 			add_child(subject)
 			return subject
-		
 	return null
 
 func create_entity_name(subject: Entity) -> String:

@@ -30,7 +30,6 @@ func _ready() -> void:
 	sprite = $Sprite
 	if sprite:
 		sprite.play("Idle Down")
-	environment = get_parent() if get_parent() is Node2D else null
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and \
@@ -58,9 +57,9 @@ func _process(delta: float) -> void:
 	elif income_damage > 0 and tick: 
 		var heal_rate = clamp(10 - (hunger / 10), 0, 10)
 		income_damage -= heal_rate
-	
-	AI(delta)
-	if current_task == {}: 
+	if tick:
+		AI(delta)
+	if current_task.is_empty(): 
 		if schedule.is_empty():
 			pass
 		else: 
@@ -116,7 +115,7 @@ func exec_command(type: String, args: Array):
 			add_task("mv", [args[0], args[1]])
 
 func complete_task() -> void:
-	current_task = {}
+	current_task.clear()
 
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
