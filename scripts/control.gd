@@ -12,11 +12,9 @@ extends Control
 var target: Entity
 var line_counter: int = 0
 var commands_no_target: Array = [
-	"select", "find", "cam"
+	"select", "find", "cam", "spawn"
 ]
-var commands_target: Array = [
-	"mv", "pos", "feed", "kill", "play", "stop", "stopall", "st", "team"
-]
+
 func _ready() -> void:
 	Global.entity_selected.connect(_on_entity_selected)
 	commands_hint_update(false)
@@ -26,7 +24,7 @@ func commands_hint_update(is_target: bool):
 	for cmd in commands_no_target:
 		command_hints_menu.add_item(cmd)
 	if is_target:
-		for cmd in commands_target:
+		for cmd in target.specific_commands:
 			command_hints_menu.add_item(cmd)
 	
 func _init() -> void:
@@ -55,25 +53,14 @@ func command(cmd_line: String):
 	var cmd = cmd_line.split(" ")
 	var task = {}
 	match cmd[0]:
-		"feed":
-			target.hunger = 0
-		"pos":
-			info_label.text = "pos: %d %d" % [target.position.x, target.position.y]
-		"team":
-			info_label.text = "faction: %s" % target.faction
-		"play":
-			target.sprite.play(cmd[1].replace("_"," "))
-		"st":
-			info_label.text = "HP: %d\nhunger: %d" % [target.max_health-target.income_damage, target.max_hunger-target.hunger]
-		"kill":
-			target.income_damage += target.max_health*100
-		"stop":
-			target.complete_task()
-		"stopall":
-			target.schedule = []
-			target.complete_task()
-		"mv": 
-			target.add_task("mv", [cmd[1], cmd[2]])
+		"feed", "pos", "team", "play", "st", "kill", "stop", "stopall", "mv":
+			if target:
+				var output = target.exec_command(cmd[0], cmd.slice(1))
+				if output:
+					info_label.text = output
+		"breed":
+			if target is Queen:
+				target.exec_command("breed", [cmd[1]])
 		"cam":
 			if len(cmd)>2:
 				camera.position = Vector2(int(cmd[1]), int(cmd[2]))
@@ -87,6 +74,9 @@ func command(cmd_line: String):
 			var target = world.get_node_or_null(cmd[1])
 			if target:
 				Global.emit_signal("entity_selected", target)
+		"spawn":
+			world.create_entity(cmd[1], camera.position)
+		
 
 func _on_entity_selected(entity: Entity):
 	target = entity

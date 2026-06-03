@@ -21,13 +21,15 @@ var hunger: int = 0
 var schedule: Array = []
 var current_task: Dictionary = {}
 
+var environment: Node2D
+var specific_commands: Array = [
+	"mv", "pos", "feed", "kill", "play", "stop", "stopall", "st", "team"
+]
+
 func _ready() -> void:
 	sprite = $Sprite
-	if not sprite:
-		push_warning("Забыл назначить спрайт в ", name)
-	else:
+	if sprite:
 		sprite.play("Idle Down")
-		
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and \
@@ -55,9 +57,9 @@ func _process(delta: float) -> void:
 	elif income_damage > 0 and tick: 
 		var heal_rate = clamp(10 - (hunger / 10), 0, 10)
 		income_damage -= heal_rate
-	
-	AI(delta)
-	if current_task == {}: 
+	if tick:
+		AI(delta)
+	if current_task.is_empty(): 
 		if schedule.is_empty():
 			pass
 		else: 
@@ -89,8 +91,31 @@ func exec_task(task: Dictionary, delta: float) -> void:
 			if move_at(task["pos"]):
 				complete_task()
 
+func exec_command(type: String, args: Array):
+	match type:	
+		"feed":
+			hunger = 0
+		"pos":
+			return "pos: %d %d" % [position.x, position.y]
+		"team":
+			return "faction: %s" % faction
+		"play":
+			sprite.play(args[0].replace("_"," "))
+		"st":
+			return "HP: %d\nhunger: %d" % [max_health-income_damage, max_hunger-hunger]
+		"kill":
+			income_damage += max_health*100
+		"stop":
+			complete_task()
+		"stopall":
+			schedule = []
+			complete_task()
+			sprite.play("Idle Down")
+		"mv": 
+			add_task("mv", [args[0], args[1]])
+
 func complete_task() -> void:
-	current_task = {}
+	current_task.clear()
 
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
