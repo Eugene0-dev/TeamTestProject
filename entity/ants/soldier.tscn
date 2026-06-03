@@ -17,6 +17,5 @@ shape = SubResource("CircleShape2D_cshbo")
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 scale = Vector2(0.6942308, 0.7)
 sprite_frames = ExtResource("2_cshbo")
-animation = &"Walk Down"
+animation = &"Walk Up"
 autoplay = "Idle Down"
-frame_progress = 0.10797958

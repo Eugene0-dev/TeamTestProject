@@ -50,6 +50,10 @@ region = Rect2(65, 195, 65, 65)
 atlas = ExtResource("1_gni2j")
 region = Rect2(130, 195, 65, 65)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gni2j"]
+atlas = ExtResource("1_gni2j")
+region = Rect2(0, 260, 65, 65)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8k43h"]
 atlas = ExtResource("1_gni2j")
 region = Rect2(0, 260, 65, 65)
@@ -250,6 +254,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gni2j")
+}],
+"loop": true,
+"name": &"Eat Down",
 "speed": 5.0
 }, {
 "frames": [{
