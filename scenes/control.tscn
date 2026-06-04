@@ -1,6 +1,18 @@
 [gd_scene format=3 uid="uid://dvok55ylpfdak"]
 
-[ext_resource type="Script" uid="uid://dbna8rqcrlt4y" path="res://scripts/control.gd" id="1_5p55f"]
+[ext_resource type="Script" uid="uid://dbna8rqcrlt4y" path="res://scripts/ui/control.gd" id="1_5p55f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r67kn"]
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+
+[sub_resource type="GDScript" id="GDScript_5p55f"]
+resource_name = "fps_label"
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	text = \"FPS: %d\" % Engine.get_frames_per_second()
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_5p55f"]
 font_size = 18
@@ -22,6 +34,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5p55f")
+
+[node name="FPS_Label" type="Label" parent="." unique_id=1134638564]
+layout_mode = 0
+offset_left = 1068.0
+offset_top = 519.0
+offset_right = 1108.0
+offset_bottom = 542.0
+text = "FPS: "
+label_settings = SubResource("LabelSettings_r67kn")
+script = SubResource("GDScript_5p55f")
 
 [node name="Info_Label" type="Label" parent="." unique_id=2144441541]
 layout_mode = 0

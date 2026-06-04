@@ -14,8 +14,9 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7141"]
 
-[node name="World" type="Node2D" unique_id=1784041464]
+[node name="World" type="Node2D" unique_id=1784041464 node_paths=PackedStringArray("world_map")]
 script = ExtResource("1_e3hyu")
+world_map = NodePath("Ground")
 
 [node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("1_i7141")]
 position = Vector2(579, 327)

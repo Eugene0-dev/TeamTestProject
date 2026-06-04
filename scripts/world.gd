@@ -1,10 +1,20 @@
+
+class_name World
 extends Node2D
 
-func create_entity(link: String, pos: Vector2) -> Entity:
+@export var world_map: WorldMap
+var sectors: Dictionary
+
+func _ready() -> void:
+	sectors = world_map.sectors
+
+func create_entity(link: String, pos: Vector2, extra: String = "") -> Entity:
 	var scene: PackedScene = load("res://entity/%s.tscn" % link)
 	if scene:
 		if scene.can_instantiate():
 			var subject = scene.instantiate()
+			if subject is Egg and extra != "":
+				subject.type = extra
 			subject.name = create_entity_name(subject)
 			subject.position = pos
 			subject.environment = self
@@ -21,8 +31,22 @@ func create_entity_name(subject: Entity) -> String:
 		name = "Drone_%d" % num
 	elif subject is Soldier:
 		name = "Soldier_%d" % num
+	elif subject is Egg:
+		name = "Egg_%s_%d" % [subject.type, num]
 	
 	if not get_node_or_null(name):
 		return name
 	else:
 		return create_entity_name(subject)
+
+func get_sector_key(pos: Vector2i) -> Vector2i:
+	var x = pos.x >> 8
+	var y = pos.y >> 8
+	return Vector2i(x, y)
+
+func get_sector_rect(key: Vector2i) -> Rect2i:
+	return sectors[key]
+
+func get_dir_to_sector(from: Vector2, key: Vector2i) -> Vector2i:
+	var sector_center = sectors[key].get_center()
+	return from.direction_to(sector_center)

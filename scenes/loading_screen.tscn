@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://db00w6mjqgo52"]
 
 [ext_resource type="PackedScene" uid="uid://dqrstebktkail" path="res://entity/ants/queen.tscn" id="1_ep5rh"]
-[ext_resource type="Script" uid="uid://bfuhsb57f0hhy" path="res://scripts/loading_screen.gd" id="1_hprjd"]
+[ext_resource type="Script" uid="uid://bfuhsb57f0hhy" path="res://scripts/ui/loading_screen.gd" id="1_hprjd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hprjd"]
 font_size = 32

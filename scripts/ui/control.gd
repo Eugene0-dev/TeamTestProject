@@ -9,16 +9,17 @@ extends Control
 @onready var command_history: TextEdit = $Command_History_TextEdit
 @onready var command_hints_menu: ItemList = $Command_Hints_ItemList
 
+
 var target: Entity
 var line_counter: int = 0
 var commands_no_target: Array = [
-	"select", "find", "cam", "spawn"
+	"select", "find", "cam", "spawn", "sector"
 ]
 
 func _ready() -> void:
 	Global.entity_selected.connect(_on_entity_selected)
 	commands_hint_update(false)
-	
+
 func commands_hint_update(is_target: bool):
 	command_hints_menu.clear()
 	for cmd in commands_no_target:
@@ -26,10 +27,10 @@ func commands_hint_update(is_target: bool):
 	if is_target:
 		for cmd in target.specific_commands:
 			command_hints_menu.add_item(cmd)
-	
+
 func _init() -> void:
 	visible = false
-	
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("alt"): visible = !visible
 	if visible and Input.is_action_just_pressed("enter"):
@@ -53,17 +54,14 @@ func command(cmd_line: String):
 	var cmd = cmd_line.split(" ")
 	var task = {}
 	match cmd[0]:
-		"feed", "pos", "team", "play", "st", "kill", "stop", "stopall", "mv":
-			if target:
-				var output = target.exec_command(cmd[0], cmd.slice(1))
-				if output:
-					info_label.text = output
 		"breed":
 			if target is Queen:
 				target.exec_command("breed", [cmd[1]])
 		"cam":
 			if len(cmd)>2:
-				camera.position = Vector2(int(cmd[1]), int(cmd[2]))
+				var sec = world.sectors.get(Vector2i(int(cmd[1]), int(cmd[2])))
+				if sec:
+					camera.position = sec.get_center()
 			elif target:
 				camera.position = target.position
 		"find":
@@ -76,13 +74,22 @@ func command(cmd_line: String):
 				Global.emit_signal("entity_selected", target)
 		"spawn":
 			world.create_entity(cmd[1], camera.position)
-		
+		"sector":
+			if target:
+				info_label.text = target.exec_command(cmd[0], cmd.slice(1))
+			else:
+				var sec = world.get_sector_key(camera.global_position)
+				info_label.text = "sec: %d %d" % [sec.x, sec.y]
+		_:
+			if target:
+				var output = target.exec_command(cmd[0], cmd.slice(1))
+				if output:
+					info_label.text = output
 
 func _on_entity_selected(entity: Entity):
 	target = entity
 	target_label.text = "tg: "+entity.name
 	commands_hint_update(true)
-
 
 func _on_command_hints_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	command_line.text = command_hints_menu.get_item_text(index)
