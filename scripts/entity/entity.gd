@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 @export_group("Nodes")
 @export var sprite: AnimatedSprite2D
-@export var hitbox: Area2D
 
 @export_group("Stats")
 @export var lifetime: int = 3600
@@ -17,6 +16,8 @@ var hunger: int = 0
 
 @export var faction: String = "none"
 @export var speed: int = 10
+
+@onready var sight_area: Area2D = $Sight_Area
 
 var schedule: Array = []
 var current_task: Dictionary = {}
@@ -138,8 +139,10 @@ func complete_task() -> void:
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
 		sprite.play("Walk Right" if dir.x > 0 else "Walk Left")
+		sight_area.rotation_degrees = -90 if dir.x > 0 else 90
 	else:
 		sprite.play("Walk Down" if dir.y > 0 else "Walk Up")
+		sight_area.rotation_degrees = 0 if dir.y > 0 else 180
 	velocity = dir*speed
 	move_and_slide()
 
@@ -149,7 +152,7 @@ func move_at(pos: Vector2i) -> bool:
 	if dist <= 5:
 		velocity = Vector2.ZERO
 		sprite.play("Idle Down")
-		return true
+		return true	
 	walk(dir)
 	return false
 

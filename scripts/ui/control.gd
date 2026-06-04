@@ -9,6 +9,7 @@ extends Control
 @onready var command_history: TextEdit = $Command_History_TextEdit
 @onready var command_hints_menu: ItemList = $Command_Hints_ItemList
 
+
 var target: Entity
 var line_counter: int = 0
 var commands_no_target: Array = [
