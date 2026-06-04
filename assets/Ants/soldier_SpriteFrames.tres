@@ -50,6 +50,18 @@ region = Rect2(65, 195, 65, 65)
 atlas = ExtResource("1_g1r6n")
 region = Rect2(130, 195, 65, 65)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1r6n"]
+atlas = ExtResource("1_g1r6n")
+region = Rect2(0, 0, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqp54"]
+atlas = ExtResource("1_g1r6n")
+region = Rect2(65, 0, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyx8f"]
+atlas = ExtResource("1_g1r6n")
+region = Rect2(0, 260, 65, 65)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5gs7"]
 atlas = ExtResource("1_g1r6n")
 region = Rect2(0, 260, 65, 65)
@@ -252,7 +264,16 @@ animations = [{
 "name": &"Attack Up",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1r6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqp54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyx8f")
+}],
 "loop": true,
 "name": &"Eat",
 "speed": 5.0
