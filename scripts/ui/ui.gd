@@ -13,7 +13,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	Global.entity_selected.connect(_on_entity_selected)
-	
+
 func _process(delta: float) -> void:
 	if target:
 		hp_bar.value = target.max_health-target.income_damage
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	else:
 		visible = false
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): target = null
-	
+
 func _on_entity_selected(entity: Entity):
 	target = entity
 	hp_bar.max_value = target.max_health

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://cf7qinaxog0mv" path="res://assets/menu_theme.tres" id="1_o5qli"]
 [ext_resource type="TileSet" uid="uid://62aow83kma2b" path="res://assets/tilesets/ground_tileset.tres" id="1_sugp2"]
 [ext_resource type="TileSet" uid="uid://b4cjx62nwwh2i" path="res://assets/tilesets/water_tileset.tres" id="2_jyhfs"]
-[ext_resource type="Script" uid="uid://bthy8p46o8vd" path="res://scripts/main_menu.gd" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://bthy8p46o8vd" path="res://scripts/ui/main_menu.gd" id="2_sugp2"]
 [ext_resource type="FontFile" uid="uid://5tndu0u21u1t" path="res://assets/OpenLukyanov.otf" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://cek7rc351qban" path="res://assets/logos/github-logo.png" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://fyjird4hwele" path="res://assets/logos/github-logo-reverse.png" id="6_tefeu"]

@@ -21,9 +21,9 @@ var hunger: int = 0
 var schedule: Array = []
 var current_task: Dictionary = {}
 
-var environment: Node2D
+var environment: World
 var specific_commands: Array = [
-	"step", "mv", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team"
+	"step", "mv", "mv_s", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team"
 ]
 
 func _ready() -> void:
@@ -104,6 +104,9 @@ func exec_command(type: String, args: Array):
 			hunger = 0
 		"pos":
 			return "pos: %d %d" % [position.x, position.y]
+		"sector":
+			var sec = environment.get_sector_key(global_position)
+			return "sec: %d %d" % [sec.x, sec.y]
 		"team":
 			return "faction: %s" % faction
 		"play":
@@ -120,6 +123,12 @@ func exec_command(type: String, args: Array):
 			sprite.play("Idle Down")
 		"mv": 
 			add_task("mv", [int(args[0]), int(args[1])])
+		"mv_s":
+			var sec_key = Vector2i(int(args[0]), int(args[1]))
+			var sec = environment.sectors.get(sec_key)
+			if sec:
+				var sec_center = sec.get_center()
+				add_task("mv", [sec_center.x, sec_center.y])
 		"step":
 			add_task("mv", [global_position.x+int(args[0]), global_position.y+int(args[1])])
 

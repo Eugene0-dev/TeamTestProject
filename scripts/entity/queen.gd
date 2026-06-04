@@ -8,7 +8,7 @@ func _ready() -> void:
 func AI(delta: float) -> void:
 	if faction == "none":
 		faction = create_faction()
-		
+
 func create_faction() -> String:
 	var q_name = name.split("_")
 	if len(q_name) > 1:
@@ -16,12 +16,12 @@ func create_faction() -> String:
 		return "Swarm_%s" % num
 	else:
 		return "Swarm_NaN"
-		
+
 func exec_command(type: String, args: Array):
 	match type:
 		"breed": breed(args[0])
 		_: return super(type, args)
-	
+
 func breed(type: String) -> void:
 	if type == "queen": return
 	if environment:

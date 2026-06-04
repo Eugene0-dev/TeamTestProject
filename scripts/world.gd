@@ -1,4 +1,12 @@
+
+class_name World
 extends Node2D
+
+@export var world_map: WorldMap
+var sectors: Dictionary
+
+func _ready() -> void:
+	sectors = world_map.sectors
 
 func create_entity(link: String, pos: Vector2, extra: String = "") -> Entity:
 	var scene: PackedScene = load("res://entity/%s.tscn" % link)
@@ -30,3 +38,15 @@ func create_entity_name(subject: Entity) -> String:
 		return name
 	else:
 		return create_entity_name(subject)
+
+func get_sector_key(pos: Vector2i) -> Vector2i:
+	var x = pos.x >> 8
+	var y = pos.y >> 8
+	return Vector2i(x, y)
+
+func get_sector_rect(key: Vector2i) -> Rect2i:
+	return sectors[key]
+
+func get_dir_to_sector(from: Vector2, key: Vector2i) -> Vector2i:
+	var sector_center = sectors[key].get_center()
+	return from.direction_to(sector_center)

@@ -6,6 +6,7 @@ extends TileMapLayer
 @export var map_width: int
 @export var map_height: int
 @export var tileset: TileSet
+
 const t_earth = 1
 const t_grass = 0
 const t_stone = 3
@@ -15,10 +16,14 @@ const t_sand  = 2
 var progress: float = 0.0
 var seed: int = 0
 
+const sector_size: Vector2i = Vector2i(32, 32)
+var sectors: Dictionary = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	seed = randi_range(1,100)
+	seed = randi_range(1, 100)
 	init_noise()
+	init_sectors()
 	map_gen()
 
 func init_noise() -> void:
@@ -28,6 +33,22 @@ func init_noise() -> void:
 	noise.frequency = 0.001
 	noise.fractal_gain = 0.6
 	noise.fractal_octaves = 5
+
+func init_sectors() -> void:
+	var tile_width = tileset.tile_size.x
+	var tile_height = tileset.tile_size.y
+	
+	var sector_width_px = sector_size.x * tile_width
+	var sector_height_px = sector_size.y * tile_height
+	var sector_size_px = Vector2i(sector_width_px, sector_height_px)
+	
+	var sectors_x = ceili(float(map_width) / sector_size.x)
+	var sectors_y = ceili(float(map_height) / sector_size.y)
+	
+	for x in range(sectors_x):
+		for y in range(sectors_y):
+			var sector_pos = Vector2i(x * sector_width_px, y * sector_height_px)
+			sectors[Vector2i(x, y)] = Rect2i(sector_pos, sector_size_px)
 
 func map_gen() -> void:
 	for x in range(map_width):

@@ -12,7 +12,7 @@ extends Control
 var target: Entity
 var line_counter: int = 0
 var commands_no_target: Array = [
-	"select", "find", "cam", "spawn"
+	"select", "find", "cam", "spawn", "sector"
 ]
 
 func _ready() -> void:
@@ -58,7 +58,9 @@ func command(cmd_line: String):
 				target.exec_command("breed", [cmd[1]])
 		"cam":
 			if len(cmd)>2:
-				camera.position = Vector2(int(cmd[1]), int(cmd[2]))
+				var sec = world.sectors.get(Vector2i(int(cmd[1]), int(cmd[2])))
+				if sec:
+					camera.position = sec.get_center()
 			elif target:
 				camera.position = target.position
 		"find":
@@ -71,6 +73,12 @@ func command(cmd_line: String):
 				Global.emit_signal("entity_selected", target)
 		"spawn":
 			world.create_entity(cmd[1], camera.position)
+		"sector":
+			if target:
+				info_label.text = target.exec_command(cmd[0], cmd.slice(1))
+			else:
+				var sec = world.get_sector_key(camera.global_position)
+				info_label.text = "sec: %d %d" % [sec.x, sec.y]
 		_:
 			if target:
 				var output = target.exec_command(cmd[0], cmd.slice(1))
