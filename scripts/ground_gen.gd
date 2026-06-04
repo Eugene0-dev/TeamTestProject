@@ -7,9 +7,9 @@ extends TileMapLayer
 @export var map_height: int
 @export var tileset: TileSet
 const t_earth = 1
-const t_grass =0
+const t_grass = 0
 const t_stone = 3
-const t_sand = 2
+const t_sand  = 2
 
 @onready var water_layer: TileMapLayer = $Water
 var progress: float = 0.0
@@ -32,8 +32,9 @@ func init_noise() -> void:
 func map_gen() -> void:
 	for x in range(map_width):
 		for y in range(map_height):
-			progress = float(map_width)+(float(x)-float(map_width))
-			#if y % map_height == 0:
+			progress = x
+			# use bigger value to increase generation speed ( x % 20 )
+			# that decreases FPS on loading screan
 			if x % 5 == 0 and y == 0:
 				await get_tree().process_frame
 				

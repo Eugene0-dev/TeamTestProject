@@ -6,16 +6,16 @@ extends CharacterBody2D
 @export var sprite: AnimatedSprite2D
 @export var hitbox: Area2D
 
+@export_group("Stats")
+@export var lifetime: int = 3600
 @export var max_health: int = 100
 var income_damage: int = 0
 
 @export var outcome_damage: int = 5
-
 @export var max_hunger: int = 100
 var hunger: int = 0
 
 @export var faction: String = "none"
-
 @export var speed: int = 10
 
 var schedule: Array = []
@@ -23,7 +23,7 @@ var current_task: Dictionary = {}
 
 var environment: Node2D
 var specific_commands: Array = [
-	"mv", "pos", "feed", "kill", "play", "stop", "stopall", "st", "team"
+	"step", "mv", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team"
 ]
 
 func _ready() -> void:
@@ -42,6 +42,9 @@ func is_tick(delta: float) -> bool:
 	timer += delta
 	if timer >= 1.0:
 		timer = 0.0
+		lifetime -= 1
+		if lifetime <= 0:
+			on_lifetime_end()
 		return true
 	return false
 		
@@ -71,7 +74,7 @@ func add_task(type: String, args: Array) -> void:
 	var task: Dictionary = {"type": type}
 	match type:
 		"mv": 
-			var pos = Vector2(int(args[0]), int(args[1]))
+			var pos = Vector2(args[0], args[1])
 			task["pos"] = pos
 			var diff = pos - global_position
 			if abs(diff.x) > abs(diff.y):
@@ -93,6 +96,10 @@ func exec_task(task: Dictionary, delta: float) -> void:
 
 func exec_command(type: String, args: Array):
 	match type:	
+		"expire":
+			lifetime = 0
+		"lifetime":
+			lifetime = int(args[0])
 		"feed":
 			hunger = 0
 		"pos":
@@ -112,7 +119,9 @@ func exec_command(type: String, args: Array):
 			complete_task()
 			sprite.play("Idle Down")
 		"mv": 
-			add_task("mv", [args[0], args[1]])
+			add_task("mv", [int(args[0]), int(args[1])])
+		"step":
+			add_task("mv", [global_position.x+int(args[0]), global_position.y+int(args[1])])
 
 func complete_task() -> void:
 	current_task.clear()
@@ -140,6 +149,9 @@ func move_to(target: Node2D) -> bool:
 
 func eat(target: Node2D) -> void:
 	pass
+
+func on_lifetime_end() -> void:
+	queue_free()
 
 func AI(delta: float) -> void:
 	pass

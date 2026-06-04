@@ -4,6 +4,7 @@ extends Control
 @onready var hunger_bar: ProgressBar = $Hunger_ProgressBar
 @onready var name_label: Label = $Name_Label
 @onready var faction_label: Label = $Faction_Label
+@onready var lifetime_label: Label = $Lifetime_Label
 
 var target: Entity
 
@@ -17,6 +18,7 @@ func _process(delta: float) -> void:
 	if target:
 		hp_bar.value = target.max_health-target.income_damage
 		hunger_bar.value = target.hunger
+		lifetime_label.text = "Lifetime: %d sec" % target.lifetime
 	else:
 		visible = false
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): target = null

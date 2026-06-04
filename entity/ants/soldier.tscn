@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://7y8phs4am5q" path="res://assets/Ants/soldier_SpriteFrames.tres" id="2_cshbo"]
 [ext_resource type="Script" uid="uid://gtsmsc8jl26y" path="res://scripts/soldier.gd" id="2_o05g0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x5gcq"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_o05g0"]
 resource_local_to_scene = true
 radius = 18.0
 
@@ -14,7 +14,7 @@ max_hunger = 360
 speed = 25
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
-shape = SubResource("CircleShape2D_x5gcq")
+shape = SubResource("CircleShape2D_o05g0")
 
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 scale = Vector2(0.6942308, 0.7)

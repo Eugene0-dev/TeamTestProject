@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://djdsofrm2tm2c"]
+
+[ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_cysgi"]
+[ext_resource type="Script" uid="uid://s534bq1jn2i2" path="res://scripts/scout.gd" id="2_i0qr2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i0qr2"]
+resource_local_to_scene = true
+radius = 17.029387
+
+[node name="Scout" unique_id=1305847055 instance=ExtResource("1_cysgi")]
+script = ExtResource("2_i0qr2")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
+shape = SubResource("CircleShape2D_i0qr2")

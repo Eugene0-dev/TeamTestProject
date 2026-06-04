@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cyw6m6pcqfn81"]
+
+[ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_npq0x"]
+[ext_resource type="Script" uid="uid://cr6cx4vu0c2cx" path="res://scripts/egg.gd" id="2_2patf"]
+[ext_resource type="Texture2D" uid="uid://c08tv4nqfibhx" path="res://assets/bug_egg.png" id="2_x10av"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x10av"]
+resource_local_to_scene = true
+radius = 7.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3d6lm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x10av")
+}],
+"loop": false,
+"name": &"Idle Down",
+"speed": 5.0
+}]
+
+[node name="Egg" unique_id=1305847055 node_paths=PackedStringArray("sprite") instance=ExtResource("1_npq0x")]
+script = ExtResource("2_2patf")
+type = "none"
+sprite = NodePath("Sprite")
+lifetime = 30
+outcome_damage = 0
+max_hunger = 0
+speed = 0
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
+shape = SubResource("CircleShape2D_x10av")
+
+[node name="Sprite" parent="." index="1" unique_id=1169619754]
+position = Vector2(0, -9.536743e-07)
+scale = Vector2(0.24019614, 0.23387103)
+sprite_frames = SubResource("SpriteFrames_3d6lm")
+animation = &"Idle Down"
+autoplay = "Idle Down"
