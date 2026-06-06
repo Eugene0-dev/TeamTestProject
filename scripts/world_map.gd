@@ -7,6 +7,9 @@ extends TileMapLayer
 @export var map_height: int
 @export var tileset: TileSet
 
+var map_width_px: int
+var map_height_px: int
+
 const t_earth = 1
 const t_grass = 0
 const t_stone = 3
@@ -21,6 +24,8 @@ var sectors: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	map_width_px = map_width*tileset.tile_size.x
+	map_height_px = map_height*tileset.tile_size.y
 	seed = randi_range(1, 100)
 	init_noise()
 	init_sectors()

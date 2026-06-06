@@ -1,27 +1,46 @@
 shader_type canvas_item;
 
 uniform vec4 water_color : source_color = vec4(0.2, 0.5, 0.9, 0.6);
-uniform float speed : hint_range(0.0, 10.0) = 2.0;
-uniform float scale : hint_range(0.1, 10.0) = 1.0;
+uniform float speed : hint_range(0.0, 10.0) = 1.5;
+
+uniform float scale_x : hint_range(0.01, 2.0) = 0.12;
+uniform float scale_y : hint_range(0.01, 2.0) = 0.35;
+
+uniform float pixel_size : hint_range(1.0, 32.0) = 4.0;
+
+varying vec2 world_pos;
+
+void vertex() {
+    world_pos = (MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
+}
 
 void fragment() {
-    // 1. Получаем координаты в пикселях (чтобы блики двигались шагами)
-    // TEXTURE_PIXEL_SIZE дает размер одного пикселя текстуры
-    vec2 pixel_uv = floor(UV * 8.0) / 8.0; 
+    vec2 pixel_world_pos = floor(world_pos / pixel_size) * pixel_size;
     
-    // 2. Генерируем "псевдо-шум" через синусы
-    // Это создает движущиеся пятна, которые выглядят как блики
-    float movement = TIME * speed;
-    float noise = sin(pixel_uv.x * 10.0 * scale + movement) + 
-                  cos(pixel_uv.y * 10.0 * scale + movement * 0.5);
+    float t = TIME * speed;
     
-    // 3. Делаем резкий порог (Threshold), чтобы получить четкие пиксели
-    // Если значение шума выше 1.2 — это блик (светлее), иначе — обычная вода
+    float cx = pixel_world_pos.x * scale_x;
+    float cy = pixel_world_pos.y * scale_y;
+    
+    // 1. Первый слой волн: идет в одну сторону
+    float wave1 = sin(cx + t) + cos(cy + t * 0.4);
+    
+    // 2. Второй слой: идет под углом, с другой частотой и чуть быстрее
+    // Сдвиг "cx * 0.7 - cy * 1.3" ломает параллельные ряды
+    float wave2 = sin(cx * 0.7 - cy * 1.3 + t * 1.3) * 0.8;
+    
+    // 3. Третий слой: мелкомасштабный хаос, который "рвет" длинные линии
+    float micro_noise = sin(cx * 2.1 + cy * 1.7 - t * 0.8) * 0.4;
+    
+    // Смешиваем всё вместе
+    float noise = (wave1 + wave2 + micro_noise) / 2.2;
+    
+    // Порог для бликов и теней
     vec4 final_color = water_color;
-    if (noise > 1.3) {
-        final_color.rgb += 0.15; // Делаем пиксель светлее
-    } else if (noise < -1.3) {
-        final_color.rgb -= 0.05; // Или чуть темнее для глубины
+    if (noise > 0.6) {
+        final_color.rgb += 0.15; // Блики
+    } else if (noise < -0.65) {
+        final_color.rgb -= 0.05; // Тени
     }
     
     COLOR = final_color;

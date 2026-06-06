@@ -3,20 +3,50 @@
 [ext_resource type="TileSet" uid="uid://62aow83kma2b" path="res://assets/tilesets/ground_tileset.tres" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://5l5hfywi7mjq" path="res://scripts/world.gd" id="1_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="1_i7141"]
-[ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/ground_gen.gd" id="2_4wyf3"]
+[ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/world_map.gd" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://e6t581fwt3w4" path="res://scenes/ui.tscn" id="4_7r4gi"]
 [ext_resource type="Material" uid="uid://dxf52pji3oaus" path="res://assets/shaders/water_material.tres" id="4_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://db00w6mjqgo52" path="res://scenes/loading_screen.tscn" id="4_q5onr"]
 [ext_resource type="TileSet" uid="uid://b4cjx62nwwh2i" path="res://assets/tilesets/water_tileset.tres" id="4_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://by5gnra34hqk8" path="res://scenes/menu.tscn" id="7_4mrxx"]
+[ext_resource type="Shader" uid="uid://b0jgrgu8h2766" path="res://assets/shaders/clouds.gdshader" id="7_q5onr"]
 [ext_resource type="PackedScene" uid="uid://dvok55ylpfdak" path="res://scenes/control.tscn" id="8_4mrxx"]
 [ext_resource type="Theme" uid="uid://cf7qinaxog0mv" path="res://assets/menu_theme.tres" id="10_jhx03"]
 
+[sub_resource type="GDScript" id="GDScript_e3hyu"]
+script/source = "extends DirectionalLight2D
+
+var time: float
+
+func _ready() -> void:
+	energy = 0
+	time = 0
+
+func _process(delta: float) -> void:
+	time += delta/100
+	energy = sin(time)
+	
+"
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7141"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhx03"]
+shader = ExtResource("7_q5onr")
+shader_parameter/shadow_color = Color(0.1, 0.1, 0.1, 0.05)
+shader_parameter/speed = Vector2(12, 6)
+shader_parameter/cloud_scale = 0.001
+shader_parameter/cloud_density = 0.5
+shader_parameter/pixel_size = 4.0
 
 [node name="World" type="Node2D" unique_id=1784041464 node_paths=PackedStringArray("world_map")]
 script = ExtResource("1_e3hyu")
 world_map = NodePath("Ground")
+
+[node name="Sun" type="DirectionalLight2D" parent="." unique_id=1931813038]
+color = Color(0.94509804, 0.5294118, 0.14117648, 0.67058825)
+shadow_enabled = true
+height = 1.0
+script = SubResource("GDScript_e3hyu")
 
 [node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("1_i7141")]
 position = Vector2(579, 327)
@@ -33,14 +63,23 @@ tileset = ExtResource("1_4wyf3")
 material = ExtResource("4_e3hyu")
 tile_set = ExtResource("4_w7kh3")
 
+[node name="Clouds" type="ColorRect" parent="." unique_id=1857313412]
+material = SubResource("ShaderMaterial_jhx03")
+offset_right = 1153.0
+offset_bottom = 655.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1938131592]
 
 [node name="UI" parent="CanvasLayer" unique_id=2089034143 instance=ExtResource("4_7r4gi")]
 visible = false
+mouse_filter = 2
 theme = ExtResource("10_jhx03")
 
 [node name="Control" parent="CanvasLayer" unique_id=7305411 node_paths=PackedStringArray("camera", "world") instance=ExtResource("8_4mrxx")]
 visible = false
+mouse_filter = 2
 camera = NodePath("../../MainCam")
 world = NodePath("../..")
 
