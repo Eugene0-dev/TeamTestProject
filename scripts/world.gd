@@ -2,11 +2,16 @@
 class_name World
 extends Node2D
 
+@onready var sun: DirectionalLight2D = $Sun
+@onready var clouds: ColorRect = $Clouds
+
 @export var world_map: WorldMap
 var sectors: Dictionary
 
 func _ready() -> void:
 	sectors = world_map.sectors
+	clouds.size.x = world_map.map_width_px
+	clouds.size.y = world_map.map_height_px
 
 func create_entity(link: String, pos: Vector2, extra: String = "") -> Entity:
 	var scene: PackedScene = load("res://entity/%s.tscn" % link)

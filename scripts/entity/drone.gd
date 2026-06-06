@@ -3,4 +3,4 @@ class_name Drone
 extends Entity
 
 func AI(delta: float):
-	pass
+	super(delta)
