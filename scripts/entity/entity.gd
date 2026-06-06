@@ -162,11 +162,10 @@ func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
 		sprite.play("Walk Right" if dir.x > 0 else "Walk Left")
 		face_dir = Vector2i(1, 0) if dir.x > 0 else Vector2i(-1, 0)
-		sight_area.rotation_degrees = -90 if dir.x > 0 else 90
 	else:
 		sprite.play("Walk Down" if dir.y > 0 else "Walk Up")
 		face_dir = Vector2i(0, 1) if dir.y > 0 else Vector2i(0, -1)
-		sight_area.rotation_degrees = 0 if dir.y > 0 else 180
+	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(face_dir))
 	velocity = dir*speed
 	move_and_slide()
 
@@ -185,8 +184,11 @@ func move_at(pos: Vector2i) -> bool:
 	var obstacles = sight_area.get_overlapping_areas()
 	if obstacles.size() > 0:
 		complete_task()
-		face_dir = Vector2i(face_dir.y, -face_dir.x)
-		mv_forward(50, false)
+		if randf() > 0.5:
+			face_dir = Vector2i(face_dir.y, -face_dir.x)
+		else:
+			face_dir = Vector2i(face_dir.y, face_dir.x)
+		mv_forward(randi_range(50, 100), false)
 	walk(dir)
 	return false
 
