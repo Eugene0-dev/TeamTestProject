@@ -3,11 +3,13 @@ class_name Queen
 extends Entity
 
 func _ready() -> void:
+	super()
 	specific_commands.append("breed")
 
 func AI(delta: float) -> void:
 	if faction == "none":
 		faction = create_faction()
+	super(delta)
 
 func create_faction() -> String:
 	var q_name = name.split("_")

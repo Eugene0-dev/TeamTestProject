@@ -26,11 +26,14 @@ var environment: World
 var specific_commands: Array = [
 	"step", "mv", "mv_s", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team"
 ]
+var prefered_pos: Vector2
+var face_dir: Vector2i
 
 func _ready() -> void:
 	sprite = $Sprite
-	if sprite:
-		sprite.play("Idle Down")
+	face_dir = Vector2i(0, 1)
+	idle()
+	prefered_pos = global_position
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and \
@@ -76,12 +79,18 @@ func add_task(type: String, args: Array) -> void:
 	match type:
 		"mv": 
 			var pos = Vector2(args[0], args[1])
+			var change_prefered_pos: bool
+			if args.size() == 3:
+				change_prefered_pos = args[2]
+			else:
+				change_prefered_pos = true
+			if change_prefered_pos: prefered_pos = pos
 			task["pos"] = pos
 			var diff = pos - global_position
 			if abs(diff.x) > abs(diff.y):
-				schedule.append({"type": "mv", "pos": Vector2(pos.x, position.y)})
+				schedule.append({"type": "mv", "pos": Vector2(pos.x, global_position.y)})
 			else:
-				schedule.append({"type": "mv", "pos": Vector2(position.x, pos.y)})
+				schedule.append({"type": "mv", "pos": Vector2(global_position.x, pos.y)})
 		"wait": task["time"] = args[0]
 		
 	schedule.append(task)
@@ -135,24 +144,49 @@ func exec_command(type: String, args: Array):
 
 func complete_task() -> void:
 	current_task.clear()
+	idle()
+
+func idle() -> void:
+	if not sprite: return
+	match face_dir:
+		Vector2i(0, 1):
+			sprite.play("Idle Down")
+		Vector2i(0, -1):
+			sprite.play("Idle Up")
+		Vector2i(1, 0):
+			sprite.play("Idle Right")
+		Vector2i(-1, 0):
+			sprite.play("Idle Left")
 
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
 		sprite.play("Walk Right" if dir.x > 0 else "Walk Left")
+		face_dir = Vector2i(1, 0) if dir.x > 0 else Vector2i(-1, 0)
 		sight_area.rotation_degrees = -90 if dir.x > 0 else 90
 	else:
 		sprite.play("Walk Down" if dir.y > 0 else "Walk Up")
+		face_dir = Vector2i(0, 1) if dir.y > 0 else Vector2i(0, -1)
 		sight_area.rotation_degrees = 0 if dir.y > 0 else 180
 	velocity = dir*speed
 	move_and_slide()
 
+func mv_forward(dist: float, overrie_prefered_pos: bool = true):
+	add_task("mv", [
+		global_position.x + face_dir.x*dist,
+		global_position.y + face_dir.y*dist,
+		overrie_prefered_pos
+	])
+
 func move_at(pos: Vector2i) -> bool:
-	var dist = global_position.distance_to(pos)
 	var dir = global_position.direction_to(pos)
-	if dist <= 5:
+	if global_position.distance_to(pos) <= 5:
 		velocity = Vector2.ZERO
-		sprite.play("Idle Down")
-		return true	
+		return true
+	var obstacles = sight_area.get_overlapping_areas()
+	if obstacles.size() > 0:
+		complete_task()
+		face_dir = Vector2i(face_dir.y, -face_dir.x)
+		mv_forward(50, false)
 	walk(dir)
 	return false
 
@@ -166,4 +200,5 @@ func on_lifetime_end() -> void:
 	queue_free()
 
 func AI(delta: float) -> void:
-	pass
+	if global_position.distance_to(prefered_pos) > 5 and schedule.size() == 0:
+		add_task("mv", [prefered_pos.x, prefered_pos.y])
