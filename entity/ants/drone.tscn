@@ -29,6 +29,6 @@ sprite_frames = ExtResource("2_438f2")
 animation = &"Idle Down"
 autoplay = "Idle Down"
 
-[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
+[node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
 position = Vector2(0, 12)
 shape = SubResource("CapsuleShape2D_vpqw1")
