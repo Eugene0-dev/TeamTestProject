@@ -10,6 +10,11 @@ font_size = 50
 font_size = 28
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_con2f"]
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Menu" type="Control" unique_id=1081462586]
 layout_mode = 3
 anchors_preset = 15
@@ -58,6 +63,15 @@ offset_right = 755.0
 offset_bottom = 315.0
 theme = ExtResource("1_yqeox")
 text = "EXIT"
+
+[node name="Seed_Label" type="Label" parent="." unique_id=332219461]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 580.0
+offset_right = 101.0
+offset_bottom = 625.0
+text = "Seed:"
+label_settings = SubResource("LabelSettings_con2f")
 
 [connection signal="pressed" from="Continue_Button" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Exit_Button" to="." method="_on_exit_button_pressed"]

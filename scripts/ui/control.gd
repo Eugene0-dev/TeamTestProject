@@ -65,11 +65,17 @@ func command(cmd_line: String):
 			elif target:
 				camera.position = target.position
 		"find":
-			var target = world.get_node_or_null(cmd[1])
+			match cmd[1]:
+					"queen": target = world.find_child("Queen_*", true, false)
+					"drone": target = world.find_child("Drone_*", true, false)
+					"soldier": target = world.find_child("Soldier_*", true, false)
+					_: target = world.get_node_or_null(cmd[1])
 			if target:
 				camera.position = target.position
+				Global.emit_signal("entity_selected", target)
+				
 		"select":
-			var target = world.get_node_or_null(cmd[1])
+			target = world.get_node_or_null(cmd[1])
 			if target:
 				Global.emit_signal("entity_selected", target)
 		"spawn":

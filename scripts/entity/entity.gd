@@ -22,6 +22,9 @@ var hunger: int = 0
 var schedule: Array = []
 var current_task: Dictionary = {}
 
+var subtasks: Array = []
+var current_subtask: Dictionary = {}
+
 var environment: World
 var specific_commands: Array = [
 	"step", "mv", "mv_s", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team"
@@ -66,34 +69,38 @@ func _process(delta: float) -> void:
 		income_damage -= heal_rate
 	if tick:
 		AI(delta)
-	if current_task.is_empty(): 
-		if schedule.is_empty():
-			pass
-		else: 
-			current_task = schedule.pop_front()
+	
+	if not current_subtask.is_empty():
+		exec_subtask(current_subtask, delta)
+	elif not subtasks.is_empty():
+		current_subtask = subtasks.pop_front()
+		exec_subtask(current_subtask, delta)
+	elif not current_task.is_empty():
+		exec_task(current_task, delta) 
+	elif not schedule.is_empty():
+		current_task = schedule.pop_front()
 	else:
-		exec_task(current_task, delta)
+		velocity = Vector2.ZERO
+		idle()
 
 func add_task(type: String, args: Array) -> void:
 	var task: Dictionary = {"type": type}
 	match type:
 		"mv": 
 			var pos = Vector2(args[0], args[1])
-			var change_prefered_pos: bool
-			if args.size() == 3:
-				change_prefered_pos = args[2]
-			else:
-				change_prefered_pos = true
-			if change_prefered_pos: prefered_pos = pos
+			prefered_pos = pos
 			task["pos"] = pos
-			var diff = pos - global_position
-			if abs(diff.x) > abs(diff.y):
-				schedule.append({"type": "mv", "pos": Vector2(pos.x, global_position.y)})
-			else:
-				schedule.append({"type": "mv", "pos": Vector2(global_position.x, pos.y)})
 		"wait": task["time"] = args[0]
 		
 	schedule.append(task)
+
+func add_subtask(type: String, args: Array) -> void:
+	var subtask: Dictionary = {"type": type}
+	match type:
+		"mv":
+			var pos = Vector2i(args[0], args[1])
+			subtask["pos"] = pos
+	subtasks.append(subtask)
 
 func exec_task(task: Dictionary, delta: float) -> void:
 	match task["type"]:
@@ -101,8 +108,23 @@ func exec_task(task: Dictionary, delta: float) -> void:
 			task["time"] -= delta
 			if task["time"] <= 0: complete_task()
 		"mv":
-			if move_at(task["pos"]):
-				complete_task()
+			var pos = task["pos"]
+			var dir = global_position.direction_to(pos)
+			if global_position.distance_to(pos) > 5:
+				if dir.x > dir.y:
+					add_subtask("mv", [pos.x, global_position.y])
+					add_subtask("mv", [pos.x, pos.y])
+				else:
+					add_subtask("mv", [global_position.x, pos.y])
+					add_subtask("mv", [pos.x, pos.y])
+			complete_task()
+
+func exec_subtask(task: Dictionary, delta: float) -> void:
+	match task["type"]:
+		"mv":
+			if global_position.distance_to(task["pos"]) > 5: 
+				move_at(task["pos"])
+			else: complete_subtask()
 
 func exec_command(type: String, args: Array):
 	match type:	
@@ -146,17 +168,17 @@ func complete_task() -> void:
 	current_task.clear()
 	idle()
 
+func complete_subtask() -> void:
+	current_subtask.clear()
+	idle()
+
 func idle() -> void:
 	if not sprite: return
 	match face_dir:
-		Vector2i(0, 1):
-			sprite.play("Idle Down")
-		Vector2i(0, -1):
-			sprite.play("Idle Up")
-		Vector2i(1, 0):
-			sprite.play("Idle Right")
-		Vector2i(-1, 0):
-			sprite.play("Idle Left")
+		Vector2i(0, 1): sprite.play("Idle Down")
+		Vector2i(0, -1): sprite.play("Idle Up")
+		Vector2i(1, 0): sprite.play("Idle Right")
+		Vector2i(-1, 0): sprite.play("Idle Left")
 
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
@@ -169,13 +191,6 @@ func walk(dir: Vector2) -> void:
 	velocity = dir*speed
 	move_and_slide()
 
-func mv_forward(dist: float, overrie_prefered_pos: bool = true):
-	add_task("mv", [
-		global_position.x + face_dir.x*dist,
-		global_position.y + face_dir.y*dist,
-		overrie_prefered_pos
-	])
-
 func move_at(pos: Vector2i) -> bool:
 	var dir = global_position.direction_to(pos)
 	if global_position.distance_to(pos) <= 5:
@@ -183,13 +198,10 @@ func move_at(pos: Vector2i) -> bool:
 		return true
 	var obstacles = sight_area.get_overlapping_areas()
 	if obstacles.size() > 0:
-		complete_task()
-		if randf() > 0.5:
-			face_dir = Vector2i(face_dir.y, -face_dir.x)
-		else:
-			face_dir = Vector2i(face_dir.y, face_dir.x)
-		mv_forward(randi_range(50, 100), false)
-	walk(dir)
+		face_dir = Vector2i(face_dir.y, -face_dir.x)
+		walk(face_dir)
+	else:
+		walk(dir)
 	return false
 
 func move_to(target: Node2D) -> bool:

@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var sun: DirectionalLight2D = $Sun
 @onready var clouds: ColorRect = $Clouds
+@onready var camera: Camera2D = $MainCam
 
 @export var world_map: WorldMap
 var sectors: Dictionary
@@ -55,3 +56,11 @@ func get_sector_rect(key: Vector2i) -> Rect2i:
 func get_dir_to_sector(from: Vector2, key: Vector2i) -> Vector2i:
 	var sector_center = sectors[key].get_center()
 	return from.direction_to(sector_center)
+
+func _on_ground_generation_complete() -> void:
+	var pos = Vector2i(
+		randi_range(100, world_map.map_width_px-100),
+		randi_range(100, world_map.map_height_px-100)
+	)
+	create_entity("ants/queen", pos)
+	camera.position = pos
