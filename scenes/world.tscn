@@ -88,8 +88,11 @@ theme = ExtResource("10_jhx03")
 world_map = NodePath("../../Ground")
 camera = NodePath("../../MainCam")
 
-[node name="Menu" parent="CanvasLayer" unique_id=1081462586 instance=ExtResource("7_4mrxx")]
+[node name="Menu" parent="CanvasLayer" unique_id=1081462586 node_paths=PackedStringArray("world_map") instance=ExtResource("7_4mrxx")]
 visible = false
 offset_left = -2.0
 offset_right = -2.0
 theme = ExtResource("10_jhx03")
+world_map = NodePath("../../Ground")
+
+[connection signal="generation_complete" from="Ground" to="." method="_on_ground_generation_complete"]

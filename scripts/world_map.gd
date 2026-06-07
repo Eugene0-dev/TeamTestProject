@@ -17,23 +17,24 @@ const t_sand  = 2
 
 @onready var water_layer: TileMapLayer = $Water
 var progress: float = 0.0
-var seed: int = 0
+var world_seed: int = 0
 
 const sector_size: Vector2i = Vector2i(32, 32)
 var sectors: Dictionary = {}
 
-# Called when the node enters the scene tree for the first time.
+signal generation_complete()
+
 func _ready() -> void:
 	map_width_px = map_width*tileset.tile_size.x
 	map_height_px = map_height*tileset.tile_size.y
-	seed = randi_range(1, 100)
+	world_seed = randi_range(1, 100)
 	init_noise()
 	init_sectors()
 	map_gen()
 
 func init_noise() -> void:
 	noise = FastNoiseLite.new()
-	noise.seed = seed
+	noise.seed = world_seed
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
 	noise.frequency = 0.001
 	noise.fractal_gain = 0.6
@@ -74,6 +75,7 @@ func map_gen() -> void:
 			if noise_val < -0.1:
 				water_layer.set_cell(Vector2(x, y), 0, Vector2i(0, 0))
 	progress = map_width
+	emit_signal("generation_complete")
 
 func get_tile_type(val: float) -> Vector2i:
 	if -0.5 < val and val < 0: return Vector2i(randi_range(0, 3), t_sand)
