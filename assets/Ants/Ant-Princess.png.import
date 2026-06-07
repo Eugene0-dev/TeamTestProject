@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5nvrsw3r8pud"
-path="res://.godot/imported/Ant-Drone.png-2a4f99ca5fe2dd086ba2b1be5b9741bf.ctex"
+uid="uid://c3ryxh2upcspd"
+path="res://.godot/imported/Ant-Princess.png-bd483679dc93f33c2765e7fd46434974.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ants/Ant-Drone.png"
-dest_files=["res://.godot/imported/Ant-Drone.png-2a4f99ca5fe2dd086ba2b1be5b9741bf.ctex"]
+source_file="res://assets/Ants/Ant-Princess.png"
+dest_files=["res://.godot/imported/Ant-Princess.png-bd483679dc93f33c2765e7fd46434974.ctex"]
 
 [params]
 
