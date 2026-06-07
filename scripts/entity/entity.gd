@@ -79,16 +79,15 @@ func _process(delta: float) -> void:
 		exec_task(current_task, delta) 
 	elif not schedule.is_empty():
 		current_task = schedule.pop_front()
-	else:
-		velocity = Vector2.ZERO
-		idle()
+	else: idle()
 
 func add_task(type: String, args: Array) -> void:
 	var task: Dictionary = {"type": type}
 	match type:
 		"mv": 
 			var pos = Vector2(args[0], args[1])
-			prefered_pos = pos
+			if not args[2]:
+				prefered_pos = pos
 			task["pos"] = pos
 		"wait": task["time"] = args[0]
 		
@@ -100,31 +99,58 @@ func add_subtask(type: String, args: Array) -> void:
 		"mv":
 			var pos = Vector2i(args[0], args[1])
 			subtask["pos"] = pos
+			subtask["evade"] = args[2]
 	subtasks.append(subtask)
 
-func exec_task(task: Dictionary, delta: float) -> void:
+func exec_task(task: Dictionary, delta: float) -> int:
 	match task["type"]:
 		"wait":
 			task["time"] -= delta
-			if task["time"] <= 0: complete_task()
+			if task["time"] <= 0: 
+				complete_task()
+				return 1
 		"mv":
 			var pos = task["pos"]
 			var dir = global_position.direction_to(pos)
 			if global_position.distance_to(pos) > 5:
-				if dir.x > dir.y:
-					add_subtask("mv", [pos.x, global_position.y])
-					add_subtask("mv", [pos.x, pos.y])
+				if abs(dir.x) > abs(dir.y):
+					add_subtask("mv", [pos.x, global_position.y, false])
+					add_subtask("mv", [pos.x, pos.y, false])
 				else:
-					add_subtask("mv", [global_position.x, pos.y])
-					add_subtask("mv", [pos.x, pos.y])
-			complete_task()
+					add_subtask("mv", [global_position.x, pos.y, false])
+					add_subtask("mv", [pos.x, pos.y, false])
+				return 0
+			else:
+				complete_task()
+				return 1
+	return 1
 
-func exec_subtask(task: Dictionary, delta: float) -> void:
+func exec_subtask(task: Dictionary, delta: float) -> int:
+	var status: int
 	match task["type"]:
 		"mv":
-			if global_position.distance_to(task["pos"]) > 5: 
-				move_at(task["pos"])
-			else: complete_subtask()
+			var results = move_at(task["pos"])
+			status = results["status"]
+			if status == -1:
+				complete_subtask()
+				on_stuck_handle(results["obstacle"])
+			
+	if status == 1: complete_subtask()
+	return status
+
+func on_stuck_handle(obstacle: Area2D) -> void:
+	subtasks.clear()
+	turn("left")
+	var evade_point = global_position+Vector2(face_dir)*100
+	current_subtask = {"type": "mv", "pos": Vector2(evade_point.x, evade_point.y), "evade": true}
+	var dir = evade_point.direction_to(prefered_pos)
+	if abs(dir.x) > abs(dir.y):
+		add_subtask("mv", [evade_point.x, prefered_pos.y, false])
+		add_subtask("mv", [prefered_pos.x, prefered_pos.y, false])
+	else:
+		add_subtask("mv", [prefered_pos.x, evade_point.y, false])
+		add_subtask("mv", [prefered_pos.x, prefered_pos.y, false])
+
 
 func exec_command(type: String, args: Array):
 	match type:	
@@ -149,9 +175,13 @@ func exec_command(type: String, args: Array):
 			income_damage += max_health*100
 		"stop":
 			complete_task()
+			subtasks.clear()
+			complete_subtask()
 		"stopall":
-			schedule = []
+			schedule.clear()
+			subtasks.clear()
 			complete_task()
+			complete_subtask()
 			sprite.play("Idle Down")
 		"mv": 
 			add_task("mv", [int(args[0]), int(args[1])])
@@ -162,7 +192,7 @@ func exec_command(type: String, args: Array):
 				var sec_center = sec.get_center()
 				add_task("mv", [sec_center.x, sec_center.y])
 		"step":
-			add_task("mv", [global_position.x+int(args[0]), global_position.y+int(args[1])])
+			add_task("mv", [global_position.x+int(args[0]), global_position.y+int(args[1]), false])
 
 func complete_task() -> void:
 	current_task.clear()
@@ -170,7 +200,7 @@ func complete_task() -> void:
 
 func complete_subtask() -> void:
 	current_subtask.clear()
-	idle()
+	if subtasks.is_empty(): complete_task()
 
 func idle() -> void:
 	if not sprite: return
@@ -183,29 +213,34 @@ func idle() -> void:
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
 		sprite.play("Walk Right" if dir.x > 0 else "Walk Left")
-		face_dir = Vector2i(1, 0) if dir.x > 0 else Vector2i(-1, 0)
+		face_dir = Vector2(1, 0) if dir.x > 0 else Vector2(-1, 0)
 	else:
 		sprite.play("Walk Down" if dir.y > 0 else "Walk Up")
-		face_dir = Vector2i(0, 1) if dir.y > 0 else Vector2i(0, -1)
+		face_dir = Vector2(0, 1) if dir.y > 0 else Vector2(0, -1)
 	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(face_dir))
 	velocity = dir*speed
 	move_and_slide()
 
-func move_at(pos: Vector2i) -> bool:
+func move_at(pos: Vector2i) -> Dictionary:
 	var dir = global_position.direction_to(pos)
 	if global_position.distance_to(pos) <= 5:
-		velocity = Vector2.ZERO
-		return true
+		return {"status": 1}
 	var obstacles = sight_area.get_overlapping_areas()
-	if obstacles.size() > 0:
-		face_dir = Vector2i(face_dir.y, -face_dir.x)
-		walk(face_dir)
-	else:
-		walk(dir)
-	return false
+	if obstacles.size() > 0 and not current_subtask["evade"]: return {"status": -1, "obstacle": obstacles[0]}
+	walk(dir)
+	return {"status": 0}
 
 func move_to(target: Node2D) -> bool:
 	return false
+
+func turn(side: String) -> void:
+	match side:
+		"left": 
+			face_dir = Vector2i(face_dir.y, -face_dir.x)
+		"right":
+			face_dir = Vector2i(-face_dir.y, face_dir.x)
+	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(face_dir))
+	idle()
 
 func eat(target: Node2D) -> void:
 	pass
@@ -213,6 +248,12 @@ func eat(target: Node2D) -> void:
 func on_lifetime_end() -> void:
 	queue_free()
 
+func is_busy() -> bool:
+	return not (subtasks.is_empty() and\
+	 schedule.is_empty() and\
+	 current_subtask.is_empty() and\
+	 current_task.is_empty())
+
 func AI(delta: float) -> void:
-	if global_position.distance_to(prefered_pos) > 5 and schedule.size() == 0:
+	if global_position.distance_to(prefered_pos) > 10 and not is_busy():
 		add_task("mv", [prefered_pos.x, prefered_pos.y])
