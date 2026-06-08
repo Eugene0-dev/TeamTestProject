@@ -184,7 +184,7 @@ func exec_command(type: String, args: Array):
 			complete_subtask()
 			sprite.play("Idle Down")
 		"mv": 
-			add_task("mv", [int(args[0]), int(args[1])])
+			add_task("mv", [int(args[0]), int(args[1]),false])
 		"mv_s":
 			var sec_key = Vector2i(int(args[0]), int(args[1]))
 			var sec = environment.sectors.get(sec_key)
