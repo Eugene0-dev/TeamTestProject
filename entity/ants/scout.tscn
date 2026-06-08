@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cbd84m3mrf5qf" path="res://assets/Ants/Ant-Scout.png" id="3_mf6sp"]
 [ext_resource type="Texture2D" uid="uid://b3xbn2mvrp8fc" path="res://assets/Ants/Ant-Scout2.png" id="4_1d5sm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7rd6w"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mf6sp"]
 resource_local_to_scene = true
 radius = 20.024984
 
@@ -740,16 +740,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_smax3")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_ev8a2")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_yakc8")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_2vfxo")
 }],
 "loop": true,
@@ -757,16 +757,16 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_etdqy")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_e1i6v")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_ah208")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_ae5cr")
 }],
 "loop": true,
@@ -774,16 +774,16 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_ig8ri")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_hgwuf")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_3b00a")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_f5spx")
 }],
 "loop": true,
@@ -791,16 +791,16 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_cfs4l")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_ga2a5")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_nsvlk")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_s5l4i")
 }],
 "loop": true,
@@ -1012,7 +1012,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gaueb"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1d5sm"]
 resource_local_to_scene = true
 radius = 21.0
 height = 76.0
@@ -1021,13 +1021,15 @@ height = 76.0
 script = ExtResource("2_i0qr2")
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
-shape = SubResource("CircleShape2D_7rd6w")
+shape = SubResource("CircleShape2D_mf6sp")
 
 [node name="Sprite" parent="." index="1" unique_id=1169619754]
 scale = Vector2(0.7057692, 0.7057692)
 sprite_frames = SubResource("SpriteFrames_4i6yk")
-animation = &"Attack Down"
+animation = &"Flight Up"
 autoplay = "Idle Down"
+frame = 2
+frame_progress = 0.7718362
 
 [node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
-shape = SubResource("CapsuleShape2D_gaueb")
+shape = SubResource("CapsuleShape2D_1d5sm")
