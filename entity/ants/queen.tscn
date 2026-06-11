@@ -10,8 +10,8 @@ radius = 29.068884
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b016b"]
 resource_local_to_scene = true
-radius = 30.0
-height = 100.0
+radius = 29.0
+height = 114.0
 
 [node name="Queen" unique_id=1305847055 node_paths=PackedStringArray("sprite") instance=ExtResource("1_fpqs8")]
 collision_layer = 4294967295
@@ -31,4 +31,5 @@ animation = &"Idle Down"
 autoplay = "Idle Down"
 
 [node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
+position = Vector2(0, 28)
 shape = SubResource("CapsuleShape2D_b016b")

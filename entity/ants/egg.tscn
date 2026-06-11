@@ -19,6 +19,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2patf"]
+resource_local_to_scene = true
+radius = 4.0
+height = 8.0
+
 [node name="Egg" unique_id=1305847055 node_paths=PackedStringArray("sprite") instance=ExtResource("1_npq0x")]
 script = ExtResource("2_2patf")
 type = "none"
@@ -37,3 +42,7 @@ scale = Vector2(0.24019614, 0.23387103)
 sprite_frames = SubResource("SpriteFrames_3d6lm")
 animation = &"Idle Down"
 autoplay = "Idle Down"
+
+[node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
+position = Vector2(0, 0)
+shape = SubResource("CapsuleShape2D_2patf")

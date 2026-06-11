@@ -64,10 +64,9 @@ label_settings = SubResource("LabelSettings_cr3o2")
 
 [node name="Command_Hints_ItemList" type="ItemList" parent="." unique_id=1462063450]
 layout_mode = 0
-offset_left = 1034.0
-offset_top = 1.0
-offset_right = 1153.0
-offset_bottom = 9.0
+offset_left = 1033.0
+offset_right = 1152.0
+offset_bottom = 8.0
 auto_width = true
 auto_height = true
 

@@ -2,6 +2,7 @@ class_name WorldMap
 extends TileMapLayer
 
 @export var noise: FastNoiseLite
+@export var objective_noise: FastNoiseLite
 
 @export var map_width: int
 @export var map_height: int
@@ -16,6 +17,7 @@ const t_stone = 3
 const t_sand  = 2
 
 @onready var water_layer: TileMapLayer = $Water
+@onready var objects_layer: TileMapLayer = $Objects
 var progress: float = 0.0
 var world_seed: int = 0
 
@@ -39,6 +41,11 @@ func init_noise() -> void:
 	noise.frequency = 0.001
 	noise.fractal_gain = 0.6
 	noise.fractal_octaves = 5
+	
+	objective_noise = FastNoiseLite.new()
+	objective_noise.seed = world_seed+1
+	objective_noise.noise_type = FastNoiseLite.TYPE_VALUE_CUBIC
+	objective_noise.frequency = 0.1
 
 func init_sectors() -> void:
 	var tile_width = tileset.tile_size.x
@@ -68,14 +75,39 @@ func map_gen() -> void:
 			var noise_val = noise.get_noise_2d(x, y)
 			var tile_case = get_tile_type(noise_val)
 			
+			var obj_noise_val = objective_noise.get_noise_2d(x, y)
+			
+			if noise_val < 0.5 and noise_val > 0: set_trees(noise_val, obj_noise_val, Vector2i(x, y))
+				
 			if y == 0 or y == map_height-1:
 				set_cell(Vector2(x, y), 2, tile_case)
 			else:
 				set_cell(Vector2(x, y), 1, tile_case)
 			if noise_val < -0.1:
-				water_layer.set_cell(Vector2(x, y), 0, Vector2i(0, 0))
+				water_layer.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 	progress = map_width
 	emit_signal("generation_complete")
+
+func set_trees(val: float, obj_val: float, pos: Vector2i) -> void:
+	var noise_sum = val+obj_val
+	if noise_sum >= 0.5 and noise_sum < 0.501: 
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(1, 3))
+		return
+	if noise_sum >= 0.501 and noise_sum < 0.502: 
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(6, 3))
+		return
+	if noise_sum >= 0.502 and noise_sum < 0.503: 
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(11, 2))
+		return
+	if noise_sum >= 0.503 and noise_sum < 0.504: 
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(16, 2))
+		return
+	if noise_sum >= 0.504 and noise_sum < 0.505: 
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(22, 1))
+		return
+	if noise_sum >= 0.505 and noise_sum < 0.506: 
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(26, 1))
+		return
 
 func get_tile_type(val: float) -> Vector2i:
 	if -0.5 < val and val < 0: return Vector2i(randi_range(0, 3), t_sand)

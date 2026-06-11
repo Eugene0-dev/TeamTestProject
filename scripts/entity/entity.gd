@@ -139,9 +139,14 @@ func exec_subtask(task: Dictionary, delta: float) -> int:
 	return status
 
 func on_stuck_handle(obstacle: Area2D) -> void:
+	var shape: Rect2 = obstacle.find_child("CollisionShape2D").shape.get_rect()
 	subtasks.clear()
 	turn("left")
 	var evade_point = global_position+Vector2(face_dir)*100
+	if shape.size.x > shape.size.y:
+		evade_point = global_position+Vector2(face_dir)*shape.size.x
+	else:
+		evade_point = global_position+Vector2(face_dir)*shape.size.y
 	current_subtask = {"type": "mv", "pos": Vector2(evade_point.x, evade_point.y), "evade": true}
 	var dir = evade_point.direction_to(prefered_pos)
 	if abs(dir.x) > abs(dir.y):
@@ -150,7 +155,6 @@ func on_stuck_handle(obstacle: Area2D) -> void:
 	else:
 		add_subtask("mv", [prefered_pos.x, evade_point.y, false])
 		add_subtask("mv", [prefered_pos.x, prefered_pos.y, false])
-
 
 func exec_command(type: String, args: Array):
 	match type:	
@@ -182,6 +186,7 @@ func exec_command(type: String, args: Array):
 			subtasks.clear()
 			complete_task()
 			complete_subtask()
+			prefered_pos = global_position
 			sprite.play("Idle Down")
 		"mv": 
 			add_task("mv", [int(args[0]), int(args[1]),false])
@@ -256,4 +261,4 @@ func is_busy() -> bool:
 
 func AI(delta: float) -> void:
 	if global_position.distance_to(prefered_pos) > 10 and not is_busy():
-		add_task("mv", [prefered_pos.x, prefered_pos.y])
+		add_task("mv", [prefered_pos.x, prefered_pos.y, false])

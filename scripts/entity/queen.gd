@@ -27,7 +27,7 @@ func exec_command(type: String, args: Array):
 func breed(type: String) -> void:
 	if type == "queen": return
 	if environment:
-		var subject = environment.create_entity("ants/egg", position+Vector2(50, 0), type)
+		var subject = environment.create_entity("ants/egg", position-Vector2(face_dir*50), type)
 		if subject:
 			subject.type = type
 			subject.faction = faction

@@ -10,8 +10,8 @@ radius = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5gcq"]
 resource_local_to_scene = true
-radius = 19.0
-height = 82.0
+radius = 18.0
+height = 72.0
 
 [node name="Soldier" unique_id=1305847055 instance=ExtResource("1_kjj2o")]
 script = ExtResource("2_o05g0")
@@ -28,4 +28,5 @@ animation = &"Idle Down"
 autoplay = "Idle Down"
 
 [node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
+position = Vector2(0, 18)
 shape = SubResource("CapsuleShape2D_x5gcq")

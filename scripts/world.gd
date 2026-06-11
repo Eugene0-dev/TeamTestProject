@@ -37,6 +37,10 @@ func create_entity_name(subject: Entity) -> String:
 		name = "Drone_%d" % num
 	elif subject is Soldier:
 		name = "Soldier_%d" % num
+	elif subject is Scout:
+		name = "Scout_%d" % num
+	elif subject is Princess:
+		name = "Princess_%d" % num
 	elif subject is Egg:
 		name = "Egg_%s_%d" % [subject.type, num]
 	
@@ -62,5 +66,9 @@ func _on_ground_generation_complete() -> void:
 		randi_range(100, world_map.map_width_px-100),
 		randi_range(100, world_map.map_height_px-100)
 	)
+	var tile_pos = world_map.water_layer.local_to_map(pos)
+	var tile = world_map.water_layer.get_cell_tile_data(tile_pos)
+	if tile:
+		return _on_ground_generation_complete()
 	create_entity("ants/queen", pos)
 	camera.position = pos
