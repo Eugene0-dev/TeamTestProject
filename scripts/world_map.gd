@@ -64,17 +64,23 @@ func init_sectors() -> void:
 			sectors[Vector2i(x, y)] = Rect2i(sector_pos, sector_size_px)
 
 func map_gen() -> void:
+	var batch_cells_grass: Array[Vector2i] = []
+	var batch_cells_sand: Array[Vector2i] = []
+	var batch_cells_earth: Array[Vector2i] = []
+	var batch_cells_stone: Array[Vector2i] = []
+	
 	for x in range(map_width):
 		for y in range(map_height):
-			progress = x
-			# use bigger value to increase generation speed ( x % 20 )
-			# that decreases FPS on loading screan
-			if x % 5 == 0 and y == 0:
-				await get_tree().process_frame
 				
 			var noise_val = noise.get_noise_2d(x, y)
 			var tile_case = get_tile_type(noise_val)
-			
+			var cell = Vector2i(x, y)
+			match tile_case.y:
+				t_grass: batch_cells_grass.append(cell)
+				t_sand: batch_cells_sand.append(cell)
+				t_earth: batch_cells_earth.append(cell)
+				t_stone: batch_cells_stone.append(cell)
+				
 			var obj_noise_val = objective_noise.get_noise_2d(x, y)
 			
 			if noise_val < 0.5 and noise_val > 0: set_trees(noise_val, obj_noise_val, Vector2i(x, y))
@@ -85,28 +91,66 @@ func map_gen() -> void:
 				set_cell(Vector2(x, y), 1, tile_case)
 			if noise_val < -0.1:
 				water_layer.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+				
+			progress = x
+			# use bigger value to increase generation speed ( x % 20 )
+			# that decreases FPS on loading screan
+			if x % 5 == 0 and y == 0:
+				await get_tree().process_frame
+	
+	var post_process = connect_cells.bind(batch_cells_grass, batch_cells_earth, batch_cells_sand, batch_cells_stone)
+	var thread_task_id = WorkerThreadPool.add_task(post_process, false)
 	progress = map_width
 	emit_signal("generation_complete")
 
+func connect_cells(grass: Array[Vector2i], earth: Array[Vector2i], sand: Array[Vector2i], stone: Array[Vector2i]) -> void:
+	var batch_grass: Array[Vector2i]
+	var batch_earth: Array[Vector2i]
+	var batch_sand: Array[Vector2i]
+	var batch_stone: Array[Vector2i]
+	var i = 0
+	var chunk_size = 10000
+	while i < grass.size():
+		if i < grass.size()-1:
+			batch_grass = grass.slice(i, i+chunk_size)
+			set_cells_terrain_connect(batch_grass, 0, 0, false)
+		if i < earth.size()-1:
+			batch_earth = earth.slice(i, i+chunk_size)
+			set_cells_terrain_connect(batch_earth, 0, 1, false)
+		if i < sand.size()-1:
+			batch_sand = sand.slice(i, i+chunk_size)
+			set_cells_terrain_connect(batch_sand, 0, 2, false)
+		if i < stone.size()-1:
+			batch_stone = stone.slice(i, i+chunk_size)
+			set_cells_terrain_connect(batch_stone, 0, 3, false)
+		i += chunk_size
+		OS.delay_msec(50)
+
 func set_trees(val: float, obj_val: float, pos: Vector2i) -> void:
 	var noise_sum = val+obj_val
-	if noise_sum >= 0.5 and noise_sum < 0.501: 
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(1, 3))
+	if noise_sum >= 0.5 and noise_sum < 0.5001: 
+		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(1, 3))
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(3, 13))
 		return
-	if noise_sum >= 0.501 and noise_sum < 0.502: 
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(6, 3))
+	if noise_sum >= 0.5001 and noise_sum < 0.5002: 
+		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(6, 3))
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(24, 11))
 		return
-	if noise_sum >= 0.502 and noise_sum < 0.503: 
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(11, 2))
+	if noise_sum >= 0.5002 and noise_sum < 0.5003: 
+		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(11, 2))
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(45, 10))
 		return
-	if noise_sum >= 0.503 and noise_sum < 0.504: 
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(16, 2))
+	if noise_sum >= 0.5003 and noise_sum < 0.5004: 
+		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(16, 2))
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(66, 11))
 		return
-	if noise_sum >= 0.504 and noise_sum < 0.505: 
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(22, 1))
+	if noise_sum >= 0.5004 and noise_sum < 0.5005: 
+		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(22, 1))
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(90, 7))
 		return
-	if noise_sum >= 0.505 and noise_sum < 0.506: 
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(26, 1))
+	if noise_sum >= 0.5005 and noise_sum < 0.5006: 
+		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(26, 1))
+		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(106, 7))
 		return
 
 func get_tile_type(val: float) -> Vector2i:

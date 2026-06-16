@@ -189,13 +189,13 @@ func exec_command(type: String, args: Array):
 			prefered_pos = global_position
 			sprite.play("Idle Down")
 		"mv": 
-			add_task("mv", [int(args[0]), int(args[1]),false])
+			add_task("mv", [int(args[0]), int(args[1]), false])
 		"mv_s":
 			var sec_key = Vector2i(int(args[0]), int(args[1]))
 			var sec = environment.sectors.get(sec_key)
 			if sec:
 				var sec_center = sec.get_center()
-				add_task("mv", [sec_center.x, sec_center.y])
+				add_task("mv", [sec_center.x, sec_center.y, false])
 		"step":
 			add_task("mv", [global_position.x+int(args[0]), global_position.y+int(args[1]), false])
 
