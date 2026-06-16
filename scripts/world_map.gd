@@ -29,7 +29,7 @@ signal generation_complete()
 func _ready() -> void:
 	map_width_px = map_width*tileset.tile_size.x
 	map_height_px = map_height*tileset.tile_size.y
-	world_seed = randi_range(1, 100)
+	world_seed = randi_range(1, 1000)
 	init_noise()
 	init_sectors()
 	map_gen()
