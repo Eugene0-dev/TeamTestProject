@@ -144,12 +144,12 @@ func on_stuck_handle(obstacle: Area2D) -> void:
 	turn("left")
 	var evade_point = global_position+Vector2(face_dir)*100
 	if shape.size.x > shape.size.y:
-		evade_point = global_position+Vector2(face_dir)*shape.size.x
+		evade_point = global_position+Vector2(face_dir)*shape.size.x*1.5
 	else:
-		evade_point = global_position+Vector2(face_dir)*shape.size.y
+		evade_point = global_position+Vector2(face_dir)*shape.size.y*1.5
 	current_subtask = {"type": "mv", "pos": Vector2(evade_point.x, evade_point.y), "evade": true}
 	var dir = evade_point.direction_to(prefered_pos)
-	if abs(dir.x) > abs(dir.y):
+	if abs(dir.y) > abs(dir.x):
 		add_subtask("mv", [evade_point.x, prefered_pos.y, false])
 		add_subtask("mv", [prefered_pos.x, prefered_pos.y, false])
 	else:
@@ -231,7 +231,7 @@ func move_at(pos: Vector2i) -> Dictionary:
 	if global_position.distance_to(pos) <= 5:
 		return {"status": 1}
 	var obstacles = sight_area.get_overlapping_areas()
-	if obstacles.size() > 0 and not current_subtask["evade"]: return {"status": -1, "obstacle": obstacles[0]}
+	if obstacles.size() > 1 and not current_subtask["evade"]: return {"status": -1, "obstacle": obstacles[0]}
 	walk(dir)
 	return {"status": 0}
 

@@ -13,6 +13,10 @@ resource_local_to_scene = true
 radius = 20.0
 height = 76.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1d5sm"]
+resource_local_to_scene = true
+radius = 21.023796
+
 [node name="Scout" unique_id=1305847055 instance=ExtResource("1_cysgi")]
 script = ExtResource("2_i0qr2")
 max_health = 50
@@ -32,3 +36,6 @@ frame_progress = 0.7299549
 [node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
 position = Vector2(0, 18)
 shape = SubResource("CapsuleShape2D_mf6sp")
+
+[node name="CollisionShape2D" parent="CollisionArea" parent_id_path=PackedInt32Array(692836915) index="0" unique_id=1608485846]
+shape = SubResource("CircleShape2D_1d5sm")
