@@ -69,6 +69,8 @@ tileset = ExtResource("1_4wyf3")
 [node name="Water" type="TileMapLayer" parent="Ground" unique_id=1702164048]
 material = ExtResource("4_e3hyu")
 tile_set = ExtResource("4_w7kh3")
+collision_enabled = false
+physics_quadrant_size = 8
 
 [node name="Objects" type="TileMapLayer" parent="Ground" unique_id=1090532779]
 material = ExtResource("8_xo05s")
@@ -102,9 +104,11 @@ world_map = NodePath("../../Ground")
 camera = NodePath("../../MainCam")
 
 [node name="Menu" parent="CanvasLayer" unique_id=1081462586 node_paths=PackedStringArray("world_map") instance=ExtResource("7_4mrxx")]
+visible = false
 offset_left = -2.0
 offset_right = -2.0
 theme = ExtResource("10_jhx03")
 world_map = NodePath("../../Ground")
 
 [connection signal="generation_complete" from="Ground" to="." method="_on_ground_generation_complete"]
+[connection signal="generation_complete" from="Ground" to="Ground" method="_on_generation_complete"]

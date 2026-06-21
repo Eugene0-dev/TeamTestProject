@@ -8,6 +8,7 @@ extends Node2D
 
 @export var world_map: WorldMap
 var sectors: Dictionary
+var nav_grid: AStarGrid2D
 
 func _ready() -> void:
 	sectors = world_map.sectors
@@ -61,7 +62,13 @@ func get_dir_to_sector(from: Vector2, key: Vector2i) -> Vector2i:
 	var sector_center = sectors[key].get_center()
 	return from.direction_to(sector_center)
 
+func get_cell(coordinates: Vector2i) -> Vector2i:
+	var x = coordinates.x >> 3
+	var y = coordinates.y >> 3
+	return Vector2i(x, y)
+
 func _on_ground_generation_complete() -> void:
+	nav_grid = world_map.astar_grid
 	var pos = Vector2i(
 		randi_range(100, world_map.map_width_px-100),
 		randi_range(100, world_map.map_height_px-100)

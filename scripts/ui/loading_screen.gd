@@ -10,6 +10,7 @@ extends Control
 func _ready() -> void:
 	get_tree().paused = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	if not visible: visible = true
 	progress.max_value = world_map.map_width
 	seed_label.text = "seed: %d" % world_map.world_seed
 	entity.sprite.play("Walk Down")

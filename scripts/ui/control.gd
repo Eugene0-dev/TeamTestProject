@@ -1,7 +1,7 @@
 extends Control
 
 @export var camera: Camera2D
-@export var world: Node2D
+@export var world: World
 
 @onready var info_label: Label = $Info_Label
 @onready var target_label: Label = $Target_Label
@@ -9,11 +9,12 @@ extends Control
 @onready var command_history: TextEdit = $Command_History_TextEdit
 @onready var command_hints_menu: ItemList = $Command_Hints_ItemList
 
+var is_debug_on: bool = false
 
 var target: Entity
 var line_counter: int = 0
 var commands_no_target: Array = [
-	"select", "find", "cam", "spawn", "sector"
+	"select", "find", "cam", "spawn", "sector", "debug"
 ]
 
 func _ready() -> void:
@@ -86,6 +87,27 @@ func command(cmd_line: String):
 			else:
 				var sec = world.get_sector_key(camera.global_position)
 				info_label.text = "sec: %d %d" % [sec.x, sec.y]
+		"debug":
+			match cmd[1]:
+				"nav_layer":
+					if cmd[2] == "on":
+						Global.emit_signal("nav_layer_enabled", world.nav_grid)
+					elif cmd[2] == "off":
+						Global.emit_signal("nav_layer_disabled")
+				"nav_trace":
+					if cmd[2] == "on" and target:
+						Global.emit_signal("track_navigation_enabled", target)
+					elif cmd[2] == "off":
+						Global.emit_signal("track_navigation_disabled")
+				"on":
+					if not is_debug_on:
+						is_debug_on = true
+						Global.debug_node = DevFeatures.new(camera)
+						get_tree().current_scene.add_child(Global.debug_node)
+				"off":
+					if is_debug_on:
+						is_debug_on = false
+						get_tree().current_scene.remove_child(Global.debug_node)
 		_:
 			if target:
 				var output = target.exec_command(cmd[0], cmd.slice(1))

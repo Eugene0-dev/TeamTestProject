@@ -62,14 +62,6 @@ offset_bottom = 496.0
 text = "tg: None"
 label_settings = SubResource("LabelSettings_cr3o2")
 
-[node name="Command_Hints_ItemList" type="ItemList" parent="." unique_id=1462063450]
-layout_mode = 0
-offset_left = 1033.0
-offset_right = 1152.0
-offset_bottom = 8.0
-auto_width = true
-auto_height = true
-
 [node name="Command_LineEdit" type="LineEdit" parent="." unique_id=702534369]
 layout_mode = 0
 offset_left = 1.0
@@ -86,5 +78,13 @@ offset_right = 1150.0
 offset_bottom = 647.0
 placeholder_text = "command history"
 editable = false
+
+[node name="Command_Hints_ItemList" type="ItemList" parent="." unique_id=1462063450]
+layout_mode = 0
+offset_left = 1033.0
+offset_right = 1152.0
+offset_bottom = 8.0
+auto_width = true
+auto_height = true
 
 [connection signal="item_clicked" from="Command_Hints_ItemList" to="." method="_on_command_hints_item_list_item_clicked"]
