@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cassmo2qg0xlq"]
 
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_4x55u"]
-[ext_resource type="Script" uid="uid://d1itko54biijp" path="res://scripts/entity/princess.gd" id="2_14syf"]
+[ext_resource type="Script" uid="uid://bf4hkqcvcbu6h" path="res://scripts/entity/princess.gd" id="2_14syf"]
 [ext_resource type="SpriteFrames" uid="uid://bnaxw3bb7mo8g" path="res://assets/Ants/princess_SpriteFrames.tres" id="3_14syf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_14syf"]
@@ -12,6 +12,10 @@ radius = 24.0
 resource_local_to_scene = true
 radius = 24.0
 height = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxnha"]
+resource_local_to_scene = true
+radius = 25.079872
 
 [node name="Princess" unique_id=1305847055 instance=ExtResource("1_4x55u")]
 script = ExtResource("2_14syf")
@@ -31,3 +35,6 @@ autoplay = "Idle Down"
 [node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
 position = Vector2(0, 24)
 shape = SubResource("CapsuleShape2D_8qkqd")
+
+[node name="CollisionShape2D" parent="CollisionArea" parent_id_path=PackedInt32Array(692836915) index="0" unique_id=1608485846]
+shape = SubResource("CircleShape2D_yxnha")

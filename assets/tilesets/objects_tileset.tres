@@ -205,6 +205,10 @@ texture_region_size = Vector2i(8, 8)
 126:24/0/modulate = Color(0.62352943, 0.62352943, 0.62352943, 0.9019608)
 126:24/0/z_index = 1
 126:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20.603294, -12.700663, 18.345402, -12.1361885, 38.66646, 13.265137, -40.35988, 12.700661)
+4:84/size_in_atlas = Vector2i(17, 12)
+4:84/0 = 0
+4:84/0/texture_origin = Vector2i(0, 32)
+4:84/0/z_index = 1
 
 [resource]
 tile_size = Vector2i(8, 8)

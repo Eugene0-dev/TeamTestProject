@@ -24,12 +24,23 @@ var world_seed: int = 0
 const sector_size: Vector2i = Vector2i(32, 32)
 var sectors: Dictionary = {}
 
+var astar_grid: AStarGrid2D
+
 signal generation_complete()
 
 func _ready() -> void:
 	map_width_px = map_width*tileset.tile_size.x
 	map_height_px = map_height*tileset.tile_size.y
-	world_seed = randi_range(1, 1000)
+	world_seed = randi_range(1, 100)
+	
+	astar_grid = AStarGrid2D.new()
+	astar_grid.region = Rect2i(0, 0, map_width, map_height)
+	astar_grid.cell_size = tileset.tile_size
+	astar_grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	astar_grid.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astar_grid.update()
+	
 	init_noise()
 	init_sectors()
 	map_gen()
@@ -83,14 +94,20 @@ func map_gen() -> void:
 				
 			var obj_noise_val = objective_noise.get_noise_2d(x, y)
 			
-			if noise_val < 0.5 and noise_val > 0: set_trees(noise_val, obj_noise_val, Vector2i(x, y))
-				
+			var cost = remap(noise_val, -1.0, 1.0, 50.0, 1.0)
+			astar_grid.set_point_weight_scale(Vector2i(x, y), cost)
+			
 			if y == 0 or y == map_height-1:
 				set_cell(Vector2(x, y), 2, tile_case)
 			else:
 				set_cell(Vector2(x, y), 1, tile_case)
+				
+			if noise_val < 0.5 and noise_val > 0: set_trees(noise_val, obj_noise_val, Vector2i(x, y))	
+			
 			if noise_val < -0.1:
 				water_layer.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+				astar_grid.set_point_solid(Vector2i(x, y), true)
+				astar_grid.set_point_weight_scale(Vector2i(x, y), 1000000)
 				
 			progress = x
 			# use bigger value to increase generation speed ( x % 20 )
@@ -99,7 +116,7 @@ func map_gen() -> void:
 				await get_tree().process_frame
 	
 	var post_process = connect_cells.bind(batch_cells_grass, batch_cells_earth, batch_cells_sand, batch_cells_stone)
-	var thread_task_id = WorkerThreadPool.add_task(post_process, false)
+	WorkerThreadPool.add_task(post_process, false)
 	progress = map_width
 	emit_signal("generation_complete")
 
@@ -128,33 +145,45 @@ func connect_cells(grass: Array[Vector2i], earth: Array[Vector2i], sand: Array[V
 
 func set_trees(val: float, obj_val: float, pos: Vector2i) -> void:
 	var noise_sum = val+obj_val
-	if noise_sum >= 0.5 and noise_sum < 0.5001: 
-		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(1, 3))
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(3, 13))
+	if noise_sum >= 0.5 and noise_sum < 0.5001:
+		place_object(pos, 1, Vector2i(3, 13), true)
 		return
-	if noise_sum >= 0.5001 and noise_sum < 0.5002: 
-		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(6, 3))
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(24, 11))
+	if noise_sum >= 0.5001 and noise_sum < 0.5002:
+		place_object(pos, 1, Vector2i(24, 11), true) 
 		return
-	if noise_sum >= 0.5002 and noise_sum < 0.5003: 
-		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(11, 2))
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(45, 10))
+	if noise_sum >= 0.5002 and noise_sum < 0.5003:
+		place_object(pos, 1, Vector2i(45, 10), true)
 		return
-	if noise_sum >= 0.5003 and noise_sum < 0.5004: 
-		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(16, 2))
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(66, 11))
+	if noise_sum >= 0.5003 and noise_sum < 0.5004:
+		place_object(pos, 1, Vector2i(66, 11), true)
 		return
-	if noise_sum >= 0.5004 and noise_sum < 0.5005: 
-		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(22, 1))
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(90, 7))
+	if noise_sum >= 0.5004 and noise_sum < 0.5005:
+		place_object(pos, 1, Vector2i(90, 7), true) 
 		return
-	if noise_sum >= 0.5005 and noise_sum < 0.5006: 
-		#objects_layer.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(26, 1))
-		objects_layer.set_cell(Vector2i(pos.x, pos.y), 1, Vector2i(106, 7))
+	if noise_sum >= 0.5005 and noise_sum < 0.5006:
+		place_object(pos, 1, Vector2i(106, 7), true) 
 		return
+
+func place_object(pos: Vector2i, atlas_id: int, tile: Vector2i, is_solid: bool) -> void:
+	objects_layer.set_cell(pos, atlas_id, tile)
+	for x in range(-3, 4):
+		for y in range(-2, 3):
+			var tile_around = Vector2i(x, y)
+			if astar_grid.is_in_boundsv(pos+tile_around):
+				astar_grid.set_point_solid(pos+tile_around, true)
+	for x in range(-7, 8):
+		for y in range(-7, 8):
+			var tile_around = Vector2i(x, y)
+			if astar_grid.is_in_boundsv(pos+tile_around) and not astar_grid.is_point_solid(pos+tile_around):
+				var dist = pos.distance_to(pos+tile_around)
+				var cost = remap(dist, 1.0, 6.0, 10.0, 1.0)
+				astar_grid.set_point_weight_scale(tile_around+pos, cost)
 
 func get_tile_type(val: float) -> Vector2i:
 	if -0.5 < val and val < 0: return Vector2i(randi_range(0, 3), t_sand)
 	if val > 0 and val < 0.5: return  Vector2i(randi_range(0, 3), t_grass)
 	if val > 0.5: return Vector2i(randi_range(0, 3), t_earth)
 	return Vector2i(randi_range(0, 3), t_stone)
+
+func _on_generation_complete() -> void:
+	pass

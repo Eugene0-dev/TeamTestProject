@@ -19,6 +19,7 @@ var hunger: int = 0
 
 @onready var sight_area: Area2D = $Sight_Area
 
+var is_ai_enabled: bool = true
 var schedule: Array = []
 var current_task: Dictionary = {}
 
@@ -27,7 +28,7 @@ var current_subtask: Dictionary = {}
 
 var environment: World
 var specific_commands: Array = [
-	"step", "mv", "mv_s", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team"
+	"step", "mv", "mv_s", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team", "ai"
 ]
 var prefered_pos: Vector2
 var face_dir: Vector2i
@@ -55,7 +56,7 @@ func is_tick(delta: float) -> bool:
 		return true
 	return false
 		
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var tick = is_tick(delta)
 	
 	if tick and hunger < max_hunger:
@@ -67,7 +68,7 @@ func _process(delta: float) -> void:
 	elif income_damage > 0 and tick: 
 		var heal_rate = clamp(10 - (hunger / 10), 0, 10)
 		income_damage -= heal_rate
-	if tick:
+	if tick and is_ai_enabled:
 		AI(delta)
 	
 	if not current_subtask.is_empty():
@@ -111,17 +112,18 @@ func exec_task(task: Dictionary, delta: float) -> int:
 				return 1
 		"mv":
 			var pos = task["pos"]
-			var dir = global_position.direction_to(pos)
-			if global_position.distance_to(pos) > 5:
-				if abs(dir.x) > abs(dir.y):
-					add_subtask("mv", [pos.x, global_position.y, false])
-					add_subtask("mv", [pos.x, pos.y, false])
-				else:
-					add_subtask("mv", [global_position.x, pos.y, false])
-					add_subtask("mv", [pos.x, pos.y, false])
-				return 0
-			else:
-				complete_task()
+			var point = environment.get_cell(Vector2i(global_position))
+			var end_point = environment.get_cell(pos)
+			var path = environment.nav_grid.get_id_path(point, end_point)
+			
+			if subtasks.size() == 0:
+				for cell in path:
+					var cell_pos = environment.nav_grid.get_point_position(cell)
+					add_subtask("mv", [cell_pos.x, cell_pos.y, false])
+			
+			if global_position.distance_to(pos) > 5: return 0
+			else: 
+				complete_task() 
 				return 1
 	return 1
 
@@ -144,12 +146,12 @@ func on_stuck_handle(obstacle: Area2D) -> void:
 	turn("left")
 	var evade_point = global_position+Vector2(face_dir)*100
 	if shape.size.x > shape.size.y:
-		evade_point = global_position+Vector2(face_dir)*shape.size.x
+		evade_point = global_position+Vector2(face_dir)*shape.size.x*1.5
 	else:
-		evade_point = global_position+Vector2(face_dir)*shape.size.y
+		evade_point = global_position+Vector2(face_dir)*shape.size.y*1.5
 	current_subtask = {"type": "mv", "pos": Vector2(evade_point.x, evade_point.y), "evade": true}
 	var dir = evade_point.direction_to(prefered_pos)
-	if abs(dir.x) > abs(dir.y):
+	if abs(dir.y) > abs(dir.x):
 		add_subtask("mv", [evade_point.x, prefered_pos.y, false])
 		add_subtask("mv", [prefered_pos.x, prefered_pos.y, false])
 	else:
@@ -165,7 +167,13 @@ func exec_command(type: String, args: Array):
 		"feed":
 			hunger = 0
 		"pos":
-			return "pos: %d %d" % [position.x, position.y]
+			if args.size() == 0:
+				return "pos: %d %d" % [position.x, position.y]
+			else:
+				var x = int(args[0])
+				var y = int(args[1])
+				prefered_pos = Vector2(x, y)
+				return "pref pos: %d %d" % [x, y]
 		"sector":
 			var sec = environment.get_sector_key(global_position)
 			return "sec: %d %d" % [sec.x, sec.y]
@@ -198,6 +206,11 @@ func exec_command(type: String, args: Array):
 				add_task("mv", [sec_center.x, sec_center.y, false])
 		"step":
 			add_task("mv", [global_position.x+int(args[0]), global_position.y+int(args[1]), false])
+		"ai":
+			match args[0]:
+				"on", "1", "enable", "true": is_ai_enabled = true
+				"off", "0", "disable", "false": is_ai_enabled = false
+				_: is_ai_enabled = false
 
 func complete_task() -> void:
 	current_task.clear()
@@ -231,7 +244,7 @@ func move_at(pos: Vector2i) -> Dictionary:
 	if global_position.distance_to(pos) <= 5:
 		return {"status": 1}
 	var obstacles = sight_area.get_overlapping_areas()
-	if obstacles.size() > 0 and not current_subtask["evade"]: return {"status": -1, "obstacle": obstacles[0]}
+	if obstacles.size() > 1 and not current_subtask["evade"]: return {"status": -1, "obstacle": obstacles[0]}
 	walk(dir)
 	return {"status": 0}
 
