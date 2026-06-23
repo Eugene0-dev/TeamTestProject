@@ -55,7 +55,7 @@ func is_tick(delta: float) -> bool:
 			on_lifetime_end()
 		return true
 	return false
-		
+
 func _physics_process(delta: float) -> void:
 	var tick = is_tick(delta)
 	

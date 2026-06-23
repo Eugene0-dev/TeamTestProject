@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dvok55ylpfdak"]
 
 [ext_resource type="Script" uid="uid://dbna8rqcrlt4y" path="res://scripts/ui/control.gd" id="1_5p55f"]
+[ext_resource type="FontFile" uid="uid://cmymgt2gqvv4w" path="res://assets/PauzaStencil-Bold.75bac0b8ac7045f0ca78454a964c0835.ttf" id="2_brbbq"]
+[ext_resource type="Theme" uid="uid://cf7qinaxog0mv" path="res://assets/menu_theme.tres" id="2_r67kn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r67kn"]
 font_color = Color(0, 0, 0, 1)
@@ -21,7 +23,8 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cr3o2"]
-font_size = 24
+font = ExtResource("2_brbbq")
+font_size = 32
 font_color = Color(0.21110946, 0.476551, 0.8201062, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -33,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_5p55f")
 
 [node name="FPS_Label" type="Label" parent="." unique_id=1134638564]
@@ -55,35 +59,36 @@ label_settings = SubResource("LabelSettings_5p55f")
 
 [node name="Target_Label" type="Label" parent="." unique_id=1435795983]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 460.0
-offset_right = 312.0
-offset_bottom = 496.0
+offset_left = 5.0
+offset_top = 476.0
+offset_right = 305.0
+offset_bottom = 515.0
 text = "tg: None"
 label_settings = SubResource("LabelSettings_cr3o2")
 
-[node name="Command_LineEdit" type="LineEdit" parent="." unique_id=702534369]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 515.0
-offset_right = 1151.0
-offset_bottom = 546.0
-placeholder_text = "command line"
-
 [node name="Command_History_TextEdit" type="TextEdit" parent="." unique_id=2077609288]
 layout_mode = 0
-offset_left = 1.0
 offset_top = 545.0
-offset_right = 1150.0
-offset_bottom = 647.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("2_r67kn")
 placeholder_text = "command history"
 editable = false
+
+[node name="Command_LineEdit" type="LineEdit" parent="." unique_id=702534369]
+layout_mode = 0
+offset_top = 514.0
+offset_right = 1152.0
+offset_bottom = 550.0
+theme = ExtResource("2_r67kn")
+placeholder_text = "command line"
 
 [node name="Command_Hints_ItemList" type="ItemList" parent="." unique_id=1462063450]
 layout_mode = 0
 offset_left = 1033.0
 offset_right = 1152.0
-offset_bottom = 8.0
+offset_bottom = 40.0
+theme = ExtResource("2_r67kn")
 auto_width = true
 auto_height = true
 

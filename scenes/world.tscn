@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://5l5hfywi7mjq" path="res://scripts/world.gd" id="1_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="1_i7141"]
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/world_map.gd" id="2_4wyf3"]
+[ext_resource type="Material" uid="uid://be5pdkfanhqyr" path="res://assets/shaders/background_material.tres" id="3_dss4m"]
 [ext_resource type="Material" uid="uid://qg44xuqox7n5" path="res://assets/shaders/ground_material.tres" id="3_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://e6t581fwt3w4" path="res://scenes/ui.tscn" id="4_7r4gi"]
 [ext_resource type="Material" uid="uid://dxf52pji3oaus" path="res://assets/shaders/water_material.tres" id="4_e3hyu"]
@@ -28,7 +29,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time += delta/100
 	energy = sin(time)
-	
 "
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7141"]
@@ -55,6 +55,17 @@ script = SubResource("GDScript_e3hyu")
 
 [node name="MainCam" parent="." unique_id=417974111 instance=ExtResource("1_i7141")]
 position = Vector2(579, 327)
+
+[node name="Background" type="ColorRect" parent="MainCam" unique_id=1745468758]
+material = ExtResource("3_dss4m")
+offset_left = -579.0
+offset_top = -327.0
+offset_right = 572.0
+offset_bottom = 321.0
+offset_transform_enabled = true
+offset_transform_rotation = -6.2831855
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=928026634]
 material = ExtResource("3_o8fc1")
@@ -88,17 +99,15 @@ color = Color(0, 0, 0, 1)
 
 [node name="UI" parent="CanvasLayer" unique_id=2089034143 instance=ExtResource("4_7r4gi")]
 visible = false
-mouse_filter = 2
-theme = ExtResource("10_jhx03")
 
 [node name="Control" parent="CanvasLayer" unique_id=7305411 node_paths=PackedStringArray("camera", "world") instance=ExtResource("8_4mrxx")]
 visible = false
-mouse_filter = 2
 camera = NodePath("../../MainCam")
 world = NodePath("../..")
 
 [node name="Loading_Screen" parent="CanvasLayer" unique_id=131432325 node_paths=PackedStringArray("world_map", "camera") instance=ExtResource("4_q5onr")]
 visible = false
+mouse_filter = 2
 theme = ExtResource("10_jhx03")
 world_map = NodePath("../../Ground")
 camera = NodePath("../../MainCam")
