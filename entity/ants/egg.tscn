@@ -14,19 +14,19 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_x10av")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Idle Down",
 "speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2patf"]
 resource_local_to_scene = true
-radius = 4.0
-height = 8.0
+radius = 6.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3d6lm"]
 resource_local_to_scene = true
-radius = 8.0
+radius = 4.0
 
 [node name="Egg" unique_id=1305847055 node_paths=PackedStringArray("sprite") instance=ExtResource("1_npq0x")]
 script = ExtResource("2_2patf")
