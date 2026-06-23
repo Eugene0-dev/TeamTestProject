@@ -86,11 +86,12 @@ func map_gen() -> void:
 			var noise_val = noise.get_noise_2d(x, y)
 			var tile_case = get_tile_type(noise_val)
 			var cell = Vector2i(x, y)
-			match tile_case.y:
-				t_grass: batch_cells_grass.append(cell)
-				t_sand: batch_cells_sand.append(cell)
-				t_earth: batch_cells_earth.append(cell)
-				t_stone: batch_cells_stone.append(cell)
+			if not (cell.y == 0 or cell.y == map_height):
+				match tile_case.y:
+					t_grass: batch_cells_grass.append(cell)
+					t_sand: batch_cells_sand.append(cell)
+					t_earth: batch_cells_earth.append(cell)
+					t_stone: batch_cells_stone.append(cell)
 				
 			var obj_noise_val = objective_noise.get_noise_2d(x, y)
 			
@@ -177,7 +178,7 @@ func place_object(pos: Vector2i, atlas_id: int, tile: Vector2i, is_solid: bool) 
 			if astar_grid.is_in_boundsv(pos+tile_around) and not astar_grid.is_point_solid(pos+tile_around):
 				var dist = pos.distance_to(pos+tile_around)
 				var cost = remap(dist, 1.0, 6.0, 10.0, 1.0)
-				astar_grid.set_point_weight_scale(tile_around+pos, cost)
+				astar_grid.set_point_weight_scale(tile_around+pos, abs(cost))
 
 func get_tile_type(val: float) -> Vector2i:
 	if -0.5 < val and val < 0: return Vector2i(randi_range(0, 3), t_sand)

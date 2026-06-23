@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://e6t581fwt3w4"]
 
 [ext_resource type="Script" uid="uid://c753nelonmyt2" path="res://scripts/ui/ui.gd" id="1_nt7q6"]
+[ext_resource type="Theme" uid="uid://cf7qinaxog0mv" path="res://assets/menu_theme.tres" id="1_x4jx1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xlq6p"]
 font_size = 24
@@ -25,43 +26,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_x4jx1")
 script = ExtResource("1_nt7q6")
 
 [node name="HP_ProgressBar" type="ProgressBar" parent="." unique_id=1502423758]
 layout_mode = 0
-offset_right = 288.0
-offset_bottom = 33.0
+offset_right = 376.0
+offset_bottom = 27.0
+theme = ExtResource("1_x4jx1")
 
 [node name="Hunger_ProgressBar" type="ProgressBar" parent="." unique_id=2140116440]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 39.0
-offset_right = 287.0
-offset_bottom = 66.0
+offset_top = 27.0
+offset_right = 376.0
+offset_bottom = 54.0
+theme = ExtResource("1_x4jx1")
 
 [node name="Name_Label" type="Label" parent="." unique_id=593120991]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 73.0
-offset_right = 288.0
-offset_bottom = 110.0
+offset_left = 3.0
+offset_top = 59.0
+offset_right = 289.0
+offset_bottom = 96.0
 text = "Name"
 label_settings = SubResource("LabelSettings_xlq6p")
 
 [node name="Faction_Label" type="Label" parent="." unique_id=1740223694]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 104.0
-offset_right = 286.0
-offset_bottom = 130.0
+offset_left = 4.0
+offset_top = 91.0
+offset_right = 287.0
+offset_bottom = 117.0
 text = "Faction"
 label_settings = SubResource("LabelSettings_nt7q6")
 
 [node name="Lifetime_Label" type="Label" parent="." unique_id=2072697145]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 132.0
-offset_right = 68.0
-offset_bottom = 155.0
+offset_top = 116.0
+offset_right = 83.0
+offset_bottom = 139.0
 text = "Lifetime"
 label_settings = SubResource("LabelSettings_x4jx1")
