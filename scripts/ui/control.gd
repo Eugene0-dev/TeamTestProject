@@ -70,6 +70,8 @@ func command(cmd_line: String):
 					"queen": target = world.find_child("Queen_*", true, false)
 					"drone": target = world.find_child("Drone_*", true, false)
 					"soldier": target = world.find_child("Soldier_*", true, false)
+					"scout": target = world.find_child("Scout_*", true, false)
+					"princess": target = world.find_child("Princess_*", true, false)
 					_: target = world.get_node_or_null(cmd[1])
 			if target:
 				camera.position = target.position
