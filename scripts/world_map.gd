@@ -8,6 +8,8 @@ extends TileMapLayer
 @export var map_height: int
 @export var tileset: TileSet
 
+var threads: Array
+
 var map_width_px: int
 var map_height_px: int
 
@@ -113,11 +115,12 @@ func map_gen() -> void:
 			progress = x
 			# use bigger value to increase generation speed ( x % 20 )
 			# that decreases FPS on loading screan
-			if x % 5 == 0 and y == 0:
+			if x % 5 == 0 and y == 0 and is_inside_tree():
 				await get_tree().process_frame
+			elif not is_inside_tree(): return
 	
 	var post_process = connect_cells.bind(batch_cells_grass, batch_cells_earth, batch_cells_sand, batch_cells_stone)
-	WorkerThreadPool.add_task(post_process, false)
+	threads.append(WorkerThreadPool.add_task(post_process, false))
 	progress = map_width
 	emit_signal("generation_complete")
 

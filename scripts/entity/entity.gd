@@ -32,6 +32,7 @@ var specific_commands: Array = [
 ]
 var prefered_pos: Vector2
 var face_dir: Vector2i
+enum dirrection {UP, DOWN, LEFT, RIGHT}
 
 func _ready() -> void:
 	sprite = $Sprite
@@ -222,11 +223,11 @@ func complete_subtask() -> void:
 
 func idle() -> void:
 	if not sprite: return
-	match face_dir:
-		Vector2i(0, 1): sprite.play("Idle Down")
-		Vector2i(0, -1): sprite.play("Idle Up")
-		Vector2i(1, 0): sprite.play("Idle Right")
-		Vector2i(-1, 0): sprite.play("Idle Left")
+	match get_face_dir():
+			dirrection.DOWN: sprite.play("Idle Down")
+			dirrection.UP: sprite.play("Idle Up")
+			dirrection.RIGHT: sprite.play("Idle Right")
+			dirrection.LEFT: sprite.play("Idle Left")
 
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
@@ -262,6 +263,14 @@ func turn(side: String) -> void:
 
 func eat(target: Node2D) -> void:
 	pass
+
+func get_face_dir() -> int:
+	match face_dir:
+		Vector2i(0, -1): return dirrection.UP
+		Vector2i(0, 1) : return dirrection.DOWN
+		Vector2i(-1, 0): return dirrection.LEFT
+		Vector2i(1, 0) : return dirrection.RIGHT
+	return dirrection.DOWN
 
 func on_lifetime_end() -> void:
 	queue_free()

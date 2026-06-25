@@ -7,10 +7,15 @@ extends Entity
 func _ready() -> void:
 	var entity_src = "res://entity/ants/%s.tscn" % type
 	var is_entity_src_valid = FileAccess.file_exists(entity_src)
+	sight_area.queue_free()
 	if not is_entity_src_valid: 
 		queue_free()
 
-func _process(delta: float) -> void:
+func move_at(pos: Vector2i) -> Dictionary:
+	prefered_pos = position
+	return {"status": 1}
+
+func _physics_process(delta: float) -> void:
 	is_tick(delta)
 
 func on_lifetime_end() -> void:
