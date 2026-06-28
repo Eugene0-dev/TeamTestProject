@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dv24n2ptnun3o"]
 
-[ext_resource type="PackedScene" uid="uid://bnp5q1kn0n4yj" path="res://scenes/corpse.tscn" id="1_f2p5c"]
+[ext_resource type="PackedScene" uid="uid://bnp5q1kn0n4yj" path="res://scenes/objects/corpse.tscn" id="1_f2p5c"]
 [ext_resource type="SpriteFrames" uid="uid://blmhyjlxtpx3a" path="res://entity/ants/corpses/queen.tres" id="2_ak2p7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ak2p7"]

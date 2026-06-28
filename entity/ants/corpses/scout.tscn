@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbccnu5ldsdpb"]
 
-[ext_resource type="PackedScene" uid="uid://bnp5q1kn0n4yj" path="res://scenes/corpse.tscn" id="1_007r5"]
+[ext_resource type="PackedScene" uid="uid://bnp5q1kn0n4yj" path="res://scenes/objects/corpse.tscn" id="1_007r5"]
 [ext_resource type="SpriteFrames" uid="uid://8i1arx1et0qr" path="res://entity/ants/corpses/scout.tres" id="2_07tyq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_07tyq"]

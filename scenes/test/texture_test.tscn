@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://qg44xuqox7n5" path="res://assets/shaders/ground_material.tres" id="1_v04yn"]
 [ext_resource type="TileSet" uid="uid://b4cjx62nwwh2i" path="res://assets/tilesets/water_tileset.tres" id="2_m4cor"]
 [ext_resource type="Material" uid="uid://dxf52pji3oaus" path="res://assets/shaders/water_material.tres" id="2_tg5fl"]
-[ext_resource type="PackedScene" uid="uid://b0shlixmr3jcm" path="res://scenes/source_0.tscn" id="4_27ey4"]
+[ext_resource type="PackedScene" uid="uid://b0shlixmr3jcm" path="res://scenes/objects/source_0.tscn" id="4_27ey4"]
 [ext_resource type="TileSet" uid="uid://cxng54clsdivr" path="res://assets/tilesets/objects_tileset.tres" id="4_y4uk3"]
 [ext_resource type="Material" uid="uid://dxhtm1njf1at5" path="res://assets/shaders/woods_material.tres" id="5_bendk"]
 

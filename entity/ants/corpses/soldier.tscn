@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cohq8colt5igx"]
 
-[ext_resource type="PackedScene" uid="uid://bnp5q1kn0n4yj" path="res://scenes/corpse.tscn" id="1_70w1h"]
+[ext_resource type="PackedScene" uid="uid://bnp5q1kn0n4yj" path="res://scenes/objects/corpse.tscn" id="1_70w1h"]
 [ext_resource type="SpriteFrames" uid="uid://btmsw6x6bod7f" path="res://entity/ants/corpses/soldier.tres" id="2_x473m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cne4y"]
