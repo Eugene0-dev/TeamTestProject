@@ -12,7 +12,7 @@
 [ext_resource type="FontFile" uid="uid://5tndu0u21u1t" path="res://assets/OpenLukyanov.otf" id="8_6ic3k"]
 [ext_resource type="Texture2D" uid="uid://cggvuv3g4llq1" path="res://assets/logos/ASlZk-removebg-preview.png" id="10_6ic3k"]
 [ext_resource type="Texture2D" uid="uid://jgpuryuf3y00" path="res://assets/logos/bPQXi-removebg-preview.png" id="11_gph5m"]
-[ext_resource type="Texture2D" uid="uid://do6f77bsrv2dh" path="res://icon.svg" id="12_x68jn"]
+[ext_resource type="Texture2D" uid="uid://81gslp2sn251" path="res://assets/logos/Logo-NW.png" id="13_6ic3k"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kbnl5"]
 
@@ -161,7 +161,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 181.0
 offset_bottom = 181.0
-texture = ExtResource("12_x68jn")
+texture = ExtResource("13_6ic3k")
 expand_mode = 5
 
 [node name="Dev_Name_1" type="LineEdit" parent="CanvasLayer/Main_Menu/Dev_Logo_1" unique_id=1788278661]
