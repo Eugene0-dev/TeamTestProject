@@ -14,10 +14,11 @@ radius = 28.01785
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80333506]
 material = ExtResource("1_uf87w")
+position = Vector2(0, -39)
 texture = SubResource("AtlasTexture_7yu6v")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1256564082]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1297596098]
-position = Vector2(0, 16)
+position = Vector2(-1, -23)
 shape = SubResource("CircleShape2D_kbnl5")
