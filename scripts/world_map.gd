@@ -105,7 +105,9 @@ func map_gen() -> void:
 			else:
 				set_cell(Vector2(x, y), 1, tile_case)
 				
-			if noise_val < 0.5 and noise_val > 0: set_trees(noise_val, obj_noise_val, Vector2i(x, y))	
+			if noise_val < 0.5 and noise_val > 0: 
+				set_bushes(noise_val, obj_noise_val, Vector2i(x, y))
+				set_trees(noise_val, obj_noise_val, Vector2i(x, y))
 			
 			if noise_val < -0.1:
 				water_layer.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
@@ -152,20 +154,83 @@ func set_trees(val: float, obj_val: float, pos: Vector2i) -> void:
 	if noise_sum >= 0.5 and noise_sum < 0.5001:
 		place_object(pos, 1, Vector2i(3, 13), true)
 		return
-	if noise_sum >= 0.5001 and noise_sum < 0.5002:
+	if noise_sum >= 0.5014 and noise_sum < 0.5015:
 		place_object(pos, 1, Vector2i(24, 11), true) 
 		return
-	if noise_sum >= 0.5002 and noise_sum < 0.5003:
+	if noise_sum >= 0.5015 and noise_sum < 0.5016:
 		place_object(pos, 1, Vector2i(45, 10), true)
 		return
-	if noise_sum >= 0.5003 and noise_sum < 0.5004:
+	if noise_sum >= 0.5016 and noise_sum < 0.5017:
 		place_object(pos, 1, Vector2i(66, 11), true)
 		return
-	if noise_sum >= 0.5004 and noise_sum < 0.5005:
+	if noise_sum >= 0.5017 and noise_sum < 0.5018:
 		place_object(pos, 1, Vector2i(90, 7), true) 
 		return
-	if noise_sum >= 0.5005 and noise_sum < 0.5006:
+	if noise_sum >= 0.5018 and noise_sum < 0.5019:
 		place_object(pos, 1, Vector2i(106, 7), true) 
+		return
+	if noise_sum >= 0.5019 and noise_sum < 0.5020:
+		place_object(pos, 1, Vector2i(3, 42), true) 
+		return
+	if noise_sum >= 0.5020 and noise_sum < 0.5021:
+		place_object(pos, 1, Vector2i(24, 42), true) 
+		return
+	if noise_sum >= 0.5021 and noise_sum < 0.5022:
+		place_object(pos, 1, Vector2i(45, 42), true) 
+		return
+	if noise_sum >= 0.5022 and noise_sum < 0.5023:
+		place_object(pos, 1, Vector2i(66, 42), true) 
+		return
+	if noise_sum >= 0.5023 and noise_sum < 0.5024:
+		place_object(pos, 1, Vector2i(90, 39), true) 
+		return
+	if noise_sum >= 0.5024 and noise_sum < 0.5025:
+		place_object(pos, 1, Vector2i(106, 39), true) 
+		return
+
+func set_bushes(val: float, obj_val: float, pos: Vector2i) -> void:
+	var noise_sum = val+obj_val
+	if noise_sum >= 0.5 and noise_sum < 0.50001:
+		place_object(pos, 1, Vector2i(3, 84), true)
+		return
+	if noise_sum >= 0.5001 and noise_sum < 0.5002:
+		place_object(pos, 1, Vector2i(24, 83), true) 
+		return
+	if noise_sum >= 0.5002 and noise_sum < 0.5003:
+		place_object(pos, 1, Vector2i(45, 83), true)
+		return
+	if noise_sum >= 0.5003 and noise_sum < 0.5004:
+		place_object(pos, 1, Vector2i(66, 83), true)
+		return
+	if noise_sum >= 0.5004 and noise_sum < 0.5005:
+		place_object(pos, 1, Vector2i(89, 78), true) 
+		return
+	if noise_sum >= 0.5005 and noise_sum < 0.5006:
+		place_object(pos, 1, Vector2i(107, 78), true) 
+		return
+	if noise_sum >= 0.5006 and noise_sum < 0.5007:
+		place_object(pos, 1, Vector2i(124, 78), true) 
+		return
+	if noise_sum >= 0.5007 and noise_sum < 0.5008:
+		place_object(pos, 1, Vector2i(3, 115), true) 
+		return
+	if noise_sum >= 0.5008 and noise_sum < 0.5009:
+		place_object(pos, 1, Vector2i(24, 115), true) 
+		return
+	if noise_sum >= 0.5009 and noise_sum < 0.5010:
+		place_object(pos, 1, Vector2i(45, 115), true) 
+		return
+	if noise_sum >= 0.5010 and noise_sum < 0.5011:
+		place_object(pos, 1, Vector2i(66, 115), true) 
+		return
+	if noise_sum >= 0.5011 and noise_sum < 0.5012:
+		place_object(pos, 1, Vector2i(90, 111), true) 
+		return
+	if noise_sum >= 0.5012 and noise_sum < 0.5013:
+		place_object(pos, 1, Vector2i(108, 111), true) 
+		return
+	if noise_sum >= 0.5013 and noise_sum < 0.5014:
+		place_object(pos, 1, Vector2i(124, 111), true) 
 		return
 
 func place_object(pos: Vector2i, atlas_id: int, tile: Vector2i, is_solid: bool) -> void:

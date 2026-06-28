@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_ol35h"]
 [ext_resource type="SpriteFrames" uid="uid://da3japcgsatsc" path="res://assets/Ants/drone_SpriteFrames.tres" id="2_438f2"]
-[ext_resource type="Script" uid="uid://sr2goqa14rih" path="res://scripts/entity/drone.gd" id="2_k5amr"]
+[ext_resource type="Script" uid="uid://bawrrdqywsdym" path="res://scripts/entity/drone.gd" id="2_k5amr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k5amr"]
 resource_local_to_scene = true
@@ -24,7 +24,7 @@ type_name = "drone"
 group = "ants"
 max_health = 50
 max_hunger = 300
-speed = 35
+speed = 40
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
 shape = SubResource("CircleShape2D_k5amr")
