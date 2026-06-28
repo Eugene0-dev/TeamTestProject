@@ -18,6 +18,7 @@ var hunger: int = 0
 @export var speed: int = 10
 
 @onready var sight_area: Area2D = $Sight_Area
+@onready var collision: CollisionShape2D = $CollisionShape2D
 
 var is_ai_enabled: bool = true
 var schedule: Array = []
@@ -25,6 +26,9 @@ var current_task: Dictionary = {}
 
 var subtasks: Array = []
 var current_subtask: Dictionary = {}
+var stuck_timer: float = 0.0
+var STUCK_THRESHOLD: float = 3.0
+var last_position: Vector2
 
 var environment: World
 var specific_commands: Array = [
@@ -82,6 +86,8 @@ func _physics_process(delta: float) -> void:
 	elif not schedule.is_empty():
 		current_task = schedule.pop_front()
 	else: idle()
+	if tick:
+		last_position = global_position
 
 func add_task(type: String, args: Array) -> void:
 	var task: Dictionary = {"type": type}
@@ -134,6 +140,7 @@ func exec_subtask(task: Dictionary, delta: float) -> int:
 		"mv":
 			var results = move_at(task["pos"])
 			status = results["status"]
+			
 			if status == -1:
 				complete_subtask()
 				on_stuck_handle(results["obstacle"])
@@ -142,15 +149,25 @@ func exec_subtask(task: Dictionary, delta: float) -> int:
 	return status
 
 func on_stuck_handle(obstacle: Area2D) -> void:
-	var shape: Rect2 = obstacle.find_child("CollisionShape2D").shape.get_rect()
-	subtasks.clear()
-	turn("left")
 	var evade_point = global_position+Vector2(face_dir)*100
-	if shape.size.x > shape.size.y:
-		evade_point = global_position+Vector2(face_dir)*shape.size.x*1.5
+	subtasks.clear()
+	
+	if obstacle:
+		var shape: Rect2 = obstacle.find_child("CollisionShape2D").shape.get_rect()
+		turn("left")
+		if shape.size.x > shape.size.y:
+			evade_point = global_position+Vector2(face_dir)*shape.size.x*1.5
+		else:
+			evade_point = global_position+Vector2(face_dir)*shape.size.y*1.5
 	else:
-		evade_point = global_position+Vector2(face_dir)*shape.size.y*1.5
-	current_subtask = {"type": "mv", "pos": Vector2(evade_point.x, evade_point.y), "evade": true}
+		evade_point = global_position
+		match get_face_dir():
+			dirrection.UP   : evade_point.x -= get_size()
+			dirrection.DOWN : evade_point.x += get_size()
+			dirrection.LEFT : evade_point.y += get_size()
+			dirrection.RIGHT: evade_point.y -= get_size()
+			
+	current_subtask = {"type": "mv", "pos": evade_point, "evade": true}
 	var dir = evade_point.direction_to(prefered_pos)
 	if abs(dir.y) > abs(dir.x):
 		add_subtask("mv", [evade_point.x, prefered_pos.y, false])
@@ -246,6 +263,15 @@ func move_at(pos: Vector2i) -> Dictionary:
 		return {"status": 1}
 	var obstacles = sight_area.get_overlapping_areas()
 	if obstacles.size() > 1 and not current_subtask["evade"]: return {"status": -1, "obstacle": obstacles[0]}
+	
+	if Vector2i(global_position) == Vector2i(last_position) and velocity != Vector2.ZERO:
+		stuck_timer += 1
+		if stuck_timer >= STUCK_THRESHOLD:
+			stuck_timer = 0.0
+			return {"status": -1, "obstacle": null}
+	else:
+		stuck_timer = max(0.0, stuck_timer - 1)
+	
 	walk(dir)
 	return {"status": 0}
 
@@ -271,6 +297,14 @@ func get_face_dir() -> int:
 		Vector2i(-1, 0): return dirrection.LEFT
 		Vector2i(1, 0) : return dirrection.RIGHT
 	return dirrection.DOWN
+
+func get_size() -> float:
+	var rect: Rect2 = collision.shape.get_rect()
+	var width = rect.end.x
+	var height = rect.end.y
+	if width > height:
+		return width
+	else: return height
 
 func on_lifetime_end() -> void:
 	queue_free()
