@@ -323,17 +323,19 @@ func die() -> void:
 	var corpse: Corpse
 	
 	match get_face_dir():
-		dirrection.DOWN: sprite.play("Death Down")
-		dirrection.UP: sprite.play("Death Up")
-		dirrection.LEFT: sprite.play("Death Left")
+		dirrection.DOWN : sprite.play("Death Down")
+		dirrection.UP   : sprite.play("Death Up")
+		dirrection.LEFT : sprite.play("Death Left")
 		dirrection.RIGHT: sprite.play("Death Right")
 	
+	await get_tree().create_timer(0.5).timeout
 	if group != "none" and type_name != "none":
 		corpse_scene = load("res://entity/%s/corpses/%s.tscn" % [group, type_name])
 		corpse = corpse_scene.instantiate()
 		corpse.face_dir = get_face_dir()
+		corpse.global_position = global_position
 		add_sibling(corpse)
-		
+	
 	queue_free()
 
 func is_busy() -> bool:
