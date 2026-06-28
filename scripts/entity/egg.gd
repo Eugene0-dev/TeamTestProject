@@ -22,6 +22,7 @@ func on_lifetime_end() -> void:
 	if environment:
 		var subject = environment.create_entity("ants/%s" % type, position)
 		if subject:
+			subject.scale = Vector2(0.2, 0.2)
 			subject.faction = faction
 			var num = name.split("_")[2]
 			subject.name = type.capitalize()+"_"+num

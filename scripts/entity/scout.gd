@@ -41,7 +41,7 @@ func fly(dir: Vector2):
 
 func find_path(point: Vector2i, end_point: Vector2i) -> Array[Vector2i]:
 	if is_onflight:
-		return environment.nav_grid.get_point_path(point, end_point, true)
+		return environment.nav_grid.get_id_path(point, end_point, true)
 	else: return super(point, end_point)
 
 func walk(dir: Vector2):
@@ -53,6 +53,7 @@ func takeoff() -> void:
 	is_onflight = true
 	collision_mask = 3
 	collision_layer = 3
+	create_tween().tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.3).set_trans(Tween.TRANS_SINE)
 	match get_face_dir():
 		dirrection.UP   : sprite.play("Takeoff Up")
 		dirrection.DOWN : sprite.play("Takeoff Down")
@@ -63,6 +64,7 @@ func landing() -> void:
 	is_onflight = false
 	collision_mask = 1
 	collision_layer = 2
+	create_tween().tween_property(sprite, "scale", Vector2(0.706, 0.706), 0.3).set_trans(Tween.TRANS_SINE)
 	match get_face_dir():
 		dirrection.UP   : sprite.play("Landing Up")
 		dirrection.DOWN : sprite.play("Landing Down")

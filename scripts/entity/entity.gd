@@ -43,6 +43,8 @@ func _ready() -> void:
 	face_dir = Vector2i(0, 1)
 	idle()
 	prefered_pos = global_position
+	if environment:
+		create_tween().tween_property(self, "scale", Vector2(1.0, 1.0), 1.0).set_trans(Tween.TRANS_SINE)
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and \
