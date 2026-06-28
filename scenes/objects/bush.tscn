@@ -11,11 +11,15 @@ region = Rect2(21.474243, 666.305, 155.4054, 118.404175)
 radius = 28.01785
 
 [node name="Bush" type="Node2D" unique_id=224914542]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80333506]
+y_sort_enabled = true
 material = ExtResource("1_uf87w")
-position = Vector2(0, -39)
 texture = SubResource("AtlasTexture_7yu6v")
+centered = false
+offset = Vector2(-80, -100)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1256564082]
 
