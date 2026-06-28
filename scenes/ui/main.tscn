@@ -7,18 +7,28 @@
 [ext_resource type="Script" uid="uid://bthy8p46o8vd" path="res://scripts/ui/main_menu.gd" id="2_sugp2"]
 [ext_resource type="Material" uid="uid://be5pdkfanhqyr" path="res://assets/shaders/background_material.tres" id="3_85g3d"]
 [ext_resource type="TileSet" uid="uid://cxng54clsdivr" path="res://assets/tilesets/objects_tileset.tres" id="4_ya4ey"]
-[ext_resource type="Texture2D" uid="uid://cek7rc351qban" path="res://assets/logos/github-logo.png" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://fyjird4hwele" path="res://assets/logos/github-logo-reverse.png" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://daei4e46wq5pd" path="res://assets/logos/logo_sf.png" id="7_o6xl0"]
 [ext_resource type="FontFile" uid="uid://cmymgt2gqvv4w" path="res://assets/PauzaStencil-Bold.75bac0b8ac7045f0ca78454a964c0835.ttf" id="7_ya4ey"]
+[ext_resource type="FontFile" uid="uid://5tndu0u21u1t" path="res://assets/OpenLukyanov.otf" id="8_6ic3k"]
+[ext_resource type="Texture2D" uid="uid://cggvuv3g4llq1" path="res://assets/logos/ASlZk-removebg-preview.png" id="10_6ic3k"]
+[ext_resource type="Texture2D" uid="uid://jgpuryuf3y00" path="res://assets/logos/bPQXi-removebg-preview.png" id="11_gph5m"]
+[ext_resource type="Texture2D" uid="uid://do6f77bsrv2dh" path="res://icon.svg" id="12_x68jn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kbnl5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hyu26"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_x68jn"]
+font = ExtResource("8_6ic3k")
+font_size = 64
+font_color = Color(1, 0.7254902, 0.3137255, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_sgp6g"]
 font = ExtResource("7_ya4ey")
 font_size = 96
+font_color = Color(0.18039216, 0.68235296, 1, 1)
 outline_size = 10
 outline_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
 
@@ -50,17 +60,26 @@ offset_bottom = 648.0
 [node name="Main_Menu" type="Control" parent="CanvasLayer" unique_id=1088482334]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 648.0
 script = ExtResource("2_sugp2")
 
-[node name="Label" type="Label" parent="CanvasLayer/Main_Menu" unique_id=1418511061]
+[node name="Label2" type="Label" parent="CanvasLayer/Main_Menu" unique_id=248449944]
 layout_mode = 0
-offset_left = 385.0
-offset_top = 33.0
-offset_right = 772.0
-offset_bottom = 150.0
-text = "<Insects/>"
+offset_left = 593.0
+offset_top = 101.0
+offset_right = 752.0
+offset_bottom = 166.0
+text = "rise"
+label_settings = SubResource("LabelSettings_x68jn")
+
+[node name="Label" type="Label" parent="CanvasLayer/Main_Menu/Label2" unique_id=1418511061]
+layout_mode = 0
+offset_left = -213.0
+offset_top = -86.0
+offset_right = 181.0
+offset_bottom = 31.0
+text = "<Swarm/>"
 label_settings = SubResource("LabelSettings_sgp6g")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Main_Menu" unique_id=714326318]
@@ -103,16 +122,17 @@ text = "Quit
 
 [node name="Github_Button" type="TextureButton" parent="CanvasLayer/Main_Menu" unique_id=964198965]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 568.0
-offset_right = 76.0
-offset_bottom = 623.0
-texture_normal = ExtResource("5_tbgi4")
-texture_hover = ExtResource("6_tefeu")
+offset_left = 55.00001
+offset_top = 583.99994
+offset_right = 111.281044
+offset_bottom = 641.2409
+rotation = -0.53232545
+texture_normal = ExtResource("10_6ic3k")
+texture_hover = ExtResource("11_gph5m")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Main_Menu" unique_id=1954563048]
+[node name="Dev_Logo_0" type="TextureRect" parent="CanvasLayer/Main_Menu" unique_id=1954563048]
 texture_filter = 5
 layout_mode = 0
 offset_left = 971.0
@@ -121,6 +141,41 @@ offset_right = 1144.0
 offset_bottom = 180.0
 texture = ExtResource("7_o6xl0")
 expand_mode = 5
+
+[node name="Dev_Name_0" type="LineEdit" parent="CanvasLayer/Main_Menu/Dev_Logo_0" unique_id=2035535852]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 173.0
+offset_right = 165.0
+offset_bottom = 204.0
+mouse_filter = 2
+theme = ExtResource("1_o5qli")
+text = "Sleepie.Fox"
+alignment = 1
+editable = false
+virtual_keyboard_enabled = false
+
+[node name="Dev_Logo_1" type="TextureRect" parent="CanvasLayer/Main_Menu" unique_id=1674686139]
+texture_filter = 5
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 181.0
+offset_bottom = 181.0
+texture = ExtResource("12_x68jn")
+expand_mode = 5
+
+[node name="Dev_Name_1" type="LineEdit" parent="CanvasLayer/Main_Menu/Dev_Logo_1" unique_id=1788278661]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 173.0
+offset_right = 165.0
+offset_bottom = 204.0
+mouse_filter = 2
+theme = ExtResource("1_o5qli")
+text = "Ninja-W_W"
+alignment = 1
+editable = false
 
 [connection signal="pressed" from="CanvasLayer/Main_Menu/Panel/Play" to="CanvasLayer/Main_Menu" method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Menu/Panel/Quit" to="CanvasLayer/Main_Menu" method="_on_quit_pressed"]
