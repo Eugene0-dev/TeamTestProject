@@ -5,6 +5,10 @@ extends CharacterBody2D
 @export_group("Nodes")
 @export var sprite: AnimatedSprite2D
 
+@export_group("Title")
+@export var type_name: String = "none"
+@export var group: String = "none"
+
 @export_group("Stats")
 @export var lifetime: int = 3600
 @export var max_health: int = 100
@@ -69,13 +73,13 @@ func _physics_process(delta: float) -> void:
 	if tick and hunger < max_hunger:
 		hunger += 1
 	if income_damage > max_health: 
-		queue_free()
+		die()
 		return
 	if hunger >= max_hunger and tick: income_damage+=1
 	elif income_damage > 0 and tick: 
 		var heal_rate = clamp(10 - (hunger / 10), 0, 10)
 		income_damage -= heal_rate
-	if tick and is_ai_enabled:
+	if tick and is_ai_enabled and environment:
 		AI(delta)
 	
 	if not current_subtask.is_empty():
@@ -312,6 +316,24 @@ func get_size() -> float:
 	else: return height
 
 func on_lifetime_end() -> void:
+	die()
+
+func die() -> void:
+	var corpse_scene: PackedScene
+	var corpse: Corpse
+	
+	match get_face_dir():
+		dirrection.DOWN: sprite.play("Death Down")
+		dirrection.UP: sprite.play("Death Up")
+		dirrection.LEFT: sprite.play("Death Left")
+		dirrection.RIGHT: sprite.play("Death Right")
+	
+	if group != "none" and type_name != "none":
+		corpse_scene = load("res://entity/%s/corpses/%s.tscn" % [group, type_name])
+		corpse = corpse_scene.instantiate()
+		corpse.face_dir = get_face_dir()
+		add_sibling(corpse)
+		
 	queue_free()
 
 func is_busy() -> bool:
@@ -320,6 +342,11 @@ func is_busy() -> bool:
 	 current_subtask.is_empty() and\
 	 current_task.is_empty())
 
+func wander() -> void:
+	if not is_busy() and randf() >= 0.8:
+		prefered_pos = global_position+Vector2(randi_range(-500, 500), randi_range(-500, 500))
+
 func AI(delta: float) -> void:
 	if global_position.distance_to(prefered_pos) > 10 and not is_busy():
 		add_task("mv", [prefered_pos.x, prefered_pos.y, false])
+	wander()

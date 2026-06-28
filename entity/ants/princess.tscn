@@ -19,6 +19,8 @@ radius = 25.079872
 
 [node name="Princess" unique_id=1305847055 instance=ExtResource("1_4x55u")]
 script = ExtResource("2_14syf")
+type_name = "princess"
+group = "ants"
 max_health = 750
 max_hunger = 500
 speed = 25

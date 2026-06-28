@@ -53,7 +53,7 @@ func takeoff() -> void:
 	is_onflight = true
 	collision_mask = 3
 	collision_layer = 3
-	create_tween().tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.3).set_trans(Tween.TRANS_SINE)
+	create_tween().tween_property(sprite, "scale", Vector2(0.85, 0.85), 0.3).set_trans(Tween.TRANS_SINE)
 	match get_face_dir():
 		dirrection.UP   : sprite.play("Takeoff Up")
 		dirrection.DOWN : sprite.play("Takeoff Down")
@@ -61,6 +61,8 @@ func takeoff() -> void:
 		dirrection.RIGHT: sprite.play("Takeoff Right")
 
 func landing() -> void:
+	var tile = environment.get_cell(global_position)
+	if environment.nav_grid.is_point_solid(tile): return
 	is_onflight = false
 	collision_mask = 1
 	collision_layer = 2

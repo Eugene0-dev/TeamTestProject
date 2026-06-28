@@ -20,6 +20,8 @@ radius = 6.0
 [node name="Drone" unique_id=1305847055 node_paths=PackedStringArray("sprite") instance=ExtResource("1_ol35h")]
 script = ExtResource("2_k5amr")
 sprite = NodePath("Sprite")
+type_name = "drone"
+group = "ants"
 max_health = 50
 max_hunger = 300
 speed = 35
@@ -38,5 +40,5 @@ frame_progress = 0.1226871
 position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_vpqw1")
 
-[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(692836915) index="0" unique_id=1608485846]
+[node name="CollisionShape2D" parent="CollisionArea" parent_id_path=PackedInt32Array(692836915) index="0" unique_id=1608485846]
 shape = SubResource("CircleShape2D_yosg6")

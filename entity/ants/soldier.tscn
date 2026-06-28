@@ -19,6 +19,8 @@ radius = 19.0
 
 [node name="Soldier" unique_id=1305847055 instance=ExtResource("1_kjj2o")]
 script = ExtResource("2_o05g0")
+type_name = "soldier"
+group = "ants"
 max_hunger = 360
 speed = 25
 

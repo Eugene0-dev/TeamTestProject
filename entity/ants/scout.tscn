@@ -19,6 +19,8 @@ radius = 21.023796
 
 [node name="Scout" unique_id=1305847055 instance=ExtResource("1_cysgi")]
 script = ExtResource("2_i0qr2")
+type_name = "scout"
+group = "ants"
 max_health = 50
 max_hunger = 400
 speed = 30
