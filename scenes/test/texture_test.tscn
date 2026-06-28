@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b0shlixmr3jcm" path="res://scenes/objects/source_0.tscn" id="4_27ey4"]
 [ext_resource type="TileSet" uid="uid://cxng54clsdivr" path="res://assets/tilesets/objects_tileset.tres" id="4_y4uk3"]
 [ext_resource type="Material" uid="uid://dxhtm1njf1at5" path="res://assets/shaders/woods_material.tres" id="5_bendk"]
+[ext_resource type="PackedScene" uid="uid://ce8daftdwp6dh" path="res://scenes/objects/tree.tscn" id="8_5qarn"]
 
 [node name="TextureTest" type="Node2D" unique_id=2067870927]
 position = Vector2(13, -5)
@@ -30,3 +31,6 @@ rendering_quadrant_size = 1
 
 [node name="Source_0" parent="." unique_id=428245751 instance=ExtResource("4_27ey4")]
 position = Vector2(377, 128)
+
+[node name="Tree" parent="." unique_id=1031045254 instance=ExtResource("8_5qarn")]
+position = Vector2(660, 219)
