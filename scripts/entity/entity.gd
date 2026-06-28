@@ -121,7 +121,7 @@ func exec_task(task: Dictionary, delta: float) -> int:
 			var pos = task["pos"]
 			var point = environment.get_cell(Vector2i(global_position))
 			var end_point = environment.get_cell(pos)
-			var path = environment.nav_grid.get_id_path(point, end_point)
+			var path = find_path(point, end_point)
 			
 			if subtasks.size() == 0:
 				for cell in path:
@@ -147,6 +147,9 @@ func exec_subtask(task: Dictionary, delta: float) -> int:
 			
 	if status == 1: complete_subtask()
 	return status
+
+func find_path(point: Vector2i, end_point: Vector2i) -> Array[Vector2i]:
+	return environment.nav_grid.get_id_path(point, end_point)
 
 func on_stuck_handle(obstacle: Area2D) -> void:
 	var evade_point = global_position+Vector2(face_dir)*100

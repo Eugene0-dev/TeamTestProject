@@ -39,6 +39,11 @@ func fly(dir: Vector2):
 	velocity = dir*speed*2
 	move_and_slide()
 
+func find_path(point: Vector2i, end_point: Vector2i) -> Array[Vector2i]:
+	if is_onflight:
+		return environment.nav_grid.get_point_path(point, end_point, true)
+	else: return super(point, end_point)
+
 func walk(dir: Vector2):
 	if not is_onflight:
 		super(dir)
