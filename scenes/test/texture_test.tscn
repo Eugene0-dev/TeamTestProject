@@ -9,8 +9,10 @@
 [ext_resource type="Material" uid="uid://dxhtm1njf1at5" path="res://assets/shaders/woods_material.tres" id="5_bendk"]
 [ext_resource type="PackedScene" uid="uid://ce8daftdwp6dh" path="res://scenes/objects/tree.tscn" id="8_5qarn"]
 [ext_resource type="PackedScene" uid="uid://dvtuosri5agdb" path="res://scenes/objects/bush.tscn" id="8_rpjf1"]
+[ext_resource type="PackedScene" uid="uid://c4pvat77flt8h" path="res://scenes/objects/item.tscn" id="10_xapkw"]
 
 [node name="TextureTest" type="Node2D" unique_id=2067870927]
+y_sort_enabled = true
 position = Vector2(13, -5)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1398873797]
@@ -37,5 +39,20 @@ position = Vector2(1014, 340)
 [node name="Bush" parent="TileMapLayer3" unique_id=224914542 instance=ExtResource("8_rpjf1")]
 position = Vector2(659, 262)
 
+[node name="Item2" parent="TileMapLayer3" unique_id=194306710 instance=ExtResource("10_xapkw")]
+position = Vector2(824, 491)
+item_id = 1
+
 [node name="Source_0" parent="." unique_id=428245751 instance=ExtResource("4_27ey4")]
 position = Vector2(377, 128)
+
+[node name="Item" parent="." unique_id=1482468156 instance=ExtResource("10_xapkw")]
+position = Vector2(859, 336)
+
+[node name="Item3" parent="." unique_id=1637652836 instance=ExtResource("10_xapkw")]
+position = Vector2(647, 498)
+item_id = 2
+
+[node name="Item4" parent="." unique_id=1053335330 instance=ExtResource("10_xapkw")]
+position = Vector2(575, 325)
+item_id = 3

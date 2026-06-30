@@ -9,13 +9,13 @@ func _ready() -> void:
 
 func AI(delta: float) -> void:
 	if position.distance_to(prefered_pos) > 250 : takeoff()
-	elif position.distance_to(prefered_pos) < 50: landing()
+	elif position.distance_to(prefered_pos) < 50 and is_onflight: landing()
 	super(delta)
 
 func exec_command(type: String, args: Array):
 	match type:
 		"takeoff": takeoff()
-		_: super(type, args)
+		_: return super(type, args)
 
 func idle() -> void:
 	if not is_onflight:
@@ -23,10 +23,10 @@ func idle() -> void:
 	else:
 		if not sprite: return
 		match get_face_dir():
-			dirrection.DOWN: sprite.play("Flight Down")
-			dirrection.UP: sprite.play("Flight Up")
-			dirrection.RIGHT: sprite.play("Flight Right")
-			dirrection.LEFT: sprite.play("Flight Left")
+			direction.DOWN: sprite.play("Flight Down")
+			direction.UP: sprite.play("Flight Up")
+			direction.RIGHT: sprite.play("Flight Right")
+			direction.LEFT: sprite.play("Flight Left")
 
 func fly(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):
@@ -55,10 +55,10 @@ func takeoff() -> void:
 	collision_layer = 3
 	create_tween().tween_property(sprite, "scale", Vector2(0.85, 0.85), 0.3).set_trans(Tween.TRANS_SINE)
 	match get_face_dir():
-		dirrection.UP   : sprite.play("Takeoff Up")
-		dirrection.DOWN : sprite.play("Takeoff Down")
-		dirrection.LEFT : sprite.play("Takeoff Left")
-		dirrection.RIGHT: sprite.play("Takeoff Right")
+		direction.UP   : sprite.play("Takeoff Up")
+		direction.DOWN : sprite.play("Takeoff Down")
+		direction.LEFT : sprite.play("Takeoff Left")
+		direction.RIGHT: sprite.play("Takeoff Right")
 
 func landing() -> void:
 	var tile = environment.get_cell(global_position)
@@ -68,7 +68,7 @@ func landing() -> void:
 	collision_layer = 2
 	create_tween().tween_property(sprite, "scale", Vector2(0.706, 0.706), 0.3).set_trans(Tween.TRANS_SINE)
 	match get_face_dir():
-		dirrection.UP   : sprite.play("Landing Up")
-		dirrection.DOWN : sprite.play("Landing Down")
-		dirrection.LEFT : sprite.play("Landing Left")
-		dirrection.RIGHT: sprite.play("Landing Right")
+		direction.UP   : sprite.play("Landing Up")
+		direction.DOWN : sprite.play("Landing Down")
+		direction.LEFT : sprite.play("Landing Left")
+		direction.RIGHT: sprite.play("Landing Right")

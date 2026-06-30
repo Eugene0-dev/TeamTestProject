@@ -15,6 +15,16 @@ func _ready() -> void:
 	clouds.size.x = world_map.map_width_px
 	clouds.size.y = world_map.map_height_px
 
+func place_item(id: int, pos: Vector2) -> Item:
+	var item_scene: PackedScene = load("res://scenes/objects/item.tscn")
+	var item: Item = item_scene.instantiate()
+	if id < item.id.size():
+		item.item_id = id
+		item.global_position = pos
+		add_child(item)
+		return item
+	return null
+
 func create_entity(link: String, pos: Vector2, extra: String = "") -> Entity:
 	var scene: PackedScene = load("res://entity/%s.tscn" % link)
 	if scene:

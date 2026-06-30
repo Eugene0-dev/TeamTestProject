@@ -40,7 +40,7 @@ var specific_commands: Array = [
 ]
 var prefered_pos: Vector2
 var face_dir: Vector2i
-enum dirrection {UP, DOWN, LEFT, RIGHT}
+enum direction {UP, DOWN, LEFT, RIGHT}
 
 func _ready() -> void:
 	sprite = $Sprite
@@ -134,7 +134,7 @@ func exec_task(task: Dictionary, delta: float) -> int:
 					var cell_pos = environment.nav_grid.get_point_position(cell)
 					add_subtask("mv", [cell_pos.x, cell_pos.y, false])
 			
-			if global_position.distance_to(pos) > 5: return 0
+			if not subtasks.is_empty(): return 0
 			else: 
 				complete_task() 
 				return 1
@@ -171,18 +171,18 @@ func on_stuck_handle(obstacle: Area2D) -> void:
 	else:
 		evade_point = global_position
 		match get_face_dir():
-			dirrection.UP   : evade_point.x -= get_size()
-			dirrection.DOWN : evade_point.x += get_size()
-			dirrection.LEFT : evade_point.y += get_size()
-			dirrection.RIGHT: evade_point.y -= get_size()
+			direction.UP   : evade_point.x -= get_size()
+			direction.DOWN : evade_point.x += get_size()
+			direction.LEFT : evade_point.y += get_size()
+			direction.RIGHT: evade_point.y -= get_size()
 			
 	current_subtask = {"type": "mv", "pos": evade_point, "evade": true}
 	var dir = evade_point.direction_to(prefered_pos)
 	if abs(dir.y) > abs(dir.x):
-		add_subtask("mv", [evade_point.x, prefered_pos.y, false])
+		add_subtask("mv", [prefered_pos.x, evade_point.y, false])
 		add_subtask("mv", [prefered_pos.x, prefered_pos.y, false])
 	else:
-		add_subtask("mv", [prefered_pos.x, evade_point.y, false])
+		add_subtask("mv", [evade_point.x, prefered_pos.y, false])
 		add_subtask("mv", [prefered_pos.x, prefered_pos.y, false])
 
 func exec_command(type: String, args: Array):
@@ -209,7 +209,7 @@ func exec_command(type: String, args: Array):
 		"play":
 			sprite.play(args[0].replace("_"," "))
 		"st":
-			return "HP: %d\nhunger: %d" % [max_health-income_damage, max_hunger-hunger]
+			return "(%d) task: %s\n(%d) subtask: %s" % [schedule.size(), current_task.get("type"), subtasks.size(), current_subtask.get("type")]
 		"kill":
 			income_damage += max_health*100
 		"stop":
@@ -250,10 +250,10 @@ func complete_subtask() -> void:
 func idle() -> void:
 	if not sprite: return
 	match get_face_dir():
-			dirrection.DOWN: sprite.play("Idle Down")
-			dirrection.UP: sprite.play("Idle Up")
-			dirrection.RIGHT: sprite.play("Idle Right")
-			dirrection.LEFT: sprite.play("Idle Left")
+			direction.DOWN: sprite.play("Idle Down")
+			direction.UP: sprite.play("Idle Up")
+			direction.RIGHT: sprite.play("Idle Right")
+			direction.LEFT: sprite.play("Idle Left")
 
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
@@ -268,12 +268,12 @@ func walk(dir: Vector2) -> void:
 
 func move_at(pos: Vector2i) -> Dictionary:
 	var dir = global_position.direction_to(pos)
-	if global_position.distance_to(pos) <= 5:
+	if global_position.distance_to(pos) <= 15:
 		return {"status": 1}
 	var obstacles = sight_area.get_overlapping_areas()
 	if obstacles.size() > 1 and not current_subtask["evade"]: return {"status": -1, "obstacle": obstacles[0]}
 	
-	if Vector2i(global_position) == Vector2i(last_position) and velocity != Vector2.ZERO:
+	if global_position.distance_to(last_position) < 1 and velocity != Vector2.ZERO:
 		stuck_timer += 1
 		if stuck_timer >= STUCK_THRESHOLD:
 			stuck_timer = 0.0
@@ -301,11 +301,11 @@ func eat(target: Node2D) -> void:
 
 func get_face_dir() -> int:
 	match face_dir:
-		Vector2i(0, -1): return dirrection.UP
-		Vector2i(0, 1) : return dirrection.DOWN
-		Vector2i(-1, 0): return dirrection.LEFT
-		Vector2i(1, 0) : return dirrection.RIGHT
-	return dirrection.DOWN
+		Vector2i(0, -1): return direction.UP
+		Vector2i(0, 1) : return direction.DOWN
+		Vector2i(-1, 0): return direction.LEFT
+		Vector2i(1, 0) : return direction.RIGHT
+	return direction.DOWN
 
 func get_size() -> float:
 	var rect: Rect2 = collision.shape.get_rect()
@@ -323,10 +323,10 @@ func die() -> void:
 	var corpse: Corpse
 	
 	match get_face_dir():
-		dirrection.DOWN : sprite.play("Death Down")
-		dirrection.UP   : sprite.play("Death Up")
-		dirrection.LEFT : sprite.play("Death Left")
-		dirrection.RIGHT: sprite.play("Death Right")
+		direction.DOWN : sprite.play("Death Down")
+		direction.UP   : sprite.play("Death Up")
+		direction.LEFT : sprite.play("Death Left")
+		direction.RIGHT: sprite.play("Death Right")
 	
 	await get_tree().create_timer(0.5).timeout
 	if group != "none" and type_name != "none":
@@ -346,9 +346,12 @@ func is_busy() -> bool:
 
 func wander() -> void:
 	if not is_busy() and randf() >= 0.8:
-		prefered_pos = global_position+Vector2(randi_range(-500, 500), randi_range(-500, 500))
+		var pos = global_position+Vector2(randi_range(-500, 500), randi_range(-500, 500))
+		var tile = environment.get_cell(pos)
+		if not environment.nav_grid.is_point_solid(tile):
+			prefered_pos = pos
 
 func AI(delta: float) -> void:
-	if global_position.distance_to(prefered_pos) > 10 and not is_busy():
+	if global_position.distance_to(prefered_pos) > 30 and not is_busy():
 		add_task("mv", [prefered_pos.x, prefered_pos.y, false])
 	wander()

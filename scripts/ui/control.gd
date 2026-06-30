@@ -3,7 +3,7 @@ extends Control
 @export var camera: Camera2D
 @export var world: World
 
-@onready var info_label: Label = $Info_Label
+@onready var info: TextEdit = $Info
 @onready var target_label: Label = $Target_Label
 @onready var command_line: LineEdit = $Command_LineEdit
 @onready var command_history: TextEdit = $Command_History_TextEdit
@@ -14,7 +14,7 @@ var is_debug_on: bool = false
 var target: Entity
 var line_counter: int = 0
 var commands_no_target: Array = [
-	"select", "find", "cam", "spawn", "sector", "debug"
+	"clear", "select", "find", "cam", "spawn", "sector", "debug", "item"
 ]
 
 func _ready() -> void:
@@ -58,6 +58,10 @@ func command(cmd_line: String):
 		"breed":
 			if target is Queen:
 				target.exec_command("breed", [cmd[1]])
+		"clear":
+			info.text = ""
+		"item":
+			world.place_item(int(cmd[1]), camera.global_position)
 		"cam":
 			if len(cmd)>2:
 				var sec = world.sectors.get(Vector2i(int(cmd[1]), int(cmd[2])))
@@ -82,13 +86,13 @@ func command(cmd_line: String):
 			if target:
 				Global.emit_signal("entity_selected", target)
 		"spawn":
-			world.create_entity(cmd[1], camera.position)
+			world.create_entity(cmd[1], camera.global_position)
 		"sector":
 			if target:
-				info_label.text = target.exec_command(cmd[0], cmd.slice(1))
+				info.text += target.exec_command(cmd[0], cmd.slice(1))+"\n"
 			else:
 				var sec = world.get_sector_key(camera.global_position)
-				info_label.text = "sec: %d %d" % [sec.x, sec.y]
+				info.text += "sec: %d %d\n" % [sec.x, sec.y]
 		"debug":
 			match cmd[1]:
 				"nav_layer":
@@ -114,7 +118,7 @@ func command(cmd_line: String):
 			if target:
 				var output = target.exec_command(cmd[0], cmd.slice(1))
 				if output:
-					info_label.text = output
+					info.text += output+"\n"
 
 func _on_entity_selected(entity: Entity):
 	target = entity

@@ -16,12 +16,6 @@ func _process(delta: float) -> void:
 	text = \"FPS: %d\" % Engine.get_frames_per_second()
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_5p55f"]
-font_size = 18
-font_color = Color(1, 0.5019608, 0.039215688, 1)
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_cr3o2"]
 font = ExtResource("2_brbbq")
 font_size = 32
@@ -49,13 +43,15 @@ text = "FPS: "
 label_settings = SubResource("LabelSettings_r67kn")
 script = SubResource("GDScript_5p55f")
 
-[node name="Info_Label" type="Label" parent="." unique_id=2144441541]
+[node name="Info" type="TextEdit" parent="." unique_id=2127929014]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 0
-offset_left = 13.0
-offset_top = 409.0
-offset_right = 378.0
-offset_bottom = 464.0
-label_settings = SubResource("LabelSettings_5p55f")
+offset_left = 8.0
+offset_top = 329.0
+offset_right = 245.0
+offset_bottom = 472.0
+theme = ExtResource("2_r67kn")
+editable = false
 
 [node name="Target_Label" type="Label" parent="." unique_id=1435795983]
 layout_mode = 0
@@ -68,8 +64,9 @@ label_settings = SubResource("LabelSettings_cr3o2")
 
 [node name="Command_History_TextEdit" type="TextEdit" parent="." unique_id=2077609288]
 layout_mode = 0
+offset_left = 8.0
 offset_top = 545.0
-offset_right = 1152.0
+offset_right = 1144.0
 offset_bottom = 648.0
 theme = ExtResource("2_r67kn")
 placeholder_text = "command history"
@@ -77,8 +74,9 @@ editable = false
 
 [node name="Command_LineEdit" type="LineEdit" parent="." unique_id=702534369]
 layout_mode = 0
+offset_left = 8.0
 offset_top = 514.0
-offset_right = 1152.0
+offset_right = 1144.0
 offset_bottom = 550.0
 theme = ExtResource("2_r67kn")
 placeholder_text = "command line"
