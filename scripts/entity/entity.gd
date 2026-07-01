@@ -1,9 +1,13 @@
-
+@tool
 class_name Entity 
 extends CharacterBody2D 
 
-@export_group("Nodes")
-@export var sprite: AnimatedSprite2D
+@export var sprite_frames: SpriteFrames:
+	set(val):
+		sprite_frames = val
+		if is_inside_tree():
+			sprite.sprite_frames = sprite_frames
+			_sync_outline()
 
 @export_group("Title")
 @export var type_name: String = "none"
@@ -21,9 +25,14 @@ var hunger: int = 0
 @export var faction: String = "none"
 @export var speed: int = 10
 
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var outline: AnimatedSprite2D = $Outline_Sprite
+
 @onready var sight_area: Area2D = $Sight_Area
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
+@export_group("Variables")
+@export var is_outline_on: bool = false
 var is_ai_enabled: bool = true
 var schedule: Array = []
 var current_task: Dictionary = {}
@@ -39,16 +48,23 @@ var specific_commands: Array = [
 	"step", "mv", "mv_s", "pos", "feed", "expire", "lifetime", "kill", "play", "stop", "stopall", "st", "team", "ai"
 ]
 var prefered_pos: Vector2
-var face_dir: Vector2i
 enum direction {UP, DOWN, LEFT, RIGHT}
+@export var face_dir: direction = direction.DOWN
 
 func _ready() -> void:
-	sprite = $Sprite
-	face_dir = Vector2i(0, 1)
+	_sync_outline()
+	face_dir = direction.DOWN
 	idle()
 	prefered_pos = global_position
 	if environment:
 		create_tween().tween_property(self, "scale", Vector2(1.0, 1.0), 1.0).set_trans(Tween.TRANS_SINE)
+
+func _sync_outline() -> void:
+	outline.sprite_frames = sprite.sprite_frames
+	outline.position = sprite.position
+	outline.animation = sprite.animation
+	outline.frame = sprite.frame
+	outline.scale = sprite.scale
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and \
@@ -67,7 +83,15 @@ func is_tick(delta: float) -> bool:
 		return true
 	return false
 
+func _process(delta: float) -> void:
+	outline.visible = is_outline_on
+	if is_outline_on:
+		_sync_outline()
+
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		idle()
+		return
 	var tick = is_tick(delta)
 	
 	if tick and hunger < max_hunger:
@@ -158,19 +182,19 @@ func find_path(point: Vector2i, end_point: Vector2i) -> Array[Vector2i]:
 	return environment.nav_grid.get_id_path(point, end_point)
 
 func on_stuck_handle(obstacle: Area2D) -> void:
-	var evade_point = global_position+Vector2(face_dir)*100
+	var evade_point = global_position+Vector2(get_face_dir())*100
 	subtasks.clear()
 	
 	if obstacle:
 		var shape: Rect2 = obstacle.find_child("CollisionShape2D").shape.get_rect()
-		turn("left")
+		face_dir = face_dir-1 if face_dir-1 > -1 else 3
 		if shape.size.x > shape.size.y:
-			evade_point = global_position+Vector2(face_dir)*shape.size.x*1.5
+			evade_point = global_position+Vector2(get_face_dir())*shape.size.x*1.5
 		else:
-			evade_point = global_position+Vector2(face_dir)*shape.size.y*1.5
+			evade_point = global_position+Vector2(get_face_dir())*shape.size.y*1.5
 	else:
 		evade_point = global_position
-		match get_face_dir():
+		match face_dir:
 			direction.UP   : evade_point.x -= get_size()
 			direction.DOWN : evade_point.x += get_size()
 			direction.LEFT : evade_point.y += get_size()
@@ -249,7 +273,7 @@ func complete_subtask() -> void:
 
 func idle() -> void:
 	if not sprite: return
-	match get_face_dir():
+	match face_dir:
 			direction.DOWN: sprite.play("Idle Down")
 			direction.UP: sprite.play("Idle Up")
 			direction.RIGHT: sprite.play("Idle Right")
@@ -258,11 +282,11 @@ func idle() -> void:
 func walk(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
 		sprite.play("Walk Right" if dir.x > 0 else "Walk Left")
-		face_dir = Vector2(1, 0) if dir.x > 0 else Vector2(-1, 0)
+		face_dir = direction.RIGHT if dir.x > 0 else direction.LEFT
 	else:
 		sprite.play("Walk Down" if dir.y > 0 else "Walk Up")
-		face_dir = Vector2(0, 1) if dir.y > 0 else Vector2(0, -1)
-	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(face_dir))
+		face_dir = direction.DOWN if dir.y > 0 else direction.UP
+	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(get_face_dir()))
 	velocity = dir*speed
 	move_and_slide()
 
@@ -287,25 +311,16 @@ func move_at(pos: Vector2i) -> Dictionary:
 func move_to(target: Node2D) -> bool:
 	return false
 
-func turn(side: String) -> void:
-	match side:
-		"left": 
-			face_dir = Vector2i(face_dir.y, -face_dir.x)
-		"right":
-			face_dir = Vector2i(-face_dir.y, face_dir.x)
-	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(face_dir))
-	idle()
-
 func eat(target: Node2D) -> void:
 	pass
 
-func get_face_dir() -> int:
+func get_face_dir() -> Vector2i:
 	match face_dir:
-		Vector2i(0, -1): return direction.UP
-		Vector2i(0, 1) : return direction.DOWN
-		Vector2i(-1, 0): return direction.LEFT
-		Vector2i(1, 0) : return direction.RIGHT
-	return direction.DOWN
+		direction.UP   : return Vector2i(0, -1)
+		direction.DOWN : return Vector2i(0, 1)
+		direction.LEFT : return Vector2i(-1, 0)
+		direction.RIGHT: return Vector2i(1, 0)
+	return Vector2i(0, -1)
 
 func get_size() -> float:
 	var rect: Rect2 = collision.shape.get_rect()
@@ -332,7 +347,7 @@ func die() -> void:
 	if group != "none" and type_name != "none":
 		corpse_scene = load("res://entity/%s/corpses/%s.tscn" % [group, type_name])
 		corpse = corpse_scene.instantiate()
-		corpse.face_dir = get_face_dir()
+		corpse.face_dir = face_dir
 		corpse.global_position = global_position
 		add_sibling(corpse)
 	

@@ -4,6 +4,8 @@ var debug_node: DevFeatures
 
 signal entity_selected(entity)
 
+signal entity_unselected(entity)
+
 signal track_navigation_enabled(entity)
 
 signal track_navigation_disabled()

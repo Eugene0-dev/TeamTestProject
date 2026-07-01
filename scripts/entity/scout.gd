@@ -1,3 +1,4 @@
+@tool
 class_name Scout
 extends Entity
 
@@ -31,11 +32,11 @@ func idle() -> void:
 func fly(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):
 		sprite.play("Flight Right" if dir.x > 0 else "Flight Left")
-		face_dir = Vector2(1, 0) if dir.x > 0 else Vector2(-1, 0)
+		face_dir = direction.RIGHT if dir.x > 0 else direction.LEFT
 	else:
 		sprite.play("Flight Down" if dir.y > 0 else "Flight Up")
-		face_dir = Vector2(0, 1) if dir.y > 0 else Vector2(0, -1)
-	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(face_dir))
+		face_dir = direction.DOWN if dir.y > 0 else direction.UP
+	sight_area.rotation = Vector2.DOWN.angle_to(Vector2(get_face_dir()))
 	velocity = dir*speed*2
 	move_and_slide()
 

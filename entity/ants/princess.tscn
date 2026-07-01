@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cassmo2qg0xlq"]
 
 [ext_resource type="PackedScene" uid="uid://c7mwnlui8vo04" path="res://scenes/entity.tscn" id="1_4x55u"]
-[ext_resource type="Script" uid="uid://d1itko54biijp" path="res://scripts/entity/princess.gd" id="2_14syf"]
+[ext_resource type="Script" uid="uid://bf4hkqcvcbu6h" path="res://scripts/entity/princess.gd" id="2_14syf"]
 [ext_resource type="SpriteFrames" uid="uid://bnaxw3bb7mo8g" path="res://assets/Ants/princess_SpriteFrames.tres" id="3_14syf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_14syf"]
@@ -19,6 +19,7 @@ radius = 25.079872
 
 [node name="Princess" unique_id=1305847055 instance=ExtResource("1_4x55u")]
 script = ExtResource("2_14syf")
+sprite_frames = ExtResource("3_14syf")
 type_name = "princess"
 group = "ants"
 max_health = 750
@@ -28,15 +29,22 @@ speed = 30
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
 shape = SubResource("CircleShape2D_14syf")
 
-[node name="Sprite" parent="." index="1" unique_id=1169619754]
-scale = Vector2(0.8384615, 0.8384615)
-sprite_frames = ExtResource("3_14syf")
-animation = &"Idle Down"
-autoplay = "Idle Down"
-
 [node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
 position = Vector2(0, 24)
 shape = SubResource("CapsuleShape2D_8qkqd")
 
 [node name="CollisionShape2D" parent="CollisionArea" parent_id_path=PackedInt32Array(692836915) index="0" unique_id=1608485846]
 shape = SubResource("CircleShape2D_yxnha")
+
+[node name="Sprite" parent="." index="3" unique_id=1169619754]
+scale = Vector2(0.8384615, 0.8384615)
+sprite_frames = ExtResource("3_14syf")
+animation = &"Idle Down"
+autoplay = "Idle Down"
+frame_progress = 0.17361048
+
+[node name="Outline_Sprite" parent="." index="4" unique_id=360754039]
+scale = Vector2(0.8384615, 0.8384615)
+sprite_frames = ExtResource("3_14syf")
+animation = &"Idle Down"
+frame = 4

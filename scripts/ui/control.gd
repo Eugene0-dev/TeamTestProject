@@ -19,6 +19,7 @@ var commands_no_target: Array = [
 
 func _ready() -> void:
 	Global.entity_selected.connect(_on_entity_selected)
+	Global.entity_unselected.connect(_on_entity_unselected)
 	commands_hint_update(false)
 
 func commands_hint_update(is_target: bool):
@@ -45,7 +46,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):
 		line_counter -= 1
 		command_line.text = command_history.text.get_slice("\n", line_counter)
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): 
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and target: 
+		Global.emit_signal("entity_unselected", target)
 		target = null
 		target_label.text = "tg: None"
 		commands_hint_update(false)
@@ -121,9 +123,15 @@ func command(cmd_line: String):
 					info.text += output+"\n"
 
 func _on_entity_selected(entity: Entity):
+	if target:
+		Global.emit_signal("entity_unselected", target)
 	target = entity
+	target.is_outline_on = true
 	target_label.text = "tg: "+entity.name
 	commands_hint_update(true)
+
+func _on_entity_unselected(entity: Entity):
+	entity.is_outline_on = false
 
 func _on_command_hints_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	command_line.text = command_hints_menu.get_item_text(index)

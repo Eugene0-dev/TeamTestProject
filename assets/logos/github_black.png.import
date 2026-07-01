@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cggvuv3g4llq1"
-path="res://.godot/imported/ASlZk-removebg-preview.png-0b32cad61ac3a9756ec1923a73b29742.ctex"
+path="res://.godot/imported/github_black.png-b18dac40872fca623440b0ee2600c503.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/logos/ASlZk-removebg-preview.png"
-dest_files=["res://.godot/imported/ASlZk-removebg-preview.png-0b32cad61ac3a9756ec1923a73b29742.ctex"]
+source_file="res://assets/logos/github_black.png"
+dest_files=["res://.godot/imported/github_black.png-b18dac40872fca623440b0ee2600c503.ctex"]
 
 [params]
 

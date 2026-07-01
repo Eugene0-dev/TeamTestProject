@@ -17,9 +17,10 @@ height = 44.0
 resource_local_to_scene = true
 radius = 6.0
 
-[node name="Drone" unique_id=1305847055 node_paths=PackedStringArray("sprite") instance=ExtResource("1_ol35h")]
+[node name="Drone" unique_id=1305847055 instance=ExtResource("1_ol35h")]
 script = ExtResource("2_k5amr")
-sprite = NodePath("Sprite")
+sprite_frames = ExtResource("2_438f2")
+animation = "Idle Down"
 type_name = "drone"
 group = "ants"
 max_health = 50
@@ -29,16 +30,22 @@ speed = 40
 [node name="CollisionShape2D" parent="." index="0" unique_id=283948992]
 shape = SubResource("CircleShape2D_k5amr")
 
-[node name="Sprite" parent="." index="1" unique_id=1169619754]
-scale = Vector2(0.3769231, 0.38076922)
-sprite_frames = ExtResource("2_438f2")
-animation = &"Walk Up"
-autoplay = "Idle Down"
-frame_progress = 0.93961763
-
 [node name="CollisionShape2D" parent="Sight_Area" parent_id_path=PackedInt32Array(643319598) index="0" unique_id=912604516]
 position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_vpqw1")
 
 [node name="CollisionShape2D" parent="CollisionArea" parent_id_path=PackedInt32Array(692836915) index="0" unique_id=1608485846]
 shape = SubResource("CircleShape2D_yosg6")
+
+[node name="Sprite" parent="." index="3" unique_id=1169619754]
+scale = Vector2(0.3769231, 0.38076922)
+sprite_frames = ExtResource("2_438f2")
+animation = &"Attack Down"
+autoplay = "Idle Down"
+frame_progress = 0.041787848
+
+[node name="Outline_Sprite" parent="." index="4" unique_id=360754039]
+scale = Vector2(0.3769231, 0.38076922)
+sprite_frames = ExtResource("2_438f2")
+animation = &"Attack Down"
+frame = 1

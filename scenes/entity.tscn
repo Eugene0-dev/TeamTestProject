@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://c7mwnlui8vo04"]
 
 [ext_resource type="Script" uid="uid://om3yqii4ompb" path="res://scripts/entity/entity.gd" id="1_iiwub"]
+[ext_resource type="Material" uid="uid://cuhhwecn5wjd2" path="res://assets/shaders/entity_material.tres" id="3_m0cyi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhrbk"]
+resource_local_to_scene = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iiwub"]
 resource_local_to_scene = true
@@ -21,11 +25,10 @@ collision_mask = 255
 collision_priority = 100.0
 input_pickable = true
 script = ExtResource("1_iiwub")
+sprite_frames = SubResource("SpriteFrames_xhrbk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=283948992]
 shape = SubResource("CircleShape2D_iiwub")
-
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1169619754]
 
 [node name="Sight_Area" type="Area2D" parent="." unique_id=643319598]
 collision_mask = 2
@@ -39,3 +42,12 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=1608485846]
 shape = SubResource("CircleShape2D_gr72c")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1169619754]
+sprite_frames = SubResource("SpriteFrames_xhrbk")
+
+[node name="Outline_Sprite" type="AnimatedSprite2D" parent="." unique_id=360754039]
+visible = false
+z_index = 10
+material = ExtResource("3_m0cyi")
+sprite_frames = SubResource("SpriteFrames_xhrbk")
