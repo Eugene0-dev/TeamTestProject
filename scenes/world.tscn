@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://mgb88oecud1x"]
 
 [ext_resource type="TileSet" uid="uid://62aow83kma2b" path="res://assets/tilesets/ground_tileset.tres" id="1_4wyf3"]
-[ext_resource type="Script" uid="uid://5l5hfywi7mjq" path="res://scripts/world.gd" id="1_e3hyu"]
+[ext_resource type="Script" uid="uid://ve0c56e6iwqv" path="res://scripts/world.gd" id="1_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://u3j3f2rkvkde" path="res://scenes/main_cam.tscn" id="1_i7141"]
-[ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/world_map.gd" id="2_4wyf3"]
+[ext_resource type="Script" uid="uid://bqdie6m8d3oyc" path="res://scripts/world_map.gd" id="2_4wyf3"]
 [ext_resource type="Material" uid="uid://be5pdkfanhqyr" path="res://assets/shaders/background_material.tres" id="3_dss4m"]
 [ext_resource type="Material" uid="uid://qg44xuqox7n5" path="res://assets/shaders/ground_material.tres" id="3_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://e6t581fwt3w4" path="res://scenes/ui/ui.tscn" id="4_7r4gi"]
@@ -84,6 +84,7 @@ collision_enabled = false
 physics_quadrant_size = 8
 
 [node name="Objects" type="TileMapLayer" parent="Ground" unique_id=1090532779]
+y_sort_enabled = true
 material = ExtResource("8_xo05s")
 tile_set = ExtResource("7_jhx03")
 rendering_quadrant_size = 1

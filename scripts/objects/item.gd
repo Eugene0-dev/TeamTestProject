@@ -3,13 +3,14 @@ class_name Item
 extends Node2D
 
 enum id {
-	WOOD, REDBALL, LAMPFRUIT, id3,
-	id4, id5, id6, id7,
-	id8, id9, id10, id11,
-	id12, id13, id14, id15
+	LOG, BOLD_LOG, ROCK, REDBALL,
+	LAMPFRUIT, SUNFRUIT, PUSHFRUIT, HELLBERRY,
+	SUCKBERRY, WHITEBALLS, BLACKBALL, CLOWNBERRY,
+	SEGBERRY, BEGBERRY, SPIRITBERRY, RUSHBERRY,
+	ID16, ID17, ID18, ID19
 }
 
-@export var item_id: id = id.WOOD:
+@export var item_id: id = id.LOG:
 	set(val):
 		item_id = val
 		update_sprite_region()

@@ -339,7 +339,7 @@ region = Rect2(130, 455, 65, 65)
 atlas = ExtResource("13_v36y7")
 region = Rect2(195, 455, 65, 65)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lrc0w"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v36y7"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -683,7 +683,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qsm7a"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lrc0w"]
 resource_local_to_scene = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxnha"]
@@ -1006,7 +1006,7 @@ region = Rect2(130, 455, 65, 65)
 atlas = ExtResource("15_jct5c")
 region = Rect2(195, 455, 65, 65)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fyji3"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsm7a"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1400,16 +1400,16 @@ item_id = 3
 position = Vector2(468, 354)
 
 [node name="Drone" parent="." unique_id=1305847055 instance=ExtResource("12_ien41")]
-position = Vector2(417, 356)
-sprite_frames = SubResource("SpriteFrames_lrc0w")
+position = Vector2(418, 355)
+sprite_frames = SubResource("SpriteFrames_v36y7")
 
 [node name="Egg" parent="." unique_id=892900747 instance=ExtResource("13_jct5c")]
 position = Vector2(425, 330)
-sprite_frames = SubResource("SpriteFrames_qsm7a")
+sprite_frames = SubResource("SpriteFrames_lrc0w")
 
 [node name="Princess" parent="." unique_id=419332210 instance=ExtResource("14_v36y7")]
 position = Vector2(373, 352)
-sprite_frames = SubResource("SpriteFrames_fyji3")
+sprite_frames = SubResource("SpriteFrames_qsm7a")
 
 [node name="Scout" parent="." unique_id=2139793271 instance=ExtResource("15_lrc0w")]
 position = Vector2(321, 354)

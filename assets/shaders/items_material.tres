@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource("1_a84pu")
-shader_parameter/wobble_speed = 3.0
+shader_parameter/wobble_speed = 0.0
 shader_parameter/wobble_amount = 0.0010000000475
 shader_parameter/shine_color = Color(1, 0.5529412, 0, 0.24705882)
 shader_parameter/shine_speed = 1.5
