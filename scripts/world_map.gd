@@ -1,8 +1,10 @@
+@tool
 class_name WorldMap
 extends TileMapLayer
 
 @export var noise: FastNoiseLite
 @export var objective_noise: FastNoiseLite
+@export var ground_material_noise: FastNoiseLite
 
 @export var map_width: int
 @export var map_height: int
@@ -13,15 +15,22 @@ var threads: Array
 var map_width_px: int
 var map_height_px: int
 
-const t_earth = 1
-const t_grass = 0
-const t_stone = 3
-const t_sand  = 2
+const t_earth  = 1
+const t_grass  = 0
+const t_stone  = 3
+const t_sand   = 2
+const t_gravel = Vector2i(12, 15)
+const t_clay   = Vector2i(12, 14)
+const t_sludge = Vector2i(12, 13)
 
 @onready var water_layer: TileMapLayer = $Water
 @onready var objects_layer: TileMapLayer = $Objects
 var progress: float = 0.0
-var world_seed: int = 0
+@export var world_seed: int = 0:
+	set(val):
+		world_seed = val
+		init_noise()
+		map_gen()
 
 const sector_size: Vector2i = Vector2i(32, 32)
 var sectors: Dictionary = {}
@@ -59,6 +68,12 @@ func init_noise() -> void:
 	objective_noise.seed = world_seed+1
 	objective_noise.noise_type = FastNoiseLite.TYPE_VALUE_CUBIC
 	objective_noise.frequency = 0.1
+	
+	ground_material_noise = FastNoiseLite.new()
+	ground_material_noise.seed = world_seed+2
+	ground_material_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	ground_material_noise.frequency = 0.0005
+	ground_material_noise.fractal_gain = 0.6
 
 func init_sectors() -> void:
 	var tile_width = tileset.tile_size.x
@@ -81,12 +96,16 @@ func map_gen() -> void:
 	var batch_cells_sand: Array[Vector2i] = []
 	var batch_cells_earth: Array[Vector2i] = []
 	var batch_cells_stone: Array[Vector2i] = []
+	var batch_cells_gravel: Array[Vector2i] = []
+	var batch_cells_clay: Array[Vector2i] = []
+	var batch_cells_sludge: Array[Vector2i] = []
 	
 	for x in range(map_width):
 		for y in range(map_height):
 				
 			var noise_val = noise.get_noise_2d(x, y)
-			var tile_case = get_tile_type(noise_val)
+			var material_val = 	ground_material_noise.get_noise_2d(x, y)
+			var tile_case = get_tile_type(noise_val, material_val)
 			var cell = Vector2i(x, y)
 			if not (cell.y == 0 or cell.y == map_height):
 				match tile_case.y:
@@ -94,6 +113,9 @@ func map_gen() -> void:
 					t_sand: batch_cells_sand.append(cell)
 					t_earth: batch_cells_earth.append(cell)
 					t_stone: batch_cells_stone.append(cell)
+					t_gravel: batch_cells_gravel.append(cell)
+					t_clay: batch_cells_clay.append(cell)
+					t_sludge: batch_cells_sludge.append(cell)
 				
 			var obj_noise_val = objective_noise.get_noise_2d(x, y)
 			
@@ -121,16 +143,20 @@ func map_gen() -> void:
 				await get_tree().process_frame
 			elif not is_inside_tree(): return
 	
-	var post_process = connect_cells.bind(batch_cells_grass, batch_cells_earth, batch_cells_sand, batch_cells_stone)
-	threads.append(WorkerThreadPool.add_task(post_process, false))
+	var post_process = connect_cells.bind(batch_cells_grass, batch_cells_earth, batch_cells_sand, batch_cells_stone, batch_cells_gravel, batch_cells_clay, batch_cells_sludge)
+	if not Engine.is_editor_hint():
+		threads.append(WorkerThreadPool.add_task(post_process, false))
 	progress = map_width
 	emit_signal("generation_complete")
 
-func connect_cells(grass: Array[Vector2i], earth: Array[Vector2i], sand: Array[Vector2i], stone: Array[Vector2i]) -> void:
+func connect_cells(grass: Array[Vector2i], earth: Array[Vector2i], sand: Array[Vector2i], stone: Array[Vector2i], gravel: Array[Vector2i], clay: Array[Vector2i], sludge: Array[Vector2i]) -> void:
 	var batch_grass: Array[Vector2i]
 	var batch_earth: Array[Vector2i]
 	var batch_sand: Array[Vector2i]
 	var batch_stone: Array[Vector2i]
+	var batch_gravel: Array[Vector2i]
+	var batch_clay: Array[Vector2i]
+	var batch_sludge: Array[Vector2i]
 	var i = 0
 	var chunk_size = 10000
 	while i < grass.size():
@@ -146,6 +172,15 @@ func connect_cells(grass: Array[Vector2i], earth: Array[Vector2i], sand: Array[V
 		if i < stone.size()-1:
 			batch_stone = stone.slice(i, i+chunk_size)
 			set_cells_terrain_connect(batch_stone, 0, 3, false)
+		if i < gravel.size()-1:
+			batch_gravel = gravel.slice(i, i+chunk_size)
+			set_cells_terrain_connect(batch_gravel, 0, 6, false)
+		if i < clay.size()-1:
+			batch_clay = clay.slice(i, i+chunk_size)
+			set_cells_terrain_connect(batch_clay, 0, 4, false)
+		if i < sludge.size()-1:
+			batch_sludge = sludge.slice(i, i+chunk_size)
+			set_cells_terrain_connect(batch_sludge, 0, 5, false)
 		i += chunk_size
 		OS.delay_msec(50)
 
@@ -248,8 +283,15 @@ func place_object(pos: Vector2i, atlas_id: int, tile: Vector2i, is_solid: bool) 
 				var cost = remap(dist, 1.0, 6.0, 10.0, 1.0)
 				astar_grid.set_point_weight_scale(tile_around+pos, abs(cost))
 
-func get_tile_type(val: float) -> Vector2i:
-	if -0.5 < val and val < 0: return Vector2i(randi_range(0, 3), t_sand)
+func get_tile_type(val: float, m_val: float) -> Vector2i:
+	if val > -0.2 and val < 0.6 and m_val > -1 and m_val < -0.7:
+		return Vector2i(t_clay.x+randi_range(0, 3), t_clay.y)
+	if -0.5 < val and val < -0.15: 
+		if randf() > 0.99:
+			return Vector2i(t_sludge.x+randi_range(0, 3), t_sludge.y-1)
+		else:
+			return Vector2i(t_sludge.x+randi_range(0, 3), t_sludge.y)
+	if val > -0.15 and val < 0: return Vector2i(randi_range(0, 3), t_sand)
 	if val > 0 and val < 0.5: return  Vector2i(randi_range(0, 3), t_grass)
 	if val > 0.5: return Vector2i(randi_range(0, 3), t_earth)
 	return Vector2i(randi_range(0, 3), t_stone)

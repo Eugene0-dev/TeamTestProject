@@ -1396,7 +1396,7 @@ item_id = 1
 
 [node name="Item4" parent="." unique_id=1053335330 instance=ExtResource("10_xapkw")]
 position = Vector2(624, 321)
-item_id = 15
+item_id = 20
 
 [node name="Queen" parent="." unique_id=386023745 instance=ExtResource("11_7ev63")]
 position = Vector2(468, 354)
@@ -1432,6 +1432,7 @@ type = 2
 
 [node name="Item2" parent="." unique_id=1462765544 instance=ExtResource("10_xapkw")]
 position = Vector2(636, 358)
+item_id = 17
 
 [node name="Item5" parent="." unique_id=1797294925 instance=ExtResource("10_xapkw")]
 position = Vector2(362, 182)
