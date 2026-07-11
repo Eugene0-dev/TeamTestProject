@@ -1,4 +1,4 @@
-@tool
+
 class_name World
 extends Node2D
 
@@ -14,6 +14,9 @@ func _ready() -> void:
 	sectors = world_map.sectors
 	clouds.size.x = world_map.map_width_px
 	clouds.size.y = world_map.map_height_px
+	
+	Global.place_item.connect(_on_place_item_requested)
+	Global.grow_plant.connect(grow)
 
 func place_item(id: int, pos: Vector2) -> Item:
 	var item_scene: PackedScene = load("res://scenes/objects/item.tscn")
@@ -24,6 +27,14 @@ func place_item(id: int, pos: Vector2) -> Item:
 		add_child(item)
 		return item
 	return null
+
+func grow(args: Dictionary) -> Grass:
+	var scene: PackedScene = load("res://scenes/objects/grass.tscn")
+	var grass: Grass = scene.instantiate()
+	grass.global_position = args["pos"]
+	grass.type = args["type"]
+	add_child(grass)
+	return grass
 
 func create_entity(link: String, pos: Vector2, extra: String = "") -> Entity:
 	var scene: PackedScene = load("res://entity/%s.tscn" % link)
@@ -76,6 +87,9 @@ func get_cell(coordinates: Vector2i) -> Vector2i:
 	var x = coordinates.x >> 3
 	var y = coordinates.y >> 3
 	return Vector2i(x, y)
+
+func _on_place_item_requested(args: Dictionary):
+	place_item(args["id"], args["pos"])
 
 func _on_ground_generation_complete() -> void:
 	nav_grid = world_map.astar_grid

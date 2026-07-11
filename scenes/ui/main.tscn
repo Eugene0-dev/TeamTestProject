@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dh7auhwpe0p58" path="res://scripts/world_map.gd" id="1_choun"]
 [ext_resource type="Theme" uid="uid://cf7qinaxog0mv" path="res://assets/menu_theme.tres" id="1_o5qli"]
+[ext_resource type="Material" uid="uid://qg44xuqox7n5" path="res://assets/shaders/ground_material.tres" id="1_qmqn8"]
 [ext_resource type="TileSet" uid="uid://62aow83kma2b" path="res://assets/tilesets/ground_tileset.tres" id="1_sugp2"]
 [ext_resource type="TileSet" uid="uid://b4cjx62nwwh2i" path="res://assets/tilesets/water_tileset.tres" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://bthy8p46o8vd" path="res://scripts/ui/main_menu.gd" id="2_sugp2"]
 [ext_resource type="Material" uid="uid://be5pdkfanhqyr" path="res://assets/shaders/background_material.tres" id="3_85g3d"]
+[ext_resource type="Material" uid="uid://dxf52pji3oaus" path="res://assets/shaders/water_material.tres" id="4_55yel"]
 [ext_resource type="TileSet" uid="uid://cxng54clsdivr" path="res://assets/tilesets/objects_tileset.tres" id="4_ya4ey"]
+[ext_resource type="Material" uid="uid://dxhtm1njf1at5" path="res://assets/shaders/woods_material.tres" id="6_26ekd"]
 [ext_resource type="Texture2D" uid="uid://daei4e46wq5pd" path="res://assets/logos/logo_sf.png" id="7_o6xl0"]
 [ext_resource type="FontFile" uid="uid://cmymgt2gqvv4w" path="res://assets/PauzaStencil-Bold.75bac0b8ac7045f0ca78454a964c0835.ttf" id="7_ya4ey"]
 [ext_resource type="FontFile" uid="uid://5tndu0u21u1t" path="res://assets/OpenLukyanov.otf" id="8_6ic3k"]
@@ -17,6 +20,8 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kbnl5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hyu26"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dss4m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x68jn"]
 font = ExtResource("8_6ic3k")
@@ -35,18 +40,22 @@ outline_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
 [node name="Main" type="Node2D" unique_id=381476108]
 
 [node name="WorldMap" type="TileMapLayer" parent="." unique_id=1297678688]
+material = ExtResource("1_qmqn8")
 tile_set = ExtResource("1_sugp2")
 script = ExtResource("1_choun")
 noise = SubResource("FastNoiseLite_kbnl5")
 objective_noise = SubResource("FastNoiseLite_hyu26")
+ground_material_noise = SubResource("FastNoiseLite_dss4m")
 map_width = 160
 map_height = 96
 tileset = ExtResource("1_sugp2")
 
 [node name="Water" type="TileMapLayer" parent="WorldMap" unique_id=189885511]
+material = ExtResource("4_55yel")
 tile_set = ExtResource("2_jyhfs")
 
 [node name="Objects" type="TileMapLayer" parent="WorldMap" unique_id=2109418463]
+material = ExtResource("6_26ekd")
 tile_set = ExtResource("4_ya4ey")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=691050972]
